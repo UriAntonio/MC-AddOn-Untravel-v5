@@ -1,0 +1,63 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "§b§5§lUntravel§eMx§b Server",
+		"description": "A utility to fight against malicious hackers on Bedrock Edition ~ v5.0.0",
+		"uuid": "0bcd11bc-01ad-4fd0-bd65-c1ae019197fa",
+		"version": [
+			5,
+			0,
+			0
+		],
+		"min_engine_version": [
+			1,
+			19,
+			0
+		]
+	},
+	"metadata": {
+		"authors": [
+			"KlarixMx, MrDiamond64, Visual1mpact, Smelly of Curry"
+		],
+		"license": "GPLv3",
+		"url": "https://github.com/Visual1mpact/Paradox_AntiCheat",
+		"generated_with": {
+			"bridge": [
+				"1.8.4"
+			]
+		}
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "0f73c183-c6fa-4e5e-9524-11207bf96605",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"description": "Paradox AntiCheat & KlarixMx Features",
+			"language": "javascript",
+			"type": "script",
+			"uuid": "239c134f-67bf-4738-9bcc-8c69d31b1f72",
+			"version": [
+				1,
+				0,
+				0
+			],
+			"entry": "scripts/mx.js"
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.6.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.2.0-beta"
+		}
+	]
+}
