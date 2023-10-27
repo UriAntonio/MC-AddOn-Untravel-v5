@@ -1,13 +1,5 @@
 
-//import { onJoin } from "./misc/onJoin";
-//import "./modules/display/display"
-//import "./util/emo.js"
-
-
-
-
-//var emoji = emojione.toShort("👩‍💻"); 
+import { onJoin } from "./misc/onJoin";
 
 //onJoin()
-
 
