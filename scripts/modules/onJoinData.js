@@ -1,3 +1,5 @@
 export const onJoinData = [
-    'tellraw @a {"rawtext":[{"text":"§aClases - Todo Listo! (§d10§f/§d10§b)!"}]}',
+    "gamerule sendcommandfeedback false",
+    "gamerule commandblockoutput false",
+    'tellraw @a {"rawtext":[{"text":"§a Todo Listo! (§d10§f/§d10§b)!"}]}',
 ]

@@ -1,0 +1,65 @@
+import { world } from "@minecraft/server";
+import { cfg } from "../conf/config";
+
+const commandDefinitions = Object.setPrototypeOf({
+    /**gmc: gmc,
+    ban: ban,
+    unban: unban,
+    ctl: ctl,
+    say: say,
+    help: help,
+    setting: setting,
+    clan: clan,
+    team: team,*/
+
+}, null)
+
+export const chatFilter = () => {
+    world.beforeEvents.chatSend.subscribe((eventData) => {
+        let player = eventData.sender;
+        let msg = eventData.message
+        let tags = player.getTags()
+        let rank
+        if (msg.startsWith(cfg.prefix)) {
+            eventData.cancel = true;
+            let arg = msg.slice(cfg.prefix.length).split(/ +/)
+            const commandName = arg.shift().toLowerCase()
+            //Registro de LogScreen
+            if (cfg.debug) {
+                console.warn(`${new Date()} | did run command handler`)
+                
+            }
+            //Advierte que el comando no es parte del CommandDefinition Handler
+            if (!(commandName in commandDefinitions)) {
+                cfg.sendMsgToPlayer(player, `§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+                return eventData.cancel = true
+            }
+            //Ejecuta los comandos que coincidan en el CommandDefinition handler
+            commandDefinitions[commandName](eventData, arg, msg.slice(cfg.prefix.length + commandName.length + 1), commandName)
+            console.warm(`${new Date()} | "${player.name}" used the command: ${cfg.prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
+
+        }
+        //Evita que los jugadores muteados hablen en el chat
+        if (player.hasTag("isMuted")) {
+            cfg.sendMsgToPlayer(player,`${cfg.server}§c You are currently muted.`)
+            eventData.cancel = true
+            return;  
+        }
+        for (const tag of tags) {
+            if (tag.startsWith("Rank:")) {
+                rank = tag.replace("Rank:", "")
+                rank = rank.replaceAll("--", "§r§o§7][§r")
+            }
+        }
+        if (!rank) {
+            rank = "★";
+        }
+        //envia el mensaje al chat general
+        if (!eventData.cancel) {
+            cfg.sendMsg(
+                "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
+            )
+            eventData.cancel = true;
+        }
+    })
+}

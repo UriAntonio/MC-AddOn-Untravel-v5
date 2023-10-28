@@ -1,6 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { onJoinData } from "../modules/onJoinData.js";
-import { welcome } from "../custom-ui/newMemberMessage.js";
+import { welcome } from "../util/newMemberMessage";
 
 //const tickEventCallback = system.runInterval;
 let check = false;
@@ -23,14 +23,9 @@ function onJoinSpawn(player) {
     // }
     // We execute each command in the list
     if (!player.hasTag("online")) {
-      for (let i = 0; i < 1200; i++) {
-        if (i == 200) {
-          welcome(player);
-          player.addTag("online");
-        }
-      }
-
-      //player.runCommandAsync(`say eres nuevo?`);
+      player.runCommandAsync(
+        `replaceitem entity @s slot.hotbar 0 mx:new 1 0 {"minecraft:item_lock":{"mode":"lock_in_slot"},"minecraft:keep_on_death":{}}`
+      );
     }
     for (let i = 0; i < onJoinData.length; i++) {
       try {
