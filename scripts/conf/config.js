@@ -1,6 +1,6 @@
 import { world } from "@minecraft/server";
 const overworld = world.getDimension("overworld");
-const { fromCodePoint } = String
+const { fromCodePoint } = String;
 
 const cfg = {
   prefix: "-",
@@ -69,34 +69,37 @@ const cfg = {
     }
   },
   getScore(playerSelect, score) {
-    return world.scoreboard.getObjective(score).getScore(playerSelect.scoreboard);
+    return world.scoreboard
+      .getObjective(score)
+      .getScore(playerSelect.scoreboard);
   },
-  encryption: {
-    key: "7231##7231",
-},
+
+  modules: {
+    worldBorder: {
+      enabled: true,
+      nether: 500,
+      overworld: 4000,
+    },
+    setHome: {
+      enabled: true,
+      max: 5,
+    },
+    tpr: {
+      seconds: 20,
+      minutes: 0,
+      hours: 0,
+      days: 0,
+    },
+    goHome: {
+      seconds: 0,
+      minutes: 5,
+      hours: 0,
+      days: 0,
+    },
+    encryption: {
+      key: "7231##7231",
+    },
+  },
 };
 
-const motionFrames = [
-  "■-------------------",
-  "■■------------------",
-  "■■■-----------------",
-  "■■■■----------------",
-  "■■■■■---------------",
-  "■■■■■■--------------",
-  "■■■■■■■-------------",
-  "■■■■■■■■------------",
-  "■■■■■■■■■-----------",
-  "■■■■■■■■■■----------",
-  "■■■■■■■■■■■---------",
-  "■■■■■■■■■■■■--------",
-  "■■■■■■■■■■■■■-------",
-  "■■■■■■■■■■■■■■------",
-  "■■■■■■■■■■■■■■■-----",
-  "■■■■■■■■■■■■■■■■----",
-  "■■■■■■■■■■■■■■■■■---",
-  "■■■■■■■■■■■■■■■■■■--",
-  "■■■■■■■■■■■■■■■■■■■-",
-  `■■■■■■■■■■■■■■■■■■■${globalThis.star}`,
-];
-
-export { cfg, motionFrames };
+export { cfg };

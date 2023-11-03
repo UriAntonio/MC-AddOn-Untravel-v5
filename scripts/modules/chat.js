@@ -1,11 +1,12 @@
 import { world } from "@minecraft/server";
 import { cfg } from "../conf/config";
+import { ctl } from "../command/ctl";
 
 const commandDefinitions = Object.setPrototypeOf({
+    ctl: ctl,
     /**gmc: gmc,
     ban: ban,
     unban: unban,
-    ctl: ctl,
     say: say,
     help: help,
     setting: setting,
@@ -26,7 +27,7 @@ export const chatFilter = () => {
             const commandName = arg.shift().toLowerCase()
             //Registro de LogScreen
             if (cfg.debug) {
-                console.warn(`${new Date()} | did run command handler`)
+                //console.warn(`${new Date()} | did run command handler`)
                 
             }
             //Advierte que el comando no es parte del CommandDefinition Handler
@@ -36,12 +37,12 @@ export const chatFilter = () => {
             }
             //Ejecuta los comandos que coincidan en el CommandDefinition handler
             commandDefinitions[commandName](eventData, arg, msg.slice(cfg.prefix.length + commandName.length + 1), commandName)
-            console.warm(`${new Date()} | "${player.name}" used the command: ${cfg.prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
+            console.warn(`${new Date()} | "${player.name}" used the command: ${cfg.prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
 
         }
         //Evita que los jugadores muteados hablen en el chat
         if (player.hasTag("isMuted")) {
-            cfg.sendMsgToPlayer(player,`${cfg.server}§c You are currently muted.`)
+            cfg.sendMsgToPlayer(player,`${cfg.server}§c Has sido silenciad@.`)
             eventData.cancel = true
             return;  
         }

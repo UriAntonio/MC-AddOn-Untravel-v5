@@ -8,7 +8,6 @@ export const itemUses = () => {
         if (items.typeId === "mx:new" &&
         !source.hasTag("online")) {
             welcome(source);
-            source.runCommandAsync(`say hi`)
           }
     })
 }
