@@ -41,11 +41,12 @@ export const onJoin = () => {
     // Toma el nombre del jugador que se esta uniendo
     let player = loaded.player;
     // Ejecuta la funcion con el tick event
-    if (data.initialSpawn) {
+    if (loaded.initialSpawn) {
       Server.PlayerOnline[player.name] = Date.now()
       Server.System.run(async () => {
         onJoinSpawn(player);
       });
+      
     } else {
       //player.sendMessage(`§eYou died. use §a!back§e to teleport to your death location.`)
     }
