@@ -1,6 +1,7 @@
 import { world } from "@minecraft/server";
 import { cfg } from "../conf/config";
 import { ctl } from "../command/ctl";
+import { util } from "../util/utils";
 
 const commandDefinitions = Object.setPrototypeOf({
     ctl: ctl,
@@ -32,7 +33,7 @@ export const chatFilter = () => {
             }
             //Advierte que el comando no es parte del CommandDefinition Handler
             if (!(commandName in commandDefinitions)) {
-                cfg.sendMsgToPlayer(player, `§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+                util.sendMsgToPlayer(player, `§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
                 return eventData.cancel = true
             }
             //Ejecuta los comandos que coincidan en el CommandDefinition handler
@@ -42,7 +43,7 @@ export const chatFilter = () => {
         }
         //Evita que los jugadores muteados hablen en el chat
         if (player.hasTag("isMuted")) {
-            cfg.sendMsgToPlayer(player,`${cfg.server}§c Has sido silenciad@.`)
+            util.sendMsgToPlayer(player,`${cfg.server}§c Has sido silenciad@.`)
             eventData.cancel = true
             return;  
         }
@@ -57,8 +58,8 @@ export const chatFilter = () => {
         }
         //envia el mensaje al chat general
         if (!eventData.cancel) {
-            cfg.sendMsg(
-                "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
+            util.sendMsg(
+               "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
             )
             eventData.cancel = true;
         }

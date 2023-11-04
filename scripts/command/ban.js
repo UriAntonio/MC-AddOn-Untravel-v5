@@ -1,9 +1,10 @@
 import { cfg } from "../conf/config";
+import { util } from "../util/utils";
 
 
 
 function banHelp(player) {
-    return cfg.sendMsgToPlayer(player, [
+    return  util.sendMsgToPlayer(player, [
         `\n§b~§aCommand§b~§r: ban`,
         `§b~§a§oUsage§b~§r: ban [optional]`,
         `§b~§a§oOptional§b~§r: NameTag, razon, help`,
