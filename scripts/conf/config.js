@@ -1,18 +1,12 @@
-const { fromCodePoint } = String;
+const cfg = {}
 
-const cfg = {
-  prefix: "-",
-  lockServer: false,
-  server: `§r§b■§d§lUntravel§eMx§b■§r`,
-  debug: true,
-  symbols: {
-    heart: fromCodePoint(0xe200),
-    pen: fromCodePoint(0xe201),
-    starShine: fromCodePoint(9733),
-    oder: "\uD83D\uDCA9",
-  },
+  cfg.prefix = "-"
+  cfg.lockServer = false
+  cfg.server = `§r§b■§d§lUntravel§eMx§b■§r`
+  cfg.debug = true
 
-  modules: {
+
+  cfg.modules = {
     worldBorder: {
       enabled: true,
       nether: 500,
@@ -37,7 +31,7 @@ const cfg = {
     encryption: {
       key: "7231##7231",
     },
-  },
-};
+  }
 
-export { cfg };
+
+export {cfg}
