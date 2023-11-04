@@ -1,5 +1,3 @@
-import { world } from "@minecraft/server";
-const overworld = world.getDimension("overworld");
 const { fromCodePoint } = String;
 
 const cfg = {
