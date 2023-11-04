@@ -20,7 +20,7 @@ function onJoinSpawn(player) {
       }
     }
     //Verificamos si el jugador es miembro nuevo
-    if (!player.hasTag("online")) {
+    if (!player.hasTag("joined")) {
       welcome(player);
     }
     // Ejecutanos cada comando en la lista

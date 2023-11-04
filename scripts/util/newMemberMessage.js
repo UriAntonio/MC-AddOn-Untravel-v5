@@ -8,7 +8,11 @@ export function welcome(playerid) {
   let wel = new ActionFormData()
   .title(`★━━━━━━━━<§oBienvenido§r>━━━━━━━━★`)
   .body(
-    `\n§rBienvenido a Untravel §d${playerid.nameTag}§r. \n    Esperamos y te la pases bien\n    cualquier bug reportar con los\n    Admins...\n`
+    `\n§rBienvenido a Untravel §d${playerid.nameTag}§r.
+    \n    Esperamos y te la pases bien
+    \n    cualquier bug reportar con los
+    \n    Admins...
+    \n`
   )
   .button(`Ok`);
 
@@ -19,7 +23,7 @@ export function welcome(playerid) {
       welcome(playerid)
     } else {
      console.log("Your result was: " + result.selection);
-     playerid.addTag("online");
+     playerid.addTag("joined");
   }
 })
 })}
