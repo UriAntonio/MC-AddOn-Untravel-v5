@@ -1,5 +1,5 @@
 import { world } from "@minecraft/server";
-import { welcome } from "./newMemberMessage";
+import { welcome } from "../util/newMemberMessage";
 
 export const itemUses = () => {
     world.beforeEvents.itemUse.subscribe((data) => {
