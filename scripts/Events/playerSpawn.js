@@ -1,7 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { onJoinData } from "../modules/onJoinData.js";
 import { welcome } from "../util/newMemberMessage.js";
-import { cfg } from "../conf/config.js";
+import Config from "../Configuration.js";
 
 //const tickEventCallback = system.runInterval;
 let check = false;
@@ -9,7 +9,7 @@ function onJoinSpawn(player) {
   try {
     player.runCommandAsync(`testfor @s`);
     // Bloquea el server si esta en true
-    if (cfg.lockServer) {
+    if (Config.lockServer) {
       let reason = "Bajo Mantenimiento! Perdón por las molestias.";
       try {
         // Kick a los jugadores del server

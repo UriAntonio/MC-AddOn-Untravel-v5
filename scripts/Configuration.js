@@ -76,6 +76,9 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 
 // Command Configuration
 Config.Prefix = "-"  // Command Prefix
+Config.lockServer = false
+Config.debug = true
+Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
 Config.Commands = {  // Commands Configuration (Don't change, unless you understand the code)
   general: {
     //help: true,
