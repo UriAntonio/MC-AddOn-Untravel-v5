@@ -3,7 +3,7 @@ import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
 
-//const tickEventCallback = system.runInterval;
+
 let check = false;
 function onJoinSpawn(player) {
   try {
