@@ -1,7 +1,7 @@
-import { world, system } from "@minecraft/server";
 import { onJoinData } from "../modules/onJoinData.js";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
+import Server from "../server.js";
 
 //const tickEventCallback = system.runInterval;
 let check = false;
@@ -37,12 +37,12 @@ function onJoinSpawn(player) {
 }
 
 export const onJoin = () => {
-  world.afterEvents.playerSpawn.subscribe((loaded) => {
+  Server.world.afterEvents.playerSpawn.subscribe((loaded) => {
     // Toma el nombre del jugador que se esta uniendo
     let player = loaded.player;
     let callback;
     // Ejecuta la funcion con el tick event
-    system.run(async () => {
+    Server.System.run(async () => {
       onJoinSpawn(player);
     });
   });

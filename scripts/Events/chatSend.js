@@ -1,7 +1,7 @@
-import { world } from "@minecraft/server";
 import  Config  from "../conf/Configuration";
 import { ctl } from "../command/ctl";
 import { util } from "../util/utils";
+import Server from "../server";
 
 const commandDefinitions = Object.setPrototypeOf({
     ctl: ctl,
@@ -17,7 +17,7 @@ const commandDefinitions = Object.setPrototypeOf({
 }, null)
 
 export const chatFilter = () => {
-    world.beforeEvents.chatSend.subscribe((eventData) => {
+    Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         let player = eventData.sender;
         let msg = eventData.message
         let tags = player.getTags()
