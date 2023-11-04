@@ -36,7 +36,6 @@ function onJoinSpawn(player) {
   }
 }
 
-export const onJoin = () => {
   Server.world.afterEvents.playerSpawn.subscribe((loaded) => {
     // Toma el nombre del jugador que se esta uniendo
     let player = loaded.player;
@@ -52,4 +51,4 @@ export const onJoin = () => {
     }
     
   });
-};
+
