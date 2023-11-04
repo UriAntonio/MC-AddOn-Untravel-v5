@@ -5,7 +5,8 @@ import Config from "./conf/Configuration";
 const Event = [
   "chatSend",
   "playerSpawn",
-  "itemuse"
+  "itemuse",
+  "playerleave"
 ]
 
 
