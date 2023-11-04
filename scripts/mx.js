@@ -1,7 +1,7 @@
 
 import { onJoin } from "./Events/playerSpawn";
-import { chatFilter } from "./modules/chatSend";
-import { itemUses } from "./util/itemUse.js";
+import { chatFilter } from "./Events/chatSend";
+import { itemUses } from "./Events/itemUse";
 
 onJoin()
 itemUses()
