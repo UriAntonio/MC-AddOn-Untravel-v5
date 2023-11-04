@@ -1,5 +1,5 @@
 import { world } from "@minecraft/server";
-import  Config  from "../Configuration";
+import  Config  from "../conf/Configuration";
 import { ctl } from "../command/ctl";
 import { util } from "../util/utils";
 

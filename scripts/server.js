@@ -1,5 +1,5 @@
 import  * as mc  from "@minecraft/server";
-import Config from "./Configuration";
+import Config from "./conf/Configuration";
 
 
 
