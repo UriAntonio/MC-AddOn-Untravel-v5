@@ -1,4 +1,4 @@
-import { cfg } from "../conf/config";
+import  Config  from "../conf/Configuration";
 import { util } from "../util/utils";
 
 
@@ -10,10 +10,10 @@ function banHelp(player) {
         `§b~§a§oOptional§b~§r: NameTag, razon, help`,
         `§b~§a§oDescription§b~§r: Banea al usuario especificado y puedes dar una razon opcional.`,
         `§b~§a§oExamples§b~§r:`,
-        `    ${cfg.prefix}ban ${player.name}`,
-        `    ${cfg.prefix}ban ${player.name} Hacker!`,
-        `    ${cfg.prefix}ban ${player.name} Atrapado usando Exploits!`,
-        `    ${cfg.prefix}ban help`,
+        `    ${Config.Prefix}ban ${player.name}`,
+        `    ${Config.Prefix}ban ${player.name} Hacker!`,
+        `    ${Config.Prefix}ban ${player.name} Atrapado usando Exploits!`,
+        `    ${Config.Prefix}ban help`,
     ])
 }
 
