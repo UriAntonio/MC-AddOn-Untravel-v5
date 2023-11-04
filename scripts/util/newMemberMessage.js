@@ -10,8 +10,8 @@ export function welcome(playerid) {
   .body(
     `\n§rBienvenido a Untravel §d${playerid.nameTag}§r.
     \n    Esperamos y te la pases bien
-    \n    cualquier bug reportar con los
-    \n    Admins...
+    \n    cualquier bug o sugerencia reportar
+    \n    a support@untravelmx.com...
     \n`
   )
   .button(`Ok`);
