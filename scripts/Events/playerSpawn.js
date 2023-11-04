@@ -1,6 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { onJoinData } from "../modules/onJoinData.js";
-import { welcome } from "../util/newMemberMessage";
+import { welcome } from "../util/newMemberMessage.js";
 import { cfg } from "../conf/config.js";
 
 //const tickEventCallback = system.runInterval;
