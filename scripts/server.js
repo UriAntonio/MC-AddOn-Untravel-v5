@@ -1,7 +1,7 @@
 import * as mc from "@minecraft/server";
 import Config from "./conf/Configuration";
 //
-//
+import { Log, SystemLog } from "./modules/Log";
 import { Database } from "./modules/DataBase/Database";
 
 
@@ -28,7 +28,7 @@ class ServerClass {
     //this.Money = Money
     //this.TPS = getTPS
     this.world = mc.world
-    //this.Log = Log
+    this.Log = Log
 
     //this.isLoaded = false
     //this.timeStarted = Date.now()
