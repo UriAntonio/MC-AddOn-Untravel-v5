@@ -135,7 +135,7 @@ class ServerClass {
 const Server = new ServerClass()
 
 Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
-  //const date = new Date.now()
+  const date =  Date.now()
   //await Server.waitLoaded()
   //Object
   //
