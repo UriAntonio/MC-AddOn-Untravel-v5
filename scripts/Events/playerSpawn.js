@@ -1,4 +1,4 @@
-import { onJoinData } from "../modules/Data/onJoinData.js";
+import { onJoinData } from "../Modules/Data/onJoinData";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
