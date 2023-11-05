@@ -1,9 +1,13 @@
 import * as mc from "@minecraft/server";
 import Config from "./conf/Configuration";
 //
-import { Log, SystemLog } from "./modules/Log";
-import { Database } from "./modules/DataBase/Database";
-
+import { Log, SystemLog } from "./Modules/Log";
+import { Database } from "./Modules/DataBase/Database";
+//
+import Setting from "./Modules/Setting";
+//
+//
+//
 
 const Event = [
   "chatSend",
@@ -24,7 +28,7 @@ class ServerClass {
     //this.WarpDB = new Database("warpDB")
     this.BackDB = new Database("backDB")
     //this.BanDB = new Database("banDB")
-    //this.Setting = new Setting()
+    this.Setting = new Setting()
     //this.Money = Money
     //this.TPS = getTPS
     this.world = mc.world
@@ -70,6 +74,13 @@ class ServerClass {
   async runCommand(command, dimension) {
     let res = await this.getDimension(dimension ?? "minecraft:overworld").runCommandAsync(command)
     return res
+  }
+  /**
+   * Get Command Prefix
+   * @returns {string}
+   */
+  getPrefix() {
+    return this.Setting.get("commandPrefix") ?? Config.Prefix
   }
   /**
    * Delay Function
