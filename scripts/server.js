@@ -8,6 +8,7 @@ import Setting from "./Modules/Setting";
 //
 //
 //
+//
 
 const Event = [
   "chatSend",
@@ -16,6 +17,10 @@ const Event = [
   "playerLeave",
   "playerDie"
 ]
+
+
+
+
 
 
 class ServerClass {
@@ -36,8 +41,8 @@ class ServerClass {
 
     //this.isLoaded = false
     //this.timeStarted = Date.now()
-
   }
+
   /**
      * Obtiene al Jugadorpor Nombre
      * @param {string} targetName 
@@ -75,6 +80,7 @@ class ServerClass {
     let res = await this.getDimension(dimension ?? "minecraft:overworld").runCommandAsync(command)
     return res
   }
+
   /**
    * Get Command Prefix
    * @returns {string}
@@ -82,6 +88,7 @@ class ServerClass {
   getPrefix() {
     return this.Setting.get("commandPrefix") ?? Config.Prefix
   }
+
   /**
    * Delay Function
    * @param {number} ms 
@@ -91,6 +98,7 @@ class ServerClass {
       mc.system.runTimeout(resolve, (ms / 1000) * 20)
     })
   }
+
   /**
    * Teleport Player
    * @param {mc.Player} player 
@@ -124,21 +132,43 @@ class ServerClass {
   }
 }
 
-
 const Server = new ServerClass()
 
 Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   //const date = new Date.now()
   //await Server.waitLoaded()
+  //Object
+  //
+  //
+  //
+  //
   //
   Event.forEach(event => {
-    import(`./Events/${event}`)
+    import(`./Events/${event}`).catch(err => SystemLog(`§cFallo al importar el evento: ${event} | ${err}`))
+  })
+
+  //Object
+  //
+  //
+  //
+  //
+  //
+
+  Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
+  Server.world.getAllPlayers()
+    .filter(p => p.hasTag(Config.AdminTag))
+    .forEach(p => {
+      p.sendMessage(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
+    })
+
+  Server.world.getAllPlayers().forEach((player) => {
+    Server.PlayerOnline[player.name] = Date.now()
   })
 })
 
 mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
   data.cancel = true
-  SystemLog(`Watchdog Terminate: ${data.terminateReason}`)
+  SystemLog(`§cWatchdog Terminate: ${data.terminateReason}`)
 })
 
 export default Server
