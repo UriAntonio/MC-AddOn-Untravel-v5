@@ -77,6 +77,7 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 // Command Configuration
 Config.Prefix = "-"  // Command Prefix
 Config.AdminTag = "7231_7231"  //tag que sera usada solo por el admin
+Config.normalMemberTag = "joined"
 Config.lockServer = false
 Config.debug = true
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`

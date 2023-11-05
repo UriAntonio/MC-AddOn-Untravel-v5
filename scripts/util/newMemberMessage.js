@@ -1,5 +1,6 @@
 import { system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
+import Config from "../conf/Configuration";
 
 
 export function welcome(playerid) {
@@ -23,7 +24,7 @@ export function welcome(playerid) {
       welcome(playerid)
     } else {
      console.log("Your result was: " + result.selection);
-     playerid.addTag("joined");
+     playerid.addTag(Config.normalMemberTag);
   }
 })
 })}
