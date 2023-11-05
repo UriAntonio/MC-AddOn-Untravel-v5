@@ -144,7 +144,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   //
   //
   Event.forEach(event => {
-    import(`./Events/${event}`).catch(err => SystemLog(`§cFallo al importar el evento: ${event} | ${err}`))
+    import(`./Events/${event}`).catch(err => Log(`§cFallo al importar el evento: ${event} | ${err}`))
   })
 
   //Object
