@@ -71,6 +71,34 @@ class ServerClass {
     let res = await this.getDimension(dimension ?? "minecraft:overworld").runCommandAsync(command)
     return res
   }
+  /**
+   * Delay Function
+   * @param {number} ms 
+   */
+  async sleep(ms) {
+    return new Promise((resolve) => {
+      mc.system.runTimeout(resolve, (ms / 1000) * 20)
+    })
+  }
+  /**
+   * Teleport Player
+   * @param {mc.Player} player 
+   * @param {mc.Vector} vector 
+   * @param {mc.TeleportOptions} options
+   */
+  async teleportPlayer(player, vector, options) {
+    await player.teleport(vector, options)
+    Log(`[Teleport] ${player.name} teleported to ${Math.round(vector.x)} ${Math.round(vector.y)} ${Math.round(vector.z)}`)
+  }
+
+  /**
+   * Send Server Message
+   * @param {string} message
+   */
+  async sendMessage(message) {
+    return await this.world.sendMessage(message)
+  }
+
   async waitLoaded() {
     return new Promise((resolve) => {
       let systemId = mc.system.runInterval(() => {
