@@ -1,7 +1,9 @@
 import Config from "../conf/Configuration";
 import { ctl } from "../command/admin/ctl";
 import Server from "../server";
+import { getCooldown } from "../Modules/Tempo/Cooldown";
 
+const prefix = Server.getPrefix()
 const commandDefinitions = Object.setPrototypeOf({
     ctl: ctl,
     /**gmc: gmc,
@@ -15,8 +17,7 @@ const commandDefinitions = Object.setPrototypeOf({
 
 }, null)
 
-export const chatFilter = () => {
-    Server.world.beforeEvents.chatSend.subscribe((eventData) => {
+Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         let player = eventData.sender;
         let msg = eventData.message
         let tags = player.getTags()
@@ -32,23 +33,26 @@ export const chatFilter = () => {
             return;
         }
 
-        if (msg.startsWith(Config.Prefix)) {
+        if (msg.startsWith(prefix)) {
             eventData.cancel = true;
-            let arg = msg.slice(Config.Prefix.length).split(/ +/)
+            let arg = msg.slice(prefix.length).trim().split(/ +/)
             const commandName = arg.shift().toLowerCase()
+            //let cmd = Server.
             //Registro de LogScreen
             if (Config.debug) {
                 //console.warn(`${new Date()} | did run command handler`)
 
             }
+            if(getCooldown("command", player) > 0) return Server.sendMsgToPlayer(player, `Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
+
             //Advierte que el comando no es parte del CommandDefinition Handler
             if (!(commandName in commandDefinitions)) {
                 Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
                 return eventData.cancel = true
             }
             //Ejecuta los comandos que coincidan en el CommandDefinition handler
-            commandDefinitions[commandName](eventData, arg, msg.slice(Config.Prefix.length + commandName.length + 1), commandName)
-            console.warn(`${new Date()} | "${player.name}" used the command: ${Config.Prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
+            commandDefinitions[commandName](eventData, arg, msg.slice(prefix.length + commandName.length + 1), commandName)
+            console.warn(`${new Date()} | "${player.name}" used the command: ${prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
 
         }
 
@@ -69,4 +73,3 @@ export const chatFilter = () => {
             eventData.cancel = true;
         }
     })
-}
