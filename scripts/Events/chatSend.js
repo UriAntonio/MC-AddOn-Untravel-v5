@@ -1,5 +1,5 @@
-import  Config  from "../conf/Configuration";
-import { ctl } from "../command/ctl";
+import Config from "../conf/Configuration";
+import { ctl } from "../command/admin/ctl";
 import Server from "../server";
 
 const commandDefinitions = Object.setPrototypeOf({
@@ -21,6 +21,17 @@ export const chatFilter = () => {
         let msg = eventData.message
         let tags = player.getTags()
         let rank
+        //if (player.isMuted()) {
+          //  eventData.cancel = true
+          //return player.sendMessage("§eEstas silenciad@!")
+        //}
+        //Evita que los jugadores muteados hablen en el chat
+        if (player.hasTag("isMuted")) {
+            Server.sendMsgToPlayer(player, `${Config.serverName}§c Has sido silenciad@.`)
+            eventData.cancel = true
+            return;
+        }
+
         if (msg.startsWith(Config.Prefix)) {
             eventData.cancel = true;
             let arg = msg.slice(Config.Prefix.length).split(/ +/)
@@ -28,7 +39,7 @@ export const chatFilter = () => {
             //Registro de LogScreen
             if (Config.debug) {
                 //console.warn(`${new Date()} | did run command handler`)
-                
+
             }
             //Advierte que el comando no es parte del CommandDefinition Handler
             if (!(commandName in commandDefinitions)) {
@@ -40,12 +51,7 @@ export const chatFilter = () => {
             console.warn(`${new Date()} | "${player.name}" used the command: ${Config.Prefix}${commandName}  ${arg} and ${arg.join(" ")}`)
 
         }
-        //Evita que los jugadores muteados hablen en el chat
-        if (player.hasTag("isMuted")) {
-            Server.sendMsgToPlayer(player,`${Config.serverName}§c Has sido silenciad@.`)
-            eventData.cancel = true
-            return;  
-        }
+
         for (const tag of tags) {
             if (tag.startsWith("Rank:")) {
                 rank = tag.replace("Rank:", "")
@@ -58,7 +64,7 @@ export const chatFilter = () => {
         //envia el mensaje al chat general
         if (!eventData.cancel) {
             Server.sendMsgAll(
-               "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
+                "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
             )
             eventData.cancel = true;
         }

@@ -38,7 +38,7 @@
 			]
 		},
 		{
-			"description": "Paradox AntiCheat & KlarixMx Features",
+			"description": "Paradox & KlarixMx Features",
 			"language": "javascript",
 			"type": "script",
 			"uuid": "239c134f-67bf-4738-9bcc-8c69d31b1f72",
@@ -58,6 +58,10 @@
 		{
 			"module_name": "@minecraft/server-ui",
 			"version": "1.2.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-admin",
+			"version": "1.0.0-beta"
 		}
 	]
 }
