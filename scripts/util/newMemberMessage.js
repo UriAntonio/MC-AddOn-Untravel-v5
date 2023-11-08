@@ -29,7 +29,7 @@ export function welcome(playerid) {
         welcome(playerid)
       } else {
         console.log("Your result was: " + result.selection);
-        playerid.runCommandAsync(`playsound random.totem @s`)
+        playerid.runCommandAsync(`playsound random.levelup @s`)
         //playerid.addTag(Config.normalMemberTag);
       }
     })
