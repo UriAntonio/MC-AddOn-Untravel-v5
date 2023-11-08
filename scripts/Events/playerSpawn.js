@@ -20,9 +20,9 @@ function onJoinSpawn(player) {
       }
     }
     //Verificamos si el jugador es miembro nuevo
-    if (!player.hasTag(Config.normalMemberTag)) {
+    //if (!player.hasTag(Config.normalMemberTag)) {
       welcome(player);
-    }
+    //}
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
       try {
