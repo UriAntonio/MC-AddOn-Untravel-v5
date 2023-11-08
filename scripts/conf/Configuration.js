@@ -1,4 +1,10 @@
+/**
+ *las porpiedades almacenadas en /tu-server/config/(uuid-default)/varibles.json
+ *Un objeto glogalmente disponible que retorna una lista de variables configuradas en tu server dedicado
+ *mas info: https://learn.microsoft.com/en-us/minecraft/creator/documents/scriptingservers
+*/
 import { variables } from "@minecraft/server-admin";
+
 const Config = {}
 
 // NOT RECOMMENDED TO CHANGE, MAY CAUSE A LAG
@@ -77,8 +83,9 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 
 // Command Configuration
 Config.Prefix = "-"  // Command Prefix
-Config.AdminTag = variables .get("adminTag")  //tag que sera usada solo por el admin
-Config.normalMemberTag = "joined"
+Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada para dar OP
+Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
+//Config.normalMemberTag = "joined"
 Config.lockServer = false
 Config.debug = true
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
