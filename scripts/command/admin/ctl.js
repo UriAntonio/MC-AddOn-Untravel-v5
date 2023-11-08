@@ -1,5 +1,5 @@
-import Config from "../conf/Configuration";
-import Server from "../server";
+import Config from "../../conf/Configuration";
+import Server from "../../server";
 
 
 
