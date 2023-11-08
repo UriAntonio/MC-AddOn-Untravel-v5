@@ -1,3 +1,4 @@
+import { variables } from "@minecraft/server-admin";
 const Config = {}
 
 // NOT RECOMMENDED TO CHANGE, MAY CAUSE A LAG
@@ -76,7 +77,7 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 
 // Command Configuration
 Config.Prefix = "-"  // Command Prefix
-Config.AdminTag = "7231_7231"  //tag que sera usada solo por el admin
+Config.AdminTag = variables .get("adminTag")  //tag que sera usada solo por el admin
 Config.normalMemberTag = "joined"
 Config.lockServer = false
 Config.debug = true
