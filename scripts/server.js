@@ -135,7 +135,7 @@ class ServerClass {
     try {
       target.runCommandAsync(
         `tellraw @s {"rawtext":[{"text":${JSON.stringify(
-          Array.isArray(message) ? message.join("\n\u00a7r") : message
+          Array.isArray(message) ? message.join("\n\u00a76") : message
         )}}]}`
       );
     } catch { }
