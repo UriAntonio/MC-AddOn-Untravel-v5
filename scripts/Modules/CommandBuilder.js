@@ -12,9 +12,9 @@ let registerInformation = {
 }
 
 export class CommandBuilder {
-    constructor() {
-        this._registrationInformation = [];
-    }
+  constructor() {
+    this._registrationInformation = [];
+  }
     /**
    * Registra un comando con una llamada de vuelta
    * @param {registerInformation} register Un  objeto de informacion necesaria para registrar el comando personalizado
@@ -25,19 +25,19 @@ export class CommandBuilder {
    * });
    */
     register(register, callback) {
-        let form = {
-            name: register.name.toLowerCase(),
-            aliases: register.aliases
-                ? register.aliases.map((v) => v.toLowerCase())
-                : null,
-            description: register.description,
-            category: register.category || "None",
-            usage: register.usage,
-            admin: register.admin || false,
-            settingname: register.settingname || register.name.toLowerCase(),
-            callback,
-        };
-        this._registrationInformation.push(form)
+      let form = {
+        name: register.name.toLowerCase(),
+        aliases: register.aliases
+          ? register.aliases.map((v) => v.toLowerCase())
+          : null,
+        description: register.description,
+        category: register.category || "None",
+        usage: register.usage,
+        admin: register.admin || false,
+        settingname: register.settingname || register.name.toLowerCase(),
+        callback,
+      };
+      this._registrationInformation.push(form)
     }
     /**
     * Obten una lista de comandos registrados
@@ -66,24 +66,24 @@ export class CommandBuilder {
    * @returns {storedRegisterInformation}
    * @example getRegistration('lobby');
    */
-  getRegistration(name) {
-    const command = this._registrationInformation.some(
-      (element) =>
-        element.name.toLowerCase() === name ||
-        (element.aliases && element.aliases.includes(name))
-    );
-    if (!command) return;
-    let register;
-    this._registrationInformation.forEach((element) => {
-      if (element.private) return;
-      const eachCommand =
-        element.name.toLowerCase() === name ||
-        (element.aliases && element.aliases.includes(name));
-      if (!eachCommand) return;
-      register = element;
-    });
-    return register;
-  }
+    getRegistration(name) {
+      const command = this._registrationInformation.some(
+        (element) =>
+          element.name.toLowerCase() === name ||
+          (element.aliases && element.aliases.includes(name))
+      );
+      if (!command) return;
+      let register;
+      this._registrationInformation.forEach((element) => {
+        if (element.private) return;
+        const eachCommand =
+          element.name.toLowerCase() === name ||
+          (element.aliases && element.aliases.includes(name));
+        if (!eachCommand) return;
+        register = element;
+      });
+      return register;
+    }
 }
 
 export default new CommandBuilder();
