@@ -2,6 +2,7 @@ import { onJoinData } from "../Modules/Data/onJoinData";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
+import { Log } from "../Modules/Log.js";
 
 
 let check = false;
@@ -22,6 +23,7 @@ function onJoinSpawn(player) {
     //Verificamos si el jugador es miembro nuevo
     //if (!player.hasTag(Config.normalMemberTag)) {
       welcome(player);
+      Log(`${player} se unió al servidor [${Date.prototype.toTimeString()}]`)
     //}
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {

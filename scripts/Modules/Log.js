@@ -1,3 +1,6 @@
+import Config from "../conf/Configuration"
+import Server from "../server"
+
 let LogData = []
 const SystemLog = (log) => {
   LogData.push("[System] " + log)
@@ -7,6 +10,7 @@ const SystemLog = (log) => {
 
 const Log = (log) => {
   LogData.push(log)
+  Server.sendMsgAll(`@a[tag=${Config.AdminTag}]`, `§b${log}`)
 }
 
 /**const ClearLog = () => {
