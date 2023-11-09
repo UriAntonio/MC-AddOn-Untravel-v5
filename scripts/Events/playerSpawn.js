@@ -23,7 +23,7 @@ function onJoinSpawn(player) {
     //Verificamos si el jugador es miembro nuevo
     //if (!player.hasTag(Config.normalMemberTag)) {
       welcome(player);
-      Log(`${player} se unió al servidor`)
+      Log(`${player.name} se unió al servidor`)
     //}
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
