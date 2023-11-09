@@ -67,7 +67,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         //Ejecuta el comando
         Server.System.run(() => {
             try {
-                cmd.callback(data, player, args)
+                cmd.callback(eventData, player, args)
             } catch (err) { console.warn(err) }
         })
         //ejecuta el cooldown para los comandos
