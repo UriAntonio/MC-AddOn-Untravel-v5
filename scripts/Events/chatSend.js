@@ -2,6 +2,7 @@ import Config from "../conf/Configuration";
 import { ctl } from "../Commands/admin/ctl";
 import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
+import { Log } from "../Modules/Log/Log";
 
 const prefix = Server.getPrefix()
 const commandDefinitions = Object.setPrototypeOf({
@@ -67,11 +68,12 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         Server.System.run(() => {
             try {
                 cmd.callback(eventData, player, args)
+                
             } catch (err) { console.warn(err) }
         })
         //ejecuta el cooldown para los comandos
         setCooldown("command", player, Server.Setting.get("commandCooldown") ?? Config.commandCooldown)
-        Log(`[Command] ${player.name} used ${cmd.name} command.`)
+        Log(`[Command] ${player.name} uso ${cmd.name} command.`)
     }
     //Se asigna rango
     for (const tag of tags) {
