@@ -22,7 +22,7 @@ const CooldownType ={
  * @returns 
  */
 const getCooldown = (type, player) => {
-    if (player.hasTag(Config.AdminTag)) return 0
+    //if (player.hasTag(Config.AdminTag)) return 0
     switch (type) {
       case CooldownType.BACK:
         var cooldown = BackCooldown[player.name]
