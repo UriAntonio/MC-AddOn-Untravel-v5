@@ -1,10 +1,10 @@
 import * as mc from "@minecraft/server";
 import Config from "./conf/Configuration";
 //
-import { Log, SystemLog } from "./Modules/Log";
+import { Log, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
 //
-import Setting from "./Modules/Setting";
+import Setting from "./Modules/Server/Setting";
 //
 //
 //
@@ -140,13 +140,7 @@ class ServerClass {
       );
     } catch { }
   }
-
-  async getScore(playerSelect, score) {
-    return Server.world.scoreboard
-      .getObjective(score)
-      .getScore(playerSelect.scoreboard);
-  }
-
+  
   async tagTitle(player, titleTag, titleName) {
     let tags = player.getTags();
     let titleOne = "Un Dios Desconocido";

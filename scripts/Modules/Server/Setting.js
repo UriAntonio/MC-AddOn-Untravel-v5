@@ -1,4 +1,4 @@
-import { Database } from "./DataBase/Database";
+import { Database } from "../DataBase/Database";
 
 const SettingDatabase = new Database("settingDB")
 

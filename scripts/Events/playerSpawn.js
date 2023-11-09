@@ -2,7 +2,7 @@ import { onJoinData } from "../Modules/Data/onJoinData";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
-import { Log } from "../Modules/Log.js";
+import { Log } from "../Modules/Log/Log.js";
 
 
 let check = false;

@@ -1,6 +1,6 @@
 import { Entity, ScoreboardIdentity } from "@minecraft/server";
-import Server from "../server";
-import { Log } from "./Log";
+import Server from "../../server";
+import { Log } from "../Log/Log";
 
 /**
  * Obten el score grabado para un participante sobre un objeto
