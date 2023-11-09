@@ -16,7 +16,7 @@ const Config = {}
 //Config.tpaCooldown = 5  // TPA & TPAHere Cooldown
 //Config.homeCooldown = 5  // Home Cooldown
 //Config.warpCooldown = 5  // Warp Cooldown
-//Config.commandCooldown = 5  // Command Cooldown
+Config.commandCooldown = 5  // Command Cooldown
 
 // Teleport Countdown Configuration
 //Config.backCountdown = 5  // Countdown before Teleport
