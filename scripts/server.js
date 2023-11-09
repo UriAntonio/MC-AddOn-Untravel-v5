@@ -1,6 +1,6 @@
 import * as mc from "@minecraft/server";
 import Config from "./conf/Configuration";
-//
+import CommandBuilder from "./Modules/CommandBuilder";
 import { Log, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
 //
@@ -25,7 +25,7 @@ const Event = [
 
 class ServerClass {
   constructor() {
-    //this.Commands = CommandBuilder
+    this.Commands = CommandBuilder
     this.Minecraft = mc
     this.System = mc.system
     this.PlayerOnline = {}
