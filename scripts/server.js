@@ -195,22 +195,21 @@ const Server = new ServerClass()
 Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   const date =  Date.now()
   //await Server.waitLoaded()
-  //Object
-  //
-  //
-  //
-  //
-  //
+  Object.keys(Config.Commands).forEach(category => {
+    Object.keys(Config.Commands[category]).forEach(cmd =>{
+      if (!Config.Commands[category][cmd]) return;
+      import(`./Commands/${category}/${cmd}`).catch(err => Log(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
+    })
+  })
   Event.forEach(event => {
     import(`./Events/${event}`).catch(err => Log(`§cFallo al importar el evento: ${event} | ${err}`))
   })
-
-  //Object
-  //
-  //
-  //
-  //
-  //
+  //Object.keys(Extensions).forEach(ExtName => {
+  // import(`./Extensions/${ExtName}.js`).then(Ext => {
+    //  Extensions[ExtName] = true
+      //SystemLog(`${ExtName} by Paoeni. Loaded`)
+  //  }).catch(err => { })
+  //})
 
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Server.world.getAllPlayers()
