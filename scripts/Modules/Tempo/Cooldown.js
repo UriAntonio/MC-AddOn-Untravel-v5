@@ -16,7 +16,7 @@ const CooldownType ={
 }
 
 /**
- * Get Player cooldown
+ * Obten el Player cooldown
  * @param {string} type 
  * @param {mc.Player} player 
  * @returns 
@@ -60,7 +60,7 @@ const getCooldown = (type, player) => {
   }
   
   /**
- * Set Player cooldown
+ * Asigna el Player cooldown
  * @param {string} type 
  * @param {Server.Player} player 
  * @param {number} second 
