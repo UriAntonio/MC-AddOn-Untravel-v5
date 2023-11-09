@@ -1,5 +1,5 @@
 import Config from "../conf/Configuration";
-import { ctl } from "../command/admin/ctl";
+import { ctl } from "../Commands/admin/ctl";
 import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 
@@ -34,8 +34,11 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         let args = msg.slice(prefix.length).trim().split(/ +/)
         const commandCall = args.shift().toLowerCase()
         let cmd = Server.Commands.getRegistration(commandCall)
+        //let all = Server.Commands.getAllRegistation()
+        //let get = Server.Commands.get()
         if (getCooldown("command", player) > 0) return Server.sendMsgToPlayer(player, `Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
         if (!cmd) {
+            //Server.sendMsgToPlayer(player, `1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
             Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
