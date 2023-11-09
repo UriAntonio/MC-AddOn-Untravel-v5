@@ -17,9 +17,9 @@ export function getScore(participant, objectiveId) {
 
 /**
  * Establece el score grabado para un participante sobre un objeto
- * @param participant
- * @param objectiveId
- * @param score
+ * @param participant object- player
+ * @param objectiveId string
+ * @param score number
  * @returns {ScoreboardIdentity} participante al que el fue cambiado en el objeto
  */
 export function setScore(participant, objectiveId, score) {
@@ -38,10 +38,9 @@ export function setScore(participant, objectiveId, score) {
 
 /**
  * Agrega el score grabado para entity sobre el objeto
- * @param participant
- * @param objectiveId
- * @param score
- * 
+ * @param participant object player
+ * @param objectiveId string
+ * @param score number
  */
 export function addScore(participant, objectiveId, score) {
     const objective = Server.world.scoreboard.getObjective(objectiveId);
@@ -56,6 +55,11 @@ export function addScore(participant, objectiveId, score) {
         return objective.getParticipants().find(p => p.displayName === participant);
 }
 
+/**
+ * 
+ * @param objectiveId string
+ * @returns Boolean
+ */
 export function checkObjective(objectiveId) {
     try {
       const objective = Server.world.scoreboard.getObjective(objectiveId);
