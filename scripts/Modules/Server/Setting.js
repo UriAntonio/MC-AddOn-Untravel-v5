@@ -3,7 +3,7 @@ import { Database } from "../DataBase/Database";
 const SettingDatabase = new Database("settingDB")
 
 const SettingType = {
-  TRUEFALSE: 0,
+  TRUEFALSE: 0, //cero es igual a false
   CUSTOMSTR: 1,
   CUSTOMNUM: 2
 }
