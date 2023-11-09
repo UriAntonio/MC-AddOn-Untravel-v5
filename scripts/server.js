@@ -5,7 +5,7 @@ import { Log, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
 //
 import Setting from "./Modules/Server/Setting";
-//
+import PlayerClass from "./Modules/PlayerClass";
 //
 //
 //
@@ -39,8 +39,8 @@ class ServerClass {
     this.world = mc.world
     this.Log = Log
     this.overworld = mc.world.getDimension("overworld")
-    //this.isLoaded = false
-    //this.timeStarted = Date.now()
+    this.isLoaded = false
+    this.timeStarted = Date.now()
   }
 
   /**

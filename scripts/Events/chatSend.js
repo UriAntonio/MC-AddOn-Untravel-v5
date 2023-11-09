@@ -22,12 +22,8 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         let msg = eventData.message
         let tags = player.getTags()
         let rank
-        //if (player.isMuted()) {
-          //  eventData.cancel = true
-          //return player.sendMessage("§eEstas silenciad@!")
-        //}
         //Evita que los jugadores muteados hablen en el chat
-        if (player.hasTag("isMuted")) {
+        if (player.isMuted()) {
             Server.sendMsgToPlayer(player, `${Config.serverName}§c Has sido silenciad@.`)
             eventData.cancel = true
             return;
@@ -37,13 +33,15 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
             eventData.cancel = true;
             let arg = msg.slice(prefix.length).trim().split(/ +/)
             const commandName = arg.shift().toLowerCase()
-            //let cmd = Server.
+            //let cmd = Server.C
             //Registro de LogScreen
             if (Config.debug) {
                 //console.warn(`${new Date()} | did run command handler`)
 
             }
             if(getCooldown("command", player) > 0) return Server.sendMsgToPlayer(player, `Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
+
+            //if (!cmd)
 
             //Advierte que el comando no es parte del CommandDefinition Handler
             if (!(commandName in commandDefinitions)) {
