@@ -1,6 +1,5 @@
 import { Player } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
-import Config from "../conf/Configuration";
 import Server from "../server";
 
 /**

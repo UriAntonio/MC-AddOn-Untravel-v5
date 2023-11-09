@@ -9,8 +9,8 @@ const Log = (log) => {
   LogData.push(log)
 }
 
-const ClearLog = () => {
+/**const ClearLog = () => {
   LogData = []
-}
+}*/
 
-export { SystemLog, Log, LogData, ClearLog }
+export { SystemLog, Log, LogData, /**ClearLog*/ }
