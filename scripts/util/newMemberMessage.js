@@ -1,6 +1,7 @@
 import { Player } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 import Server from "../server";
+import { Log } from "../Modules/Log/Log";
 
 /**
  * 
@@ -27,7 +28,7 @@ export function welcome(playerid) {
       if (result.canceled) {
         welcome(playerid)
       } else {
-        console.log("Your result was: " + result.selection);
+        Log("Your result was: " + result.selection);
         playerid.runCommandAsync(`playsound random.levelup @s`)
         //playerid.addTag(Config.normalMemberTag);
       }

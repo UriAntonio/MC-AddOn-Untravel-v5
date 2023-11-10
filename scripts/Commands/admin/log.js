@@ -1,4 +1,4 @@
-import { LogData } from "../../Modules/Log/Log";
+import { Log, LogData } from "../../Modules/Log/Log";
 import Server from "../../server";
 import { MessageFormData } from "@minecraft/server-ui";
 import { ForceOpen } from "../../Modules/Server/Forms";
