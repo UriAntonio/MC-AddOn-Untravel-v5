@@ -5,10 +5,10 @@ import Config from "../conf/Configuration";
 import Combat from "./Server/Combat";
 
 const PlayerClass = Object.assign(mc.Player.prototype, {
-    /**
-   * Checa si el Player es admin
-   * @returns {boolean}
-   */
+  /**
+ * Checa si el Player es admin
+ * @returns {boolean}
+ */
   isAdmin() {
     return this.hasTag(Config.AdminTag)
   },
@@ -47,19 +47,19 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
     }
 
     return amount
-   },
-   /**
-   * @param {string} message
-   * @returns {Promise<mc.CommandResult>}
-   */
+  },
+  /**
+  * @param {string} message
+  * @returns {Promise<mc.CommandResult>}
+  */
   async kick(message) {
     return await Server.runCommand(`kick "${this.name}" ${message ?? ""}`)
   },
-/**
-   * Checa si el Player esta silenciado
-   * @returns {boolean}
-   */
-isMuted() {
+  /**
+     * Checa si el Player esta silenciado
+     * @returns {boolean}
+     */
+  isMuted() {
     return this.hasTag("isMuted")
   },
   /**
@@ -69,11 +69,11 @@ isMuted() {
   mute() {
     if (!this.isMuted()) return this.addTag("muted")
   },
-/**
-   * Des-silenciar al jugador
-   * @returns {boolean}
-   */
-unmute() {
+  /**
+     * Des-silenciar al jugador
+     * @returns {boolean}
+     */
+  unmute() {
     if (this.isMuted()) return this.removeTag("muted")
   },
 
@@ -110,11 +110,11 @@ unmute() {
   async setMoney(amount) {
     await Server.Money.setMoney(this.name, amount)
   },
-/**
-   * Obten el Equipment Inventory del Jugador
-   * @returns {mc.EntityEquipmentInventoryComponent}
-   */
-getEquipmentInventory() {
+  /**
+     * Obten el Equipment Inventory del Jugador
+     * @returns {mc.EntityEquipmentInventoryComponent}
+     */
+  getEquipmentInventory() {
     return this.getComponent("minecraft:equipment_inventory")
   },
 
