@@ -18,7 +18,9 @@ const Event = [
   "playerDie"
 ]
 
-
+const Extensions = {
+  "Bow-ding": false,
+}
 
 
 
@@ -204,12 +206,12 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Event.forEach(event => {
     import(`./Events/${event}`).catch(err => Log(`§cFallo al importar el evento: ${event} | ${err}`))
   })
-  //Object.keys(Extensions).forEach(ExtName => {
-  // import(`./Extensions/${ExtName}.js`).then(Ext => {
-    //  Extensions[ExtName] = true
-      //SystemLog(`${ExtName} by Paoeni. Loaded`)
-  //  }).catch(err => { })
-  //})
+  Object.keys(Extensions).forEach(ExtName => {
+   import(`./Extensions/${ExtName}.js`).then(Ext => {
+      Extensions[ExtName] = true
+      Log(`La extencion §b${ExtName}§r fue Cargada`)
+    }).catch(err => Log(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
+  })
 
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Server.world.getAllPlayers()
