@@ -28,9 +28,9 @@ export function welcome(playerid) {
       if (result.canceled) {
         welcome(playerid)
       } else {
-        Log("Your result was: " + result.selection);
+        //Log("Your result was: " + result.selection);
         playerid.runCommandAsync(`playsound random.levelup @s`)
-        //playerid.addTag(Config.normalMemberTag);
+        
       }
     })
   })
