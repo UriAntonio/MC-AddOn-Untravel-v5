@@ -98,7 +98,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //message: true
   },
   money: {
-    //money: true,
+    cartera: true,
     //pay: true,
     //topmoney: true,
     //shop: true,
