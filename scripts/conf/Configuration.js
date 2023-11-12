@@ -45,7 +45,7 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
   "minecraft:pufferfish": [1, 5],
   "minecraft:tropicalfish": [1, 5],
 
-  "minecraft:zombie": [20, 50],
+  "minecraft:zombie": [10, 25],
   "minecraft:husk": [20, 50],
   "minecraft:skeleton": [20, 50],
   "minecraft:stray": [20, 50],
@@ -68,17 +68,18 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
   "minecraft:zoglin": [20, 50],
   "minecraft:shulker": [20, 50],
   "minecraft:enderman": [20, 50],
-  "minecraft:phantom": [20, 50],
+  "minecraft:phantom": [30, 60],
   "minecraft:creeper": [25, 55],
   "minecraft:wither_skeleton": [20, 50],
   "minecraft:ghast": [20, 50],
   "minecraft:witch": [30, 50],
   "minecraft:zombie_pigman": [20, 50],
-
-  "minecraft:warden": [70, 100],
+//bosses
+"minecraft:elder_guardian": [70, 200],
+  "minecraft:warden": [70, 200],
   "minecraft:ravager": [70, 100],
-  "minecraft:wither": [70, 100],
-  "minecraft:ender_dragon": [70, 100]
+  "minecraft:wither": [70, 200],
+  "minecraft:ender_dragon": [70, 200]
 }
 
 // Command Configuration
