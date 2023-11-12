@@ -11,16 +11,16 @@ export function welcome(playerid) {
 
   Server.System.run(() => {
     let wel = new ActionFormData()
-      .title(`§d★━━━━━━━━<§oBienvenido§r§d>━━━━━━━━★`)
+      .title(`§5★━━━━━━━━<§o§lBienvenido§r§5>━━━━━━━━★`)
       .body(
-        `\n§rBienvenido de nuevo a Untravel
-    \n    §d${playerid.nameTag}§r.
+        `\n§rBienvenido de nuevo a §l§dUntravel§6Mx
+    \n    §5${playerid.nameTag}§r.
     \n    Esperamos y te la pases bien
     \n    cualquier error o sugerencia
     \n    acércate a nosotros en:
-    \n    support@untravelmx.com`
+    \n    §bsupport@untravelmx.com`
       )
-      .button(`§dA Jugar!`);
+      .button(`§d§lA Jugar!`);
 
 
     wel.show(playerid).then((result) => {
@@ -30,6 +30,7 @@ export function welcome(playerid) {
       } else {
         //Log("Your result was: " + result.selection);
         playerid.runCommandAsync(`playsound random.levelup @s`)
+        Server.sendMsgToPlayer(playerid, `§bBienvenido §9${playerid.name}`)
         
       }
     })
