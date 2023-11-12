@@ -2,6 +2,7 @@ import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
 import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
+import Server from "../../server";
 
 
 const MoneyObjective = "Money"
@@ -28,8 +29,16 @@ class MoneySystem {
             let player = data.player
             if (data.initialSpawn) {
                 let playerMoney = this.MoneyDatabase.get(player.name)
-                if (playerMoney == undefined) playerMoney = this.getMoney(player.name)
-                if (playerMoney == undefined) playerMoney = this.getStarterMoney()
+                Server.sendMessage(`${playerMoney} 1`)
+                if (playerMoney == undefined) {
+                    playerMoney = this.getMoney(player.name)
+                    Server.sendMessage(`${playerMoney} 2`)}
+                
+                if (playerMoney == undefined) {
+                    playerMoney = this.getStarterMoney()
+                    Server.sendMessage(`${playerMoney} 3`)
+                }
+                
                 this.setMoney(player.name, playerMoney)
                 this.#Readyplayer.push(player.name)
             }
@@ -58,7 +67,7 @@ class MoneySystem {
      * @returns {nomber}
      */
     getStarterMoney() {
-        return world.Setting.get("starterMoney") ?? Config.starterMoney
+        return Server.Setting.get("starterMoney") ?? Config.starterMoney
     }
 
     /**
@@ -66,16 +75,17 @@ class MoneySystem {
      * @returns {number}
      */
     getMaxMoney() {
-        return world.Setting.get("maxMoney") ?? Config.maxMoney
+        return Server.Setting.get("maxMoney") ?? Config.maxMoney
     }
 
     /**
      * Obten el Dinero del Jugadore
      * @param {string} playerName
      * @param {number}
+     * @param {PlayerClass} player
      */
     getMoney(playerName) {
-        let player = world.getPlayer(playerName)
+        let player = Server.getPlayer(playerName)
         let playerMoney
         if (player != undefined) {
             playerMoney = player.getScore(MoneyObjective)
@@ -92,7 +102,7 @@ class MoneySystem {
      * @param {number} money
      */
     async setMoney(playerName, money) {
-        let player = world.getPlayer(playerName)
+        let player = Server.getPlayer(playerName)
         if (player != undefined) {
             player.setScore(MoneyObjective, money)
         } else {
