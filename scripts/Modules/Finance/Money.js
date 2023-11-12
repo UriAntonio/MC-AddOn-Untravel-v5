@@ -1,5 +1,5 @@
+import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
-import Server from "../../server";
 import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
 
@@ -20,11 +20,11 @@ class MoneySystem {
     async #init() {
         // await Server.waitLoaded()
         this.MoneyDatabase = new Database("moneyDB")
-        if (!checkObjective(MoneyObjective)) await Server.world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
+        if (!checkObjective(MoneyObjective)) await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
         this.#isLoaded = true
         this.#Readyplayer = []
 
-        Server.world.afterEvents.playerSpawn.subscribe(async (data) => {
+        world.afterEvents.playerSpawn.subscribe(async (data) => {
             let player = data.player
             if (data.initialSpawn) {
                 let playerMoney = this.MoneyDatabase.get(player.name)
@@ -35,16 +35,16 @@ class MoneySystem {
             }
         })
 
-        Server.world.afterEvents.worldInitialize.subscribe( async (data) =>{
-            Server.world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
+        world.afterEvents.worldInitialize.subscribe( async (data) =>{
+            world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
         })
 
-        Server.world.afterEvents.playerLeave.subscribe( async (data) => 
+        world.afterEvents.playerLeave.subscribe( async (data) => 
             this.#Readyplayer.splice(this.#Readyplayer.findIndex(i => i == data.playerName), 1)
         )
 
-        Server.System.runInterval(() => {
-            Server.world.getAllPlayers().forEach(player => {
+        system.runInterval(() => {
+            world.getAllPlayers().forEach(player => {
                 if (!player.isValid()) return
                 if (!this.#Readyplayer.find(p => p == player.name)) return
                 let money = this.getMoney(player.name)
@@ -58,7 +58,7 @@ class MoneySystem {
      * @returns {nomber}
      */
     getStarterMoney() {
-        return Server.Setting.get("starterMoney") ?? Config.starterMoney
+        return world.Setting.get("starterMoney") ?? Config.starterMoney
     }
 
     /**
@@ -66,7 +66,7 @@ class MoneySystem {
      * @returns {number}
      */
     getMaxMoney() {
-        return Server.Setting.get("maxMoney") ?? Config.maxMoney
+        return world.Setting.get("maxMoney") ?? Config.maxMoney
     }
 
     /**
@@ -75,7 +75,7 @@ class MoneySystem {
      * @param {number}
      */
     getMoney(playerName) {
-        let player = Server.getPlayer(playerName)
+        let player = world.getPlayer(playerName)
         let playerMoney
         if (player != undefined) {
             playerMoney = player.getScore(MoneyObjective)
@@ -92,7 +92,7 @@ class MoneySystem {
      * @param {number} money
      */
     async setMoney(playerName, money) {
-        let player = Server.getPlayer(playerName)
+        let player = world.getPlayer(playerName)
         if (player != undefined) {
             player.setScore(MoneyObjective, money)
         } else {
