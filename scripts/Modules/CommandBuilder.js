@@ -23,6 +23,8 @@ export class CommandBuilder {
    *  Server.commands.register({ name: 'ping' }, (data, args) => {
    *  Server.broadcast('Pong!', data.sender.nameTag);
    * });
+   * 
+   * Asegurate de agregar el comando a Config y que el nombre sea igual al archivo
    */
     register(register, callback) {
       let form = {
