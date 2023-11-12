@@ -32,10 +32,10 @@ class ServerClass {
     this.Minecraft = mc
     this.System = mc.system
     this.PlayerOnline = {}
-    //this.HomeDB = new Database("homeDB")
-    //this.WarpDB = new Database("warpDB")
+    this.HomeDB = new Database("homeDB")
+    this.WarpDB = new Database("warpDB")
     this.BackDB = new Database("backDB")
-    //this.BanDB = new Database("banDB")
+    this.BanDB = new Database("banDB")
     this.Setting = new Setting()
     this.Money = Money
     //this.TPS = getTPS
