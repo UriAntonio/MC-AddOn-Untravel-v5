@@ -28,7 +28,7 @@ Config.commandCooldown = 5  // Command Cooldown
 //Config.homeLimit = 10 // Limit Home for Player
 
 // Combat Configuration
-//Config.combatSystem = false // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
+Config.combatSystem = false // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
 // Money Configuration
 Config.maxMoney = 1000000000 // Max Money
@@ -85,7 +85,6 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 Config.Prefix = "-"  // Command Prefix
 Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada para dar OP
 Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
-//Config.normalMemberTag = "joined"
 Config.lockServer = false
 Config.debug = true
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
@@ -99,6 +98,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   money: {
     cartera: true,
+    money: true,
     //pay: true,
     //topmoney: true,
     //shop: true,
