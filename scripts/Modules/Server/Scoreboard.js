@@ -1,5 +1,4 @@
-import { Entity, ScoreboardIdentity } from "@minecraft/server";
-import Server from "../../server";
+import { Entity, ScoreboardIdentity, world } from "@minecraft/server";
 import { Log } from "../Log/Log";
 
 /**
@@ -9,7 +8,7 @@ import { Log } from "../Log/Log";
  */
 export function getScore(participant, objectiveId) {
     try {
-        return Server.world.scoreboard.getObjective(objectiveId).getScore(participant);
+        return world.scoreboard.getObjective(objectiveId).getScore(participant);
     } catch (err) {
         return undefined
     }
@@ -23,7 +22,7 @@ export function getScore(participant, objectiveId) {
  * @returns {ScoreboardIdentity} participante al que el fue cambiado en el objeto
  */
 export function setScore(participant, objectiveId, score) {
-    const objective = Server.world.scoreboard.getObjective(objectiveId);
+    const objective = world.scoreboard.getObjective(objectiveId);
     if (!objective)
         //throw new Error(`Objective ${objectiveId} no fue encontrado`)
         throw Log(`Objective ${objectiveId} no fue encontrado`)
@@ -43,7 +42,7 @@ export function setScore(participant, objectiveId, score) {
  * @param score number
  */
 export function addScore(participant, objectiveId, score) {
-    const objective = Server.world.scoreboard.getObjective(objectiveId);
+    const objective = world.scoreboard.getObjective(objectiveId);
     if (!objective)
         throw Log(`Objective ${objectiveId} no fue encontrado`)
     objective.addScore(participant, score);
@@ -62,7 +61,7 @@ export function addScore(participant, objectiveId, score) {
  */
 export function checkObjective(objectiveId) {
     try {
-      const objective = Server.world.scoreboard.getObjective(objectiveId);
+      const objective = world.scoreboard.getObjective(objectiveId);
       if (objective) return true
       return false
     } catch(err) {
