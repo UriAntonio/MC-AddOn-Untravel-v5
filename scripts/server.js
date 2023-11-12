@@ -20,6 +20,7 @@ const Event = [
 
 const Extensions = {
   "Bow-ding": false,
+  //"HealthDisplay": true,
 }
 
 
@@ -142,7 +143,7 @@ class ServerClass {
       );
     } catch { }
   }
-  
+
   async tagTitle(player, titleTag, titleName) {
     let tags = player.getTags();
     let titleOne = "Un Dios Desconocido";
@@ -177,7 +178,7 @@ class ServerClass {
       //    player.triggerEvent("paradox:kick");
     }
   }
-  
+
   async waitLoaded() {
     return new Promise((resolve) => {
       let systemId = mc.system.runInterval(() => {
@@ -195,10 +196,10 @@ class ServerClass {
 const Server = new ServerClass()
 
 Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
-  const date =  Date.now()
-  //await Server.waitLoaded()
+  const date = Date.now()
+  await Server.waitLoaded()
   Object.keys(Config.Commands).forEach(category => {
-    Object.keys(Config.Commands[category]).forEach(cmd =>{
+    Object.keys(Config.Commands[category]).forEach(cmd => {
       if (!Config.Commands[category][cmd]) return;
       import(`./Commands/${category}/${cmd}`).catch(err => Log(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
     })
@@ -207,7 +208,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
     import(`./Events/${event}`).catch(err => Log(`§cFallo al importar el evento: ${event} | ${err}`))
   })
   Object.keys(Extensions).forEach(ExtName => {
-   import(`./Extensions/${ExtName}.js`).then(Ext => {
+    import(`./Extensions/${ExtName}.js`).then(Ext => {
       Extensions[ExtName] = true
       Log(`La extencion §b${ExtName}§r fue Cargada`)
     }).catch(err => Log(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
@@ -217,7 +218,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Server.world.getAllPlayers()
     .filter(p => p.hasTag(Config.AdminTag))
     .forEach(p => {
-      p.sendMessage(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
+      p.sendMessage(`§bAdmin El Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
     })
 
   Server.world.getAllPlayers().forEach((player) => {
