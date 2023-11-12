@@ -37,7 +37,7 @@ class ServerClass {
     this.BackDB = new Database("backDB")
     //this.BanDB = new Database("banDB")
     this.Setting = new Setting()
-    this.Money = this.Money
+    this.Money = Money
     //this.TPS = getTPS
     this.world = mc.world
     this.Log = Log
