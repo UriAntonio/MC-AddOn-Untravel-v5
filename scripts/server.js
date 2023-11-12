@@ -224,6 +224,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Server.world.getAllPlayers().forEach((player) => {
     Server.PlayerOnline[player.name] = Date.now()
   })
+  Log(`§2Se agrego fechas`)
 })
 
 mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
