@@ -29,14 +29,15 @@ class MoneySystem {
             let player = data.player
             if (data.initialSpawn) {
                 let playerMoney = this.MoneyDatabase.get(player.name)
-                Server.sendMessage(`${playerMoney} 1`)
+                //Server.sendMessage(`${playerMoney} 1`)
                 if (playerMoney == undefined) {
                     playerMoney = this.getMoney(player.name)
-                    Server.sendMessage(`${playerMoney} 2`)}
+                //    Server.sendMessage(`${playerMoney} 2`)
+            }
                 
                 if (playerMoney == undefined) {
                     playerMoney = this.getStarterMoney()
-                    Server.sendMessage(`${playerMoney} 3`)
+                //    Server.sendMessage(`${playerMoney} 3`)
                 }
                 
                 this.setMoney(player.name, playerMoney)

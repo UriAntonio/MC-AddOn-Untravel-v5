@@ -45,7 +45,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
             Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
-        //Server.sendMsgToPlayer(player, `§c${adminN}.. ${tags}`)
+        //Server.sendMsgToPlayer(player, `§c${commandCall}.. ${cmd.name}`)
         /**
          * recuerda registrar el comando en {Settings}
          * esto verifica que el comando no seaa de la categoria System o si esta desabilitado
@@ -68,7 +68,6 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         Server.System.run(() => {
             try {
                 cmd.callback(eventData, player, args)
-                
             } catch (err) { console.warn(err) }
         })
         //ejecuta el cooldown para los comandos
