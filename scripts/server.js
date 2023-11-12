@@ -8,7 +8,7 @@ import Setting from "./Modules/Server/Setting";
 import PlayerClass from "./Modules/PlayerClass";
 //
 //
-//
+import Money from "./Modules/Finance/Money";
 
 const Event = [
   "chatSend",
@@ -37,7 +37,7 @@ class ServerClass {
     this.BackDB = new Database("backDB")
     //this.BanDB = new Database("banDB")
     this.Setting = new Setting()
-    //this.Money = Money
+    this.Money = this.Money
     //this.TPS = getTPS
     this.world = mc.world
     this.Log = Log
@@ -197,7 +197,7 @@ const Server = new ServerClass()
 
 Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   const date = Date.now()
-  await Server.waitLoaded()
+  //await Server.waitLoaded()
   Object.keys(Config.Commands).forEach(category => {
     Object.keys(Config.Commands[category]).forEach(cmd => {
       if (!Config.Commands[category][cmd]) return;

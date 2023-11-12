@@ -31,9 +31,9 @@ Config.commandCooldown = 5  // Command Cooldown
 //Config.combatSystem = false // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
 // Money Configuration
-//Config.maxMoney = 1000 // Max Money
-//Config.starterMoney = 100 // Starter Money
-//Config.currencyPrefix = "" // Currency / Money Prefix
+Config.maxMoney = 1000000000 // Max Money
+Config.starterMoney = 1 // Starter Money
+Config.currencyPrefix = "" // Currency / Money Prefix
 //Config.earnMoneyfromMobs = true // Money drop from killing Mobs
 Config.moneyFromMobs = { // Money drop from killing Mobs
   "minecraft:pig": [1, 5],
