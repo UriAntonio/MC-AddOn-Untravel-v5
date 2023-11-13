@@ -1,6 +1,6 @@
 import * as mc from "@minecraft/server";
 import Config from "./conf/Configuration";
-import CommandBuilder from "./Modules/CommandBuilder";
+import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
 //
@@ -15,7 +15,8 @@ const Event = [
   "playerSpawn",
   "itemUse",
   "playerLeave",
-  "playerDie"
+  "playerDie",
+  "entityDie",
 ]
 
 const Extensions = {
