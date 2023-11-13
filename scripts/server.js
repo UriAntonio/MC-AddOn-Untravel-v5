@@ -17,6 +17,7 @@ const Event = [
   "playerLeave",
   "playerDie",
   "entityDie",
+  "combat"
 ]
 
 const Extensions = {

@@ -28,7 +28,7 @@ Config.commandCooldown = 5  // Command Cooldown
 //Config.homeLimit = 10 // Limit Home for Player
 
 // Combat Configuration
-Config.combatSystem = false // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
+Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
 // Money Configuration
 Config.maxMoney = 1000000000 // Max Money
@@ -99,7 +99,6 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   money: {
     cartera: true,
-    money: true,
     //pay: true,
     //topmoney: true,
     //shop: true,
