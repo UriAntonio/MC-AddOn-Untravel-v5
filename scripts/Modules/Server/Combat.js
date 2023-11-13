@@ -34,4 +34,8 @@ Combat.getCombat = (playerName) => {
     return CombatLog[playerName]?.enemy
 }
 
+Combat.stopCombat = (playerName) => {
+    if (!CombatLog[playerName]) return false
+    if (Date.now() == CombatLog[playerName].time) return true
+}
 export default Combat
