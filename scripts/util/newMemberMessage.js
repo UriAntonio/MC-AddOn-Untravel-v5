@@ -4,7 +4,8 @@ import Server from "../server";
 import { Log } from "../Modules/Log/Log";
 import Config from "../conf/Configuration";
 
-const anuncio = true
+
+
 
 function updateAnuncio(playerid) {
 
