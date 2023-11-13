@@ -1,5 +1,5 @@
 import * as mc from "@minecraft/server";
-import PlayerClass from "./PlayerClass";
+import PlayerClass from "../PlayerClass";
 
 let registerInformation = {
     name: "",
