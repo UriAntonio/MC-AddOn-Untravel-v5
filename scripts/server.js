@@ -22,6 +22,7 @@ const Event = [
 
 const Extensions = {
   "Bow-ding": false,
+  "gamemode": false
   //"HealthDisplay": true,
 }
 
