@@ -1,13 +1,12 @@
 import { Player } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 import Server from "../server";
-import { Log } from "../Modules/Log/Log";
-import Config from "../conf/Configuration";
+//import { Log } from "../Modules/Log/Log";
 
 
 
 
-function updateAnuncio(playerid) {
+function updateAnuncio(playerid, gamemode) {
 
   Server.System.run(() => {
     
@@ -28,10 +27,10 @@ function updateAnuncio(playerid) {
     upd.show(playerid).then((result) => {
 
       if (result.canceled) {
-        updateAnuncio(playerid)
+        updateAnuncio(playerid, gamemode)
       } else {
           playerid.runCommandAsync(`playsound random.levelup @s`)
-          playerid.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
+          playerid.runCommandAsync(`gamemode ${gamemode}`)
       }
     })
   })
@@ -48,10 +47,11 @@ function updateAnuncio(playerid) {
  * 
  * @param {Player} playerid 
  */
-export function welcome(playerid) {
-
-  Server.System.run(() => {
-    playerid.runCommandAsync(`gamemode spectator @s`)
+export function welcome(playerid, gamemode) {
+  const gm = gamemode
+  Server.System.run(() => {   
+    
+    //Log(`§e${playerid.name}§r esta en  ${gm}`)
     let wel = new ActionFormData()
       .title(`§5★━━━━━━━━<§o§lBienvenido§r§5>━━━━━━━━★`)
       .body(
@@ -65,21 +65,20 @@ export function welcome(playerid) {
       .button(`§d§lA Jugar!`)
       .button(`§l§eNuevo Contenido!`)
 
-
     wel.show(playerid).then((result) => {
-
+      playerid.runCommandAsync(`gamemode spectator @s`)
       if (result.canceled) {
-        welcome(playerid)
+        welcome(playerid, gamemode)
       } else {
         if(result.selection == 1){
           playerid.runCommandAsync(`playsound random.levelup @s`)
           Server.sendMsgToPlayer(playerid, `§bBienvenido §9${playerid.name}`)
           playerid.runCommandAsync(`playsound random.anvil_use @s`)
-          updateAnuncio(playerid)
+          updateAnuncio(playerid, gm)
         } else {
           playerid.runCommandAsync(`playsound random.levelup @s`)
           Server.sendMsgToPlayer(playerid, `§bBienvenido §9${playerid.name}`)
-          playerid.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
+          playerid.runCommandAsync(`gamemode ${gm}`)
         }
       }
     })
