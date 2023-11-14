@@ -59,16 +59,24 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
 
 
         player.sendMessage(`§6Has muerto y perdiste: §e${Utility.formatMoney(get)}`)
-        Server.System.run(() => Server.getPlayer(enemyName).onScreenDisplay.setActionBar(`§gObtuviste §e${Utility.formatMoney(get)}`))
+        Server.System.run(() => Server.getPlayer(enemyName).sendMessage(`§gObtuviste §e${Utility.formatMoney(get)}`))
     }
 })
 
-/**
+
 Server.System.runInterval(() => {
     if (!isCombatOn) return
     Server.world.getAllPlayers().forEach(player => {
-        if (Combat.isCombat(player.name))
-        Server.System.run(() => player.onScreenDisplay.setActionBar(`§cEstas en combate! Desconectarse contará como muerte`))
+        if (Combat.stopCombat(player.name))
+            Server.System.run(() => Server.sendMsgToPlayer(player, `§aYa no estas en combate`))
+        if (Combat.isCombat(player.name)) {
+            Server.System.run(() => {
+                let enemyName = Combat.getCombat(player.name)
+                player.onScreenDisplay.setActionBar(`§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<`)
+                
+            })}
+
     })
 }, 20)
-*/
+
+
