@@ -5,7 +5,6 @@ import Server from "../server.js";
 import { Log } from "../Modules/Log/Log.js";
 
 
-let check = false;
 function onJoinSpawn(player) {
   try {
     player.runCommandAsync(`testfor @s`);
@@ -21,10 +20,10 @@ function onJoinSpawn(player) {
       }
     }
     //Verificamos si el jugador es miembro nuevo
-    //if (!player.hasTag(Config.normalMemberTag)) {
-      welcome(player);
+      const gamemode = player.gamemode
+      Log(`§e${player.name}§r esta en  ${gamemode}`)
+      welcome(player, gamemode);
       Log(`§e${player.name}§r se unió al servidor ${Date()}`)
-    //}
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
       try {
@@ -32,10 +31,7 @@ function onJoinSpawn(player) {
       } catch (error) {}
     }
     check = true;
-  } catch (error) {}
-  if (check) {
-    check = false;
-  }
+  } catch (error) { Log(`§cError al unirse: ${player} | ${error}`)}
 }
 
   Server.world.afterEvents.playerSpawn.subscribe((loaded) => {
