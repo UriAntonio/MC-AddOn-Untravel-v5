@@ -36,6 +36,7 @@ Combat.getCombat = (playerName) => {
 
 Combat.stopCombat = (playerName) => {
     if (!CombatLog[playerName]) return false
-    if (Date.now() == CombatLog[playerName].time) return true
+    if (Math.round(Date.now() / 1000) == Math.round(CombatLog[playerName].time / 1000)) return true
 }
+
 export default Combat
