@@ -3,6 +3,16 @@
 // Project: https://github.com/JaylyDev/ScriptAPI
 import { Player, GameMode } from '@minecraft/server';
 
+Object.defineProperty(Player.prototype, "gamemode", {
+    get() {
+        return ["survival", "creative", "adventure", "spectator"].find(i => this.matches({ gameMode: i }))
+    },
+    set(value) {
+        this.runCommandAsync(`gamemode ${value}`)
+    }
+})
+
+
 /**
  * @remarks
  * Gets the game mode for an entity asynchronously.
