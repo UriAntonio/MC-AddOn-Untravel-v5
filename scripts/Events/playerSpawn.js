@@ -30,7 +30,6 @@ function onJoinSpawn(player) {
         player.runCommandAsync(`${onJoinData[i]}`);
       } catch (error) {}
     }
-    check = true;
   } catch (error) { Log(`§cError al unirse: ${player} | ${error}`)}
 }
 
