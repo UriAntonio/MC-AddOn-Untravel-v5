@@ -136,7 +136,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //mute: true,
     //unmute: true,
     //invsee: true,
-    log: true
+    log: true,
+    gm: true,
   }
 }
 
