@@ -3,8 +3,12 @@ import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
 import { Log } from "../Modules/Log/Log.js";
+import { Player } from "@minecraft/server";
 
-
+/**
+ * 
+ * @param {Player} player 
+ */
 function onJoinSpawn(player) {
   try {
     player.runCommandAsync(`testfor @s`);
@@ -21,9 +25,8 @@ function onJoinSpawn(player) {
     }
     //Verificamos si el jugador es miembro nuevo
       const gamemode = player.gamemode
-      Log(`§e${player.name}§r esta en  ${gamemode}`)
       welcome(player, gamemode);
-      Log(`§e${player.name}§r se unió al servidor ${Date()}`)
+      Log(`§e${player.name}§r se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
       try {
