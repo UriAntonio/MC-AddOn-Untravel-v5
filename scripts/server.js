@@ -17,12 +17,13 @@ const Event = [
   "playerLeave",
   "playerDie",
   "entityDie",
-  "combat"
+  "combat",
+  "playerInteract",
 ]
 
 const Extensions = {
   "Bow-ding": false,
-  "gamemode": false
+  "Gamemode": false
   //"HealthDisplay": true,
 }
 
