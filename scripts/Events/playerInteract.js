@@ -1,4 +1,3 @@
-import { Log } from "../Modules/Log/Log";
 import Server from "../server";
 
 Server.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
