@@ -214,7 +214,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Object.keys(Extensions).forEach(ExtName => {
     import(`./Extensions/${ExtName}.js`).then(Ext => {
       Extensions[ExtName] = true
-      Log(`La extencion §b${ExtName}§r fue Cargada`)
+      Log(`[§4!§r]La extencion §b${ExtName}§r fue Cargada`)
     }).catch(err => Log(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
   })
 
