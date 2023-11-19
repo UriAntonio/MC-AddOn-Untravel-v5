@@ -148,6 +148,20 @@ class ServerClass {
     } catch { }
   }
 
+  /**
+   * 
+   * @param {mc.Player} target Jugador objetivo
+   * @param {string} line1 mensaje hasta arriba
+   * @param {string} line2 mensaje en medio
+   * @param {string} line3 mensaje hasta abajo
+   */
+  actionBar(target, line1, line2, line3) {
+    if (line1 == undefined) line1 = ""
+    if (line2 == undefined) line2 = ""
+    if (line3 == undefined) line3 = ""
+    target.onScreenDisplay.setActionBar(`${line1+"\n"+line2+"\n"+line3}`)
+  }
+
   async tagTitle(player, titleTag, titleName) {
     let tags = player.getTags();
     let titleOne = "Un Dios Desconocido";
