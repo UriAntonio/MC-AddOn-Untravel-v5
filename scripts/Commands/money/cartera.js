@@ -5,7 +5,7 @@ Server.Commands.register({
     name: "cartera",
     description: "Checa tu dinero o el de alguien más",
     usage: "cartera <nombre de jugador?>",
-    aliases: ["cash", "balance", "money"],
+    aliases: ["cash", "balance", "money", "bal"],
     category: "Money"
 }, async (data, player, args) => {
     if (!args[0]) {
