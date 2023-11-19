@@ -3,7 +3,7 @@ import Utility from "../Modules/Utilities/Utility"
 import Config from "../conf/Configuration"
 import Server from "../server"
 
-const isCombatOn = () => {
+export const isCombatOn = () => {
     return Server.Setting.get("combatSystem") ?? Config.combatSystem
 }
 
@@ -70,9 +70,11 @@ Server.System.runInterval(() => {
         if (Combat.stopCombat(player.name))
             Server.System.run(() => Server.sendMsgToPlayer(player, `§aYa no estas en combate`))
         if (Combat.isCombat(player.name)) {
+            let enemyName = Combat.getCombat(player.name)
             Server.System.run(() => {
-                let enemyName = Combat.getCombat(player.name)
-                player.onScreenDisplay.setActionBar(`§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<`)
+                
+                Server.actionBar(player, `§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<` )
+                //player.onScreenDisplay.setActionBar(`§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<`)
                 
             })}
 
