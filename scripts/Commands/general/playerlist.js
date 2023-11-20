@@ -7,26 +7,26 @@ Server.Commands.register({
   usage: "playerlist",
   category: "General"
 }, async (data, player, args) => {
-  let message = "§a■§2[§aLISTA DE JUGADORES§2] : "
+  let message = "§1------------------------------\n§a■§1[§9LISTA DE JUGADORES§1]"
     Server.Minecraft.world.getAllPlayers().forEach(plr => {
       const DateNow = new Date()
       const DateLogin = Server.PlayerOnline[plr.name]
       const SecondPlayed = Math.ceil((DateNow - DateLogin) / 1000);
-      message += `\n§2 - §6${plr.name} §2| §gEn Linea por`
+      message += `\n§1 - §3${plr.name} §1| §bEn Linea por`
       if (SecondPlayed >= 86400) {
         let day = Math.floor(SecondPlayed / 86400)
-        message += ` §e${day} §gdias,`
+        message += ` §f${day} §bdias,`
       }
       if (SecondPlayed >= 3600) {
         let hour = Math.floor(SecondPlayed / 3600)
-        message += ` §e${hour % 24} §ghoras,`
+        message += ` §f${hour % 24} §bhoras,`
       }
       if (SecondPlayed >= 60) {
         let minute = Math.floor(SecondPlayed / 60)
-        message += ` §e${minute % 60} §gminutos,`
+        message += ` §f${minute % 60} §bminutos,`
       }
       let second = SecondPlayed
-      message += ` §e${second % 60} §gsegundos`
+      message += ` §f${second % 60} §bsegundos`
     })
     player.sendMessage(message)
 })

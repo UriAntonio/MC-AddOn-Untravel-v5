@@ -8,5 +8,5 @@ Server.Commands.register({
 }, async (data, player, args) => {
   let TPS = Math.floor(Server.TPS())
   if (TPS > 20) TPS = 20
-  player.sendMessage("§a■§6Ticks Por Segundo: §g" +  TPS)
+  player.sendMessage("§1------------------------------\n§a■§3Ticks Por Segundo: §b" +  TPS)
 })
