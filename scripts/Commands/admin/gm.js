@@ -24,17 +24,17 @@ Server.Commands.register({
     }
     if (args == "s") {
         player.gamemode = gm.gmS
-        Log(`§b${player.name} ahora esta en ${gm.gmS} `)
+        Log(`${player.name} ahora esta en §7${gm.gmS} `)
         return
     }
     if (player.gamemode == gm.gmP) {
         player.gamemode = gm.gmC
-        Log(`§b${player.name} ahora esta en ${gm.gmC} `)
+        Log(`${player.name} ahora esta en §7${gm.gmC} `)
         return
     }
     else {
         player.gamemode = gm.gmP
-        Log(`§b${player.name} ahora esta en ${gm.gmP} `)
+        Log(`${player.name} ahora esta en §7${gm.gmP} `)
         return
     }
 
