@@ -100,7 +100,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   money: {
     cartera: true,
     //pay: true,
-    //topmoney: true,
+    topmoney: true,
     //shop: true,
     //sell: true,
     //auctionhouse: true
