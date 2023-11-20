@@ -91,7 +91,7 @@ Config.debug = true
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
 Config.Commands = {  // Commands Configuration (Don't change, unless you understand the code)
   general: {
-    //help: true,
+    help: true,
     //back: true,
     playerlist: true,
     tps: true,
