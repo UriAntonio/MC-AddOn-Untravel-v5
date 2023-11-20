@@ -1,11 +1,13 @@
+import Action from "../Modules/Log/ActionLog"
 import Combat from "../Modules/Server/Combat"
 import Utility from "../Modules/Utilities/Utility"
 import Config from "../conf/Configuration"
 import Server from "../server"
 
-export const isCombatOn = () => {
+const isCombatOn = () => {
     return Server.Setting.get("combatSystem") ?? Config.combatSystem
 }
+let secondLine = undefined
 
 Server.world.afterEvents.entityHurt.subscribe(async data => {
     if (!isCombatOn) return
@@ -66,19 +68,25 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
 
 Server.System.runInterval(() => {
     if (!isCombatOn) return
+    let fisrtLine
+    let line2
+    let line3
     Server.world.getAllPlayers().forEach(player => {
         if (Combat.stopCombat(player.name))
             Server.System.run(() => Server.sendMsgToPlayer(player, `§aYa no estas en combate`))
         if (Combat.isCombat(player.name)) {
             let enemyName = Combat.getCombat(player.name)
-            Server.System.run(() => {
-                
-                Server.actionBar(player, `§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<` )
-                //player.onScreenDisplay.setActionBar(`§0>>> §cAhora estas en combate con: §4${enemyName}\n§c  Desconectarse contará como muerte §0<<<`)
-                
-            })}
+            fisrtLine =`§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`
+            
+        }
+        if (Action.hasMsg(player.name)) {
+            line3 = Action.getActionMsg(player.name,)
+            
+        }
+        Server.actionBar(player, fisrtLine, line2, line3 )
 
     })
+    
 }, 20)
 
 
