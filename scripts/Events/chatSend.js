@@ -1,22 +1,9 @@
 import Config from "../conf/Configuration";
-import { ctl } from "../Commands/admin/ctl";
 import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 import { Log } from "../Modules/Log/Log";
 
 const prefix = Server.getPrefix()
-const commandDefinitions = Object.setPrototypeOf({
-    ctl: ctl,
-    /**gmc: gmc,
-    ban: ban,
-    unban: unban,
-    say: say,
-    help: help,
-    setting: setting,
-    clan: clan,
-    team: team,*/
-
-}, null)
 
 Server.world.beforeEvents.chatSend.subscribe((eventData) => {
     let player = eventData.sender;

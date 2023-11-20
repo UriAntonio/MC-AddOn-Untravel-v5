@@ -11,6 +11,7 @@ const SystemLog = (log) => {
 const Log = (log) => {
   LogData.push(log)
   Server.sendMsgAll(`@a[tag=${Config.AdminTag}]`, `§8[§c!§8]${log}`)
+  console.warn(`${log}`)
 }
 
 /**const ClearLog = () => {

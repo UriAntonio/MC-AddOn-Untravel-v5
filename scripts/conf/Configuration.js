@@ -25,7 +25,7 @@ Config.commandCooldown = 5  // Command Cooldown
 //Config.warpCountdown = 5  // Countdown before Teleport
 
 // Home Configuration
-//Config.homeLimit = 10 // Limit Home for Player
+//Config.homeLimit = 5 // Limit Home for Player
 
 // Combat Configuration
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money

@@ -219,7 +219,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Object.keys(Config.Commands).forEach(category => {
     Object.keys(Config.Commands[category]).forEach(cmd => {
       if (!Config.Commands[category][cmd]) return;
-      import(`./Commands/${category}/${cmd}`).catch(err => Log(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
+      import(`./Commands/${category}/${cmd}`).catch(err => console.warn(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
     })
   })
   Event.forEach(event => {
@@ -228,10 +228,11 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Object.keys(Extensions).forEach(ExtName => {
     import(`./Extensions/${ExtName}.js`).then(Ext => {
       Extensions[ExtName] = true
+      console.warn(`[§4!§r]La extencion §b${ExtName}§r fue Cargada`)
       Log(`[§4!§r]La extencion §b${ExtName}§r fue Cargada`)
-    }).catch(err => Log(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
+    }).catch(err => console.warn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
   })
-
+console.log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Server.world.getAllPlayers()
     .filter(p => p.hasTag(Config.AdminTag))
