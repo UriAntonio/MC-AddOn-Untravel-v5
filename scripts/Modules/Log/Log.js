@@ -10,7 +10,7 @@ const SystemLog = (log) => {
 
 const Log = (log) => {
   LogData.push(log)
-  Server.sendMsgAll(`@a[tag=${Config.AdminTag}]`, `§8${log}`)
+  Server.sendMsgAll(`@a[tag=${Config.AdminTag}]`, `§8[§c!§8]${log}`)
 }
 
 /**const ClearLog = () => {
