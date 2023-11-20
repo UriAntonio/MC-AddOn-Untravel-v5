@@ -93,7 +93,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   general: {
     //help: true,
     //back: true,
-    //playerlist: true,
+    playerlist: true,
     tps: true,
     //message: true
   },
