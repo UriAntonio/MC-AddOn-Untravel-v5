@@ -36,11 +36,11 @@ Server.Commands.register({
     if (command.admin && !player.hasTag("admin"))
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
 
-    let helpMessage = `§a${command.name[0].toUpperCase() + command.name.substring(1)} Comando :
-§a Uso : §e${Server.getPrefix()}${command.usage || command.name}
-§a Descripcion : §e${command.description}`
+    let helpMessage = `§1------------------------------\n§a■§9 Comando :${command.name[0].toUpperCase() + command.name.substring(1)}
+§3 Uso : §b${Server.getPrefix()}${command.usage || command.name}
+§3 Descripcion : §b${command.description}`
     if (command.aliases) {
-      helpMessage += `\n§a Alias: §e${JSON.stringify(command.aliases)}`
+      helpMessage += `\n§3 Alias: §b${JSON.stringify(command.aliases)}`
     }
     player.sendMessage(helpMessage)
   }
