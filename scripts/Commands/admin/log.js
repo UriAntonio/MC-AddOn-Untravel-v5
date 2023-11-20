@@ -6,7 +6,7 @@ import { ForceOpen } from "../../Modules/Server/Forms";
 
 Server.Commands.register({
     name: "log",
-    description: "Check Logs",
+    description: "Checa todos los Logs",
     usage: "log",
     aliases: ["logs"],
     admin: true,
@@ -17,16 +17,16 @@ Server.Commands.register({
     const logForm = new MessageFormData()
         .title("Logs")
         .body(logData.join("\n§r"))
-        .button2('§l§8Clear')
-        .button1('§l§cClose')
+        .button2('§l§cLimpiar')
+        .button1('§l§8Cerrar')
 
-    Server.sendMsgToPlayer(player, "§6Cierra el Chat para ver el Panel")
+    Server.sendMsgToPlayer(player, "§a■§6Cierra el Chat para ver el Panel")
     let res = await ForceOpen(player, logForm)
     if(!res.canceled) {
         if (res.selection == 1) {
             //ClearLog()
-            Log(`[Logs] ${player.name} cleared logs`)
-            return Server.sendMsgToPlayer(player, "§aSuccessfully clear logs")
+            Log(`[Logs] ${player.name} Logs limpiados`)
+            return Server.sendMsgToPlayer(player, "§a■§6Se limpiaron los Logs correctamente")
           }
     }
 })

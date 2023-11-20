@@ -72,12 +72,12 @@ export function welcome(playerid, gamemode) {
       } else {
         if(result.selection == 1){
           playerid.runCommandAsync(`playsound random.levelup @s`)
-          Server.sendMsgToPlayer(playerid, `§bBienvenido §9${playerid.name}`)
+          Server.sendMsgToPlayer(playerid, `§a■§bBienvenido §9${playerid.name}`)
           playerid.runCommandAsync(`playsound random.anvil_use @s`)
           updateAnuncio(playerid, gm)
         } else {
           playerid.runCommandAsync(`playsound random.levelup @s`)
-          Server.sendMsgToPlayer(playerid, `§bBienvenido §9${playerid.name}`)
+          Server.sendMsgToPlayer(playerid, `§a■§bBienvenido §9${playerid.name}`)
           playerid.runCommandAsync(`gamemode ${gm}`)
         }
       }
