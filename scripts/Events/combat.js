@@ -61,7 +61,8 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
 
 
         player.sendMessage(`§6Has muerto y perdiste: §e${Utility.formatMoney(get)}`)
-        Server.System.run(() => Server.getPlayer(enemyName).sendMessage(`§gObtuviste §e${Utility.formatMoney(get)}`))
+        let enemy = Server.getPlayer(enemyName)
+        Action.setAction(enemy, 3, `§gObtuviste §e${Utility.formatMoney(get)}`)
     }
 })
 
