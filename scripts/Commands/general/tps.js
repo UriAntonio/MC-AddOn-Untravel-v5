@@ -2,7 +2,7 @@ import Server from "../../server"
 
 Server.Commands.register({
   name: "tps",
-  description: "Check Server Tick per Second",
+  description: "Checa los Tick por Segundo del Servidor",
   usage: "tps",
   category: "General"
 }, async (data, player, args) => {
