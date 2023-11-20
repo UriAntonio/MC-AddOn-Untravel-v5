@@ -94,7 +94,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //help: true,
     //back: true,
     //playerlist: true,
-    //tps: true,
+    tps: true,
     //message: true
   },
   money: {
