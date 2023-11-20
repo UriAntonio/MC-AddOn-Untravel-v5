@@ -1,12 +1,12 @@
 import * as mc from "@minecraft/server";
+//
 import Config from "./conf/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
-//
+import getTPS from "./util/TickPerSecond"
 import Setting from "./Modules/Server/Setting";
 import PlayerClass from "./Modules/PlayerClass";
-//
 //
 import Money from "./Modules/Finance/Money";
 
@@ -42,7 +42,7 @@ class ServerClass {
     this.BanDB = new Database("banDB")
     this.Setting = new Setting()
     this.Money = Money
-    //this.TPS = getTPS
+    this.TPS = getTPS
     this.world = mc.world
     this.Log = Log
     this.overworld = mc.world.getDimension("overworld")
