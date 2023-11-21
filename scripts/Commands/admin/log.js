@@ -15,18 +15,18 @@ Server.Commands.register({
     let logData = [...LogData].reverse()
     logData.splice(0, 1)
     const logForm = new MessageFormData()
-        .title("Logs")
+        .title("§9Logs")
         .body(logData.join("\n§r"))
         .button2('§l§cLimpiar')
         .button1('§l§8Cerrar')
 
-    Server.sendMsgToPlayer(player, "§1------------------------------\n§a■§6Cierra el Chat para ver el Panel")
+    player.sendMessage("§1------------------------------\n§a■§3Cierra el Chat para ver el Panel")
     let res = await ForceOpen(player, logForm)
     if(!res.canceled) {
         if (res.selection == 1) {
             //ClearLog()
             Log(`[Logs] ${player.name} Logs limpiados`)
-            return Server.sendMsgToPlayer(player, "§1------------------------------\n§a■§6Se limpiaron los Logs correctamente")
+            return player.sendMessage("§1------------------------------\n§a■§3Se limpiaron los Logs correctamente")
           }
     }
 })
