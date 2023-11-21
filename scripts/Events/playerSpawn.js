@@ -33,7 +33,7 @@ function onJoinSpawn(player) {
       gamemode = "survival"
     }
     welcome(player, gamemode);
-    Log(`§e${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
+    Log(`§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
       try {
