@@ -10,16 +10,16 @@ Server.Commands.register({
 }, async (data, player, args) => {
     if (!args[0]) {
         let playerMoney = player.getMoney()
-        Server.sendMsgToPlayer(player, `§1------------------------------\n§a■§6Tu Balance es: §e${Utility.formatMoney(playerMoney)}`)
+        player.sendMessage(`§1------------------------------\n§a■§3Tu Balance es: §b${Utility.formatMoney(playerMoney)}`)
     } else {
         let extractData = await Utility.ExtractNameFromString(args.join(" "), 0)
         let targetPlayer = await Server.getPlayer(extractData?.name ?? "")
         if (targetPlayer != undefined) {
             let targetMoney = targetPlayer.getMoney()
-            Server.sendMsgToPlayer(player, `§1------------------------------\n§a■§6El Balance de §e${targetPlayer.name}§6 es: §e${Utility.formatMoney(targetMoney)}`)
+            player.sendMessage(`§1------------------------------\n§a■§3El Balance de §b${targetPlayer.name}§3 es: §b${Utility.formatMoney(targetMoney)}`)
         } else {
             let playerMoney = player.getMoney()
-            Server.sendMsgToPlayer(player, `§1------------------------------\n§a■§6Tu Balance es: §e${Utility.formatMoney(playerMoney)}`)
+            player.sendMessage(`§1------------------------------\n§a■§3Tu Balance es: §b${Utility.formatMoney(playerMoney)}`)
         }
     }
 })
