@@ -2,7 +2,7 @@ import { onJoinData } from "../Modules/Data/onJoinData.js";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
 import Server from "../server.js";
-import { Log } from "../Modules/Log/Log.js";
+import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 
 
@@ -40,7 +40,7 @@ function onJoinSpawn(player) {
         player.runCommandAsync(`${onJoinData[i]}`);
       } catch (error) { }
     }
-  } catch (error) { Log(`§cError al unirse: ${player} | ${error}`) }
+  } catch (error) { LogWarn(`§cError al unirse: ${player} | ${error}`) }
 }
 
 Server.world.afterEvents.playerSpawn.subscribe((loaded) => {

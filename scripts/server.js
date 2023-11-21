@@ -2,7 +2,7 @@ import * as mc from "@minecraft/server";
 //
 import Config from "./conf/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
-import { Log, SystemLog } from "./Modules/Log/Log";
+import { Log, LogWarn, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
 import getTPS from "./util/TickPerSecond"
 import Setting from "./Modules/Server/Setting";
@@ -219,20 +219,18 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Object.keys(Config.Commands).forEach(category => {
     Object.keys(Config.Commands[category]).forEach(cmd => {
       if (!Config.Commands[category][cmd]) return;
-      import(`./Commands/${category}/${cmd}`).catch(err => console.warn(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
+      import(`./Commands/${category}/${cmd}`).catch(err => LogWarn(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
     })
   })
   Event.forEach(event => {
-    import(`./Events/${event}`).catch(err => Log(`§cFallo al importar el evento: ${event} | ${err}`))
+    import(`./Events/${event}`).catch(err => LogWarn(`§cFallo al importar el evento: ${event} | ${err}`))
   })
   Object.keys(Extensions).forEach(ExtName => {
     import(`./Extensions/${ExtName}.js`).then(Ext => {
       Extensions[ExtName] = true
-      console.warn(`[§4!§r]La extencion §b${ExtName}§r fue Cargada`)
-      Log(`[§4!§r]La extencion §b${ExtName}§r fue Cargada`)
-    }).catch(err => console.warn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
+      Log(`La extencion §b${ExtName}§r fue Cargada`)
+    }).catch(err => LogWarn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
   })
-console.log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Server.world.getAllPlayers()
     .filter(p => p.hasTag(Config.AdminTag))
