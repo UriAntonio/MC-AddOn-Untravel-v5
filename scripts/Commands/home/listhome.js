@@ -14,7 +14,7 @@ Server.Commands.register({
     if (key.startsWith(player.name)) {
       let home = value
       let hname = key.substring(`${player.name}-`.length)
-      message += `\n§e  -§a ${hname}§e ${Math.round(home.x)}, ${Math.round(home.y)}, ${Math.round(home.z)} | ${home.dimension}`;
+      message += `\n§1  |§f ${hname}§b ${Math.round(home.x)}, ${Math.round(home.y)}, ${Math.round(home.z)} §1| §9${home.dimension}`;
     }
   })
   if (message != "") {

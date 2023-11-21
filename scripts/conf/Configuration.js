@@ -13,19 +13,19 @@ const Config = {}
 
 // Cooldown Configuration
 //Config.backCooldown = 30  // Back Cooldown
-//Config.tpaCooldown = 5  // TPA & TPAHere Cooldown
-//Config.homeCooldown = 5  // Home Cooldown
-//Config.warpCooldown = 5  // Warp Cooldown
-Config.commandCooldown = 5  // Command Cooldown
+//Config.tpaCooldown = 7  // TPA & TPAHere Cooldown
+//Config.homeCooldown = 7  // Home Cooldown
+//Config.warpCooldown = 7  // Warp Cooldown
+Config.commandCooldown = 7  // Command Cooldown
 
 // Teleport Countdown Configuration
-//Config.backCountdown = 5  // Countdown before Teleport
-//Config.tpaCountdown = 5  // Countdown before Teleport
-//Config.homeCountdown = 5  // Countdown before Teleport
-//Config.warpCountdown = 5  // Countdown before Teleport
+//Config.backCountdown = 7  // Countdown before Teleport
+//Config.tpaCountdown = 7  // Countdown before Teleport
+Config.homeCountdown = 7  // Countdown before Teleport
+//Config.warpCountdown = 7  // Countdown before Teleport
 
 // Home Configuration
-//Config.homeLimit = 5 // Limit Home for Player
+Config.homeLimit = 5 // Limit Home for Player
 
 // Combat Configuration
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
@@ -107,9 +107,9 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   home: {
     //home: true,
-    //sethome: true,
-    //delhome: true,
-    //listhome: true
+    sethome: true,
+    delhome: true,
+    listhome: true
   },
   warp: {
     //warp: true,

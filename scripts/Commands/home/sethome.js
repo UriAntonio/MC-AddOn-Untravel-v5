@@ -5,7 +5,7 @@ const HomeDB = Server.HomeDB
 
 Server.Commands.register({
   name: "sethome",
-  description: "Agrega o Asigna hogar con el nombre seleccionado",
+  description: "Agrega un hogar con el nombre seleccionado",
   usage: "sethome <home_name>",
   category: "Home"
 }, async (data, player, args) => {
@@ -23,5 +23,5 @@ Server.Commands.register({
     dimension: player.dimension.id
   }
   await HomeDB.set(`${player.name}-${name}`, homeObject)
-  player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §b${name}!`)
+  player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
 })
