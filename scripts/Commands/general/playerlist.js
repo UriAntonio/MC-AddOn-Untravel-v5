@@ -2,7 +2,7 @@ import Server from "../../server"
 
 Server.Commands.register({
   name: "playerlist",
-  aliases: ["playerson", "players"],
+  aliases: ["playerson", "players", "pl"],
   description: "Para ver la lista de jugadores",
   usage: "playerlist",
   category: "General"

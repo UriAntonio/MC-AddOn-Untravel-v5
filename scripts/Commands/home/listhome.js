@@ -6,7 +6,7 @@ Server.Commands.register({
   name: "listhome",
   description: "Muestra una lista de todos tus hogares",
   usage: "listhome",
-  aliases: ["homelist","homes"],
+  aliases: ["homelist","homes", "lh"],
   category: "Home"
 }, async (data, player, args) => {
   let message = ""

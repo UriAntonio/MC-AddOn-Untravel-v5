@@ -5,6 +5,7 @@ const HomeDB = Server.HomeDB
 
 Server.Commands.register({
   name: "sethome",
+  aliases: ["sh"],
   description: "Agrega un hogar con el nombre seleccionado",
   usage: "sethome <home_name>",
   category: "Home"
