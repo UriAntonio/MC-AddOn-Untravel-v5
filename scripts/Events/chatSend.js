@@ -29,7 +29,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         if (getCooldown("command", player) > 0) return Server.sendMsgToPlayer(player, `§a■§4Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
         if (!cmd) {
             //Server.sendMsgToPlayer(player, `1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
-            Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+            player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
         //Server.sendMsgToPlayer(player, `§c${commandCall}.. ${cmd.name}`)
@@ -38,17 +38,17 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
          * esto verifica que el comando no seaa de la categoria System o si esta desabilitado
          */
         if ((Server.Setting.get(`${cmd.category.toLowerCase()}System`) ?? true) == false) {
-            Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+            player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
         //Se ejecuta si el comando no esta registrado en Settings y en Configuracion aparece como falso o undefined 
         if ((Server.Setting.get(`${cmd.settingname}System`) ?? Config.Commands[cmd.category.toLowerCase()][cmd.settingname]) == false) {
-            Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+            player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
         //valida que el comando no sea de clase Admin
         if (cmd.admin && !player.hasTag(Config.AdminTag)) {
-            Server.sendMsgToPlayer(player, `§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+            player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
         //Ejecuta el comando

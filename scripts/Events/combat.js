@@ -39,7 +39,7 @@ Server.world.afterEvents.playerLeave.subscribe(({ playerName }) => {
     Server.Money.setMoney(enemyName, Server.Money.getMoney(enemyName) + get)
 
     if (Server.getPlayer(enemyName))
-        Server.getPlayer(enemyName).sendMessage(`§a■§6${playerName} dejó el juego durante PVP con tigo, Obtuviste §e${Utility.formatMoney(get)}`)
+        Server.getPlayer(enemyName).sendMessage(`§a■§b${playerName} §3dejó el juego durante PVP con tigo, Obtuviste §b${Utility.formatMoney(get)}`)
 })
 
 Server.world.afterEvents.entityDie.subscribe((data) => {
@@ -60,9 +60,9 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
         Server.Money.setMoney(enemyName, Server.Money.getMoney(enemyName) + get)
 
 
-        player.sendMessage(`§a■§6Has muerto y perdiste: §e${Utility.formatMoney(get)}`)
+        player.sendMessage(`§a■§3Has muerto y perdiste: §b${Utility.formatMoney(get)}`)
         let enemy = Server.getPlayer(enemyName)
-        Action.setAction(enemy, 3, `§gObtuviste §e${Utility.formatMoney(get)}`)
+        Action.setAction(enemy, 3, `§3Obtuviste §b${Utility.formatMoney(get)}`)
     }
 })
 
@@ -74,7 +74,7 @@ Server.System.runInterval(() => {
     let line3
     Server.world.getAllPlayers().forEach(player => {
         if (Combat.stopCombat(player.name))
-            Server.System.run(() => Server.sendMsgToPlayer(player, `§a■§2Ya no estas en combate`))
+            Server.System.run(() => player.sendMessage(`§a■§aYa no estas en combate`))
         if (Combat.isCombat(player.name)) {
             let enemyName = Combat.getCombat(player.name)
             fisrtLine =`§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`

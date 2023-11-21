@@ -10,7 +10,7 @@ Server.Minecraft.world.afterEvents.entityDie.subscribe((data) => {
       dimension: player.dimension.id
     }
     Server.BackDB.set(player.name, backData)
-    player.sendMessage(`§a■§6Moriste en: §c${Math.floor(player.location.x)}, ${Math.floor(player.location.y)}, ${Math.floor(player.location.z)}`)
+    player.sendMessage(`§a■§3Moriste en: §c${Math.floor(player.location.x)}, ${Math.floor(player.location.y)}, ${Math.floor(player.location.z)}`)
 
   }
 })
