@@ -9,10 +9,10 @@ Server.Commands.register({
   usage: "sethome <home_name>",
   category: "Home"
 }, async (data, player, args) => {
-  if (!args[0]) return player.sendMessage("§a■§4Ingresa un mombre para tu hogar.")
+  if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
   if (!player.hasTag(Config.AdminTag) && homeCount >= (Server.Setting.get("homeLimit") ?? Config.homeLimit))
-   return player.sendMessage("§a■§4Ya tienes el Maximo de hogares!")
+   return player.sendMessage("§a■§cYa tienes el Maximo de hogares!")
   let name = args.slice(0).join(" ")
   let playerHome = HomeDB.keys().find(key => key == `${player.name}-${name}`)
   if (playerHome != undefined) return player.sendMessage("§a■§cNombre de hogar duplicado, hogar no fue creado.")

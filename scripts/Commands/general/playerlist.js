@@ -12,7 +12,7 @@ Server.Commands.register({
       const DateNow = new Date()
       const DateLogin = Server.PlayerOnline[plr.name]
       const SecondPlayed = Math.ceil((DateNow - DateLogin) / 1000);
-      message += `\n§1 - §3${plr.name} §1| §bEn Linea por`
+      message += `\n§1 | §3${plr.name} §1| §bEn Linea por`
       if (SecondPlayed >= 86400) {
         let day = Math.floor(SecondPlayed / 86400)
         message += ` §f${day} §bdias,`

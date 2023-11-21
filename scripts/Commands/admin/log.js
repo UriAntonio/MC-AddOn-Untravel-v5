@@ -15,10 +15,10 @@ Server.Commands.register({
     let logData = [...LogData].reverse()
     logData.splice(0, 1)
     const logForm = new MessageFormData()
-        .title("§9Logs")
+        .title("§9§lLogs")
         .body(logData.join("\n§r"))
-        .button2('§l§cLimpiar')
-        .button1('§l§8Cerrar')
+        .button2('§l§bLimpiar')
+        .button1('§l§1Cerrar')
 
     player.sendMessage("§1------------------------------\n§a■§3Cierra el Chat para ver el Panel")
     let res = await ForceOpen(player, logForm)
