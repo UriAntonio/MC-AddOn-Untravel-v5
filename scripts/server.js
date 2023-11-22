@@ -9,7 +9,7 @@ import Setting from "./Modules/Server/Setting";
 import PlayerClass from "./Modules/PlayerClass";
 //
 import Money from "./Modules/Finance/Money";
-
+//
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -48,6 +48,8 @@ class ServerClass {
     this.overworld = mc.world.getDimension("overworld")
     this.isLoaded = false
     this.timeStarted = Date.now()
+    //this.Commands = new CommandBuilder("mce")
+    //this.usingLandClaim = false
   }
 
   /**
@@ -242,7 +244,14 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
     Server.PlayerOnline[player.name] = Date.now()
   })
   Log(`§2Se agrego fechas`)
+
+  //let land = await Restful.request("land-isActive")
+  //Server.usingLandClaim = land?.active ?? false
 })
+
+//mc.world.afterEvents.playerSpawn.subscribe(data => {
+//  if (data.initialSpawn) data.player.sendMessage(`Type "${Server.getPrefix()}help" for more information.`)
+//})
 
 mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
   data.cancel = true
