@@ -13,6 +13,7 @@ Server.world.afterEvents.entityDie.subscribe( async data => {
     let entity = Config.moneyFromMobs[deadEntity.typeId]
     if (!entity) return
     let moneyEarn = Utility.random(entity[0], entity[1])
+    if (player.getMoney() + moneyEarn > Server.Money.getMaxMoney()) moneyEarn = Server.Money.getMaxMoney() - player.getMoney()
     if (moneyEarn <= 0) return
     await player.setMoney(player.getMoney() + moneyEarn)
     Action.setAction(player, 3,`§3Obtiviste §b${Utility.formatMoney(moneyEarn)}`)
