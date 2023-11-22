@@ -7,13 +7,13 @@ import Server from "../server"
 const isCombatOn = () => {
     return Server.Setting.get("combatSystem") ?? Config.combatSystem
 }
-let secondLine = undefined
 
 Server.world.afterEvents.entityHurt.subscribe(async data => {
     if (!isCombatOn) return
     if (data.damageSource.cause == "none") return
     if (data.hurtEntity.typeId != "minecraft:player") return
     if (data.damageSource.damagingEntity == undefined || data.damageSource.damagingEntity.typeId != "minecraft:player") return
+    if (data.damageSource.damagingEntity == data.hurtEntity) return
 
     let player1 = data.damageSource.damagingEntity
     let player2 = data.hurtEntity
