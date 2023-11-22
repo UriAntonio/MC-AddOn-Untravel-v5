@@ -16,6 +16,7 @@ const Config = {}
 //Config.tpaCooldown = 7  // TPA & TPAHere Cooldown
 //Config.homeCooldown = 7  // Home Cooldown
 //Config.warpCooldown = 7  // Warp Cooldown
+// Config.rtpCooldown = 120  // RTP Cooldown
 Config.commandCooldown = 7  // Command Cooldown
 
 // Teleport Countdown Configuration
@@ -23,9 +24,11 @@ Config.commandCooldown = 7  // Command Cooldown
 //Config.tpaCountdown = 7  // Countdown before Teleport
 Config.homeCountdown = 7  // Countdown before Teleport
 //Config.warpCountdown = 7  // Countdown before Teleport
+//Config.rtpCountdown = 5  // Countdown before Teleport
 
 // Home Configuration
 Config.homeLimit = 5 // Limit Home for Player
+Config.homeCost = 3000
 
 // Combat Configuration
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
@@ -95,7 +98,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //back: true,
     playerlist: true,
     tps: true,
-    //message: true
+    //message: true,
+    //rtp: true
   },
   money: {
     cartera: true,
@@ -135,10 +139,20 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
    // adminpanel: true,
     //mute: true,
     //unmute: true,
-    //invsee: true,
+    //inventorysee: true,
     log: true,
+    //tempban: true,
     gm: true,
   }
 }
+
+// Dangerous Setting (Only change if you know)
+
+/**
+ * Number of custom item that you add, Only change this if there is error with texture in UI
+ * Set to undefined to use automatically calculate
+ * Set to number if there is error
+ */
+Config.NumberOf_1_16_100_Items = undefined
 
 export default Config
