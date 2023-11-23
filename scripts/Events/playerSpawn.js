@@ -54,6 +54,7 @@ Server.world.afterEvents.playerSpawn.subscribe((loaded) => {
     });
 
   } else {
+    if ((Server.Setting.get("backSystem") ?? true) == false) return
     //player.sendMessage(`§eYou died. use §a!back§e to teleport to your death location.`)
   }
 
