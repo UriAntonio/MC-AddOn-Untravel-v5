@@ -25,6 +25,7 @@ let SettingList = {
   "tpaCooldown": [SettingType.CUSTOMNUM, "Cooldown for TPA command, Set 0 for no cooldown"],
   "homeCooldown": [SettingType.CUSTOMNUM, "Cooldown for Home command, Set 0 for no cooldown"],
   "warpCooldown": [SettingType.CUSTOMNUM, "Cooldown for Warp command, Set 0 for no cooldown"],
+  "rtpCooldown": [SettingType.CUSTOMNUM, "Cooldown for RTP command, Set 0 for no cooldown"],
   "commandPrefix": [SettingType.CUSTOMSTR, "Prefix for Command"],
   "currencyPrefix": [SettingType.CUSTOMSTR, "Currency Prefix"],
   "earnMoneyfromMobs": [SettingType.TRUEFALSE, "If set to false, anyone can't earn money from killing mobs"],
@@ -32,6 +33,7 @@ let SettingList = {
   "tpaCountdown": [SettingType.CUSTOMNUM, "If setted, player will wait for countdown to teleport"],
   "homeCountdown": [SettingType.CUSTOMNUM, "If setted, player will wait for countdown to teleport"],
   "warpCountdown": [SettingType.CUSTOMNUM, "If setted, player will wait for countdown to teleport"],
+  "rtpCountdown": [SettingType.CUSTOMNUM, "If setted, player will wait for countdown to teleport"],
   "commandCooldown": [SettingType.CUSTOMNUM, "Cooldown for command, Set 0 for no cooldown"]
 }
 
