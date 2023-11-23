@@ -3,16 +3,17 @@ import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 import { Log } from "../Modules/Log/Log";
 
-const prefix = Server.getPrefix()
+
 
 Server.world.beforeEvents.chatSend.subscribe((eventData) => {
     let player = eventData.sender;
     let msg = eventData.message
     let tags = player.getTags()
     let rank
+    let prefix = Server.getPrefix()
     //Evita que los jugadores muteados hablen en el chat
     if (player.isMuted()) {
-        Server.sendMsgToPlayer(player, `${Config.serverName}§c Has sido silenciad@ en el chat global.`)
+        player.sendMessage(`${Config.serverName}§c Has sido silenciad@ en el chat global.`)
         eventData.cancel = true
         return;
     }
@@ -26,13 +27,13 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         //let get = Server.Commands.get()
         //let adminN = cmd.admin
         //let tags = Config.AdminTag
-        if (getCooldown("command", player) > 0) return Server.sendMsgToPlayer(player, `§a■§4Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
+        if (getCooldown("command", player) > 0) return player.sendMessage(`§a■§4Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
         if (!cmd) {
-            //Server.sendMsgToPlayer(player, `1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
+            //player.sendMessage(`1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
             player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
-        //Server.sendMsgToPlayer(player, `§c${commandCall}.. ${cmd.name}`)
+        //player.sendMessage(`§c${commandCall}.. ${cmd.name}`)
         /**
          * recuerda registrar el comando en {Settings}
          * esto verifica que el comando no seaa de la categoria System o si esta desabilitado
