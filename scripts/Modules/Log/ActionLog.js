@@ -17,7 +17,7 @@ Action.setAction = (player, line, msg) => {
         line: line,
         msg: msg
     }
-    console.warn(`se registro: ${player.name}| ${line}| ${msg}`)
+    //console.warn(`se registro: ${player.name}| ${line}| ${msg}`)
 }
 
 
@@ -28,7 +28,7 @@ Action.setAction = (player, line, msg) => {
 Action.hasMsg = (playerName) => {
     if (!ActionLog[playerName]) return false
     if (Date.now() > ActionLog[playerName].time) return false
-    return true
+    if (!msg == undefined ) return true
 }
 
 /**
@@ -37,7 +37,7 @@ Action.hasMsg = (playerName) => {
  * @returns {string | undefined}
  */
 Action.getActionMsg = (playerName,) => {
-    return ActionLog[playerName]?.msg
+    return ActionLog[playerName].msg
 }
 
 export default Action
