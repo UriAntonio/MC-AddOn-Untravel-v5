@@ -5,6 +5,27 @@ import Server from "../server.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 
+function rankFilter(player) {
+  let tags = player.getTags()
+  let rank
+  for (const tag of tags) {
+    if (tag.startsWith("Rank:")) {
+      staffTag = tag
+    }
+    if (tag.startsWith("Rank:")) {
+      rank = tag
+      Config.ranks.staff.list
+      addtag = tag + "--"
+    }
+}
+
+
+  if (player.hasTag(Config.AdminTag)) {
+    player.addTag("Rank:§l§b★★★★★★★")
+  }
+}
+
+
 
 /**
  * 
@@ -13,7 +34,7 @@ import { Player } from "@minecraft/server";
 function onJoinSpawn(player) {
   try {
     player.runCommandAsync(`testfor @s`);
-   
+
     // Bloquea el server si esta en true
     if (Config.lockServer) {
       let reason = "Bajo Mantenimiento! Perdón por las molestias.";
@@ -24,6 +45,9 @@ function onJoinSpawn(player) {
         // Despawn players from server
         player.triggerEvent("minecraft:kick");
       }
+    }
+    if (player.hasTag(Config.AdminTag)) {
+      player.addTag("Rank:§l§b★★★★★★★")
     }
     let gamemode
     player.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
