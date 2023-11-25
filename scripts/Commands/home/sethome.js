@@ -34,8 +34,8 @@ Server.Commands.register({
   if (playerHome != undefined) return player.sendMessage("§a■§cNombre de hogar duplicado, hogar no fue creado.")
   if (!player.isAdmin()) {
     if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
-    if (player.dimension.id == "nether") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
-    if (player.dimension.id == "end") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
+    if (player.dimension.id == "minecraft:nether") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
+    if (player.dimension.id == "minecraft:end") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
     const homeObject = {
       x: player.location.x,
       y: player.location.y,
