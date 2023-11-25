@@ -21,9 +21,9 @@ Server.Commands.register({
   })
   for (let i = 0; i < homeArr.length; i++) {
     cost = cost + cost;
-    
+
   }
-  
+
   let balance = Money.getMoney(player.name)
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
@@ -32,14 +32,28 @@ Server.Commands.register({
   let name = args.slice(0).join(" ")
   let playerHome = HomeDB.keys().find(key => key == `${player.name}-${name}`)
   if (playerHome != undefined) return player.sendMessage("§a■§cNombre de hogar duplicado, hogar no fue creado.")
-  if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
+  if (!player.isAdmin()) {
+    if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
+    if (player.dimension.id == "nether") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
+    if (player.dimension.id == "end") return player.sendMessage(`§a■§cLa dimension no esta habilitada para hogares`)
+    const homeObject = {
+      x: player.location.x,
+      y: player.location.y,
+      z: player.location.z,
+      dimension: player.dimension.id
+    }
+    Money.setMoney(player, balance - cost)
+    await HomeDB.set(`${player.name}-${name}`, homeObject)
+    player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
+    return
+  }
   const homeObject = {
     x: player.location.x,
     y: player.location.y,
     z: player.location.z,
     dimension: player.dimension.id
   }
-  Money.setMoney(player, balance - cost)
+  //Money.setMoney(player, balance - cost)
   await HomeDB.set(`${player.name}-${name}`, homeObject)
   player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
 })
