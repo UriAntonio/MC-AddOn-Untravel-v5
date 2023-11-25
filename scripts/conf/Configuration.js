@@ -14,7 +14,7 @@ const Config = {}
 // Cooldown Configuration
 //Config.backCooldown = 30  // Back Cooldown
 //Config.tpaCooldown = 7  // TPA & TPAHere Cooldown
-Config.homeCooldown = 600  // Home Cooldown
+Config.homeCooldown = 300  // Home Cooldown
 //Config.warpCooldown = 7  // Warp Cooldown
 // Config.rtpCooldown = 120  // RTP Cooldown
 Config.commandCooldown = 7  // Command Cooldown
@@ -29,13 +29,16 @@ Config.homeCountdown = 7  // Countdown before Teleport
 // Home Configuration
 Config.homeLimit = 10 // Limit Home for Player
 Config.homeCost = 3000
+Config.homeTpCost = 50
+Config.homeTpCostNether = 1000
+Config.homeTpCostEnd = 5000
 
 // Combat Configuration
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
 // Money Configuration
 Config.maxMoney = 1000000000 // Max Money
-Config.starterMoney = 1 // Starter Money
+Config.starterMoney = 0.0 // Starter Money
 Config.currencyPrefix = "" // Currency / Money Prefix
 Config.earnMoneyfromMobs = true // Money drop from killing Mobs
 Config.moneyFromMobs = { // Money drop from killing Mobs
@@ -91,6 +94,7 @@ Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada par
 Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
 Config.lockServer = false
 Config.debug = true
+Config.FundsName = "§g■§6Fondos Generales"
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
 Config.Commands = {  // Commands Configuration (Don't change, unless you understand the code)
   general: {
@@ -144,6 +148,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //tempban: true,
     gm: true,
     home: true,
+    funds: true,
   }
 }
 
