@@ -49,39 +49,38 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
   "minecraft:tropicalfish": [1, 3],
 
   "minecraft:zombie": [10, 25],
-  "minecraft:husk": [20, 50],
-  "minecraft:skeleton": [20, 50],
-  "minecraft:stray": [20, 50],
-  "minecraft:blaze": [20, 50],
-  "minecraft:zombie_villager": [20, 50],
-  "minecraft:zombie_villager_v2": [20, 50],
-  "minecraft:pillager": [20, 50],
-  "minecraft:vex": [20, 50],
-  "minecraft:evocation_illager": [20, 50],
+  "minecraft:husk": [20, 30],
+  "minecraft:skeleton": [20, 30],
+  "minecraft:stray": [20, 30],
+  "minecraft:blaze": [20, 30],
+  "minecraft:zombie_villager": [20, 30],
+  "minecraft:zombie_villager_v2": [20, 30],
+  "minecraft:pillager": [20, 30],
+  "minecraft:vex": [20, 30],
+  "minecraft:evocation_illager": [20, 30],
   "minecraft:slime": [5, 10],
-  "minecraft:drowned": [20, 50],
-  "minecraft:guardian": [20, 50],
-  "minecraft:iron_golem": [20, 50],
-  "minecraft:spider": [20, 50],
+  "minecraft:drowned": [20, 30],
+  "minecraft:guardian": [20, 30],
+  "minecraft:spider": [20, 30],
   "minecraft:magma_cube": [5, 10],
-  "minecraft:cave_spider": [20, 50],
-  "minecraft:endermite": [20, 50],
-  "minecraft:piglin": [20, 50],
-  "minecraft:piglin_brute": [20, 50],
+  "minecraft:cave_spider": [20, 30],
+  "minecraft:endermite": [20, 30],
+  "minecraft:piglin": [20, 30],
+  "minecraft:piglin_brute": [20, 30],
   "minecraft:zoglin": [10, 20],
-  "minecraft:shulker": [20, 50],
-  "minecraft:enderman": [20, 50],
+  "minecraft:shulker": [20, 30],
+  "minecraft:enderman": [20, 30],
   "minecraft:phantom": [30, 60],
   "minecraft:creeper": [25, 55],
-  "minecraft:wither_skeleton": [20, 50],
-  "minecraft:ghast": [20, 50],
-  "minecraft:witch": [30, 50],
-  "minecraft:zombie_pigman": [20, 50],
+  "minecraft:wither_skeleton": [20, 30],
+  "minecraft:ghast": [20, 30],
+  "minecraft:witch": [30, 30],
+  "minecraft:zombie_pigman": [20, 30],
   "minecraft:hoglin": [5, 20],
 //bosses
 "minecraft:elder_guardian": [70, 200],
   "minecraft:warden": [70, 200],
-  "minecraft:ravager": [70, 100],
+  "minecraft:ravager": [50, 70],
   "minecraft:wither": [70, 200],
   "minecraft:ender_dragon": [70, 200]
 }
@@ -145,6 +144,15 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //tempban: true,
     gm: true,
   }
+}
+Config.ranks = {
+  staff: {
+    list: [],
+    Admin: 1,
+  },
+  members: {},
+  selecto: {}
+
 }
 
 // Dangerous Setting (Only change if you know)
