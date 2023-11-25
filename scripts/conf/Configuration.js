@@ -14,7 +14,7 @@ const Config = {}
 // Cooldown Configuration
 //Config.backCooldown = 30  // Back Cooldown
 //Config.tpaCooldown = 7  // TPA & TPAHere Cooldown
-//Config.homeCooldown = 7  // Home Cooldown
+Config.homeCooldown = 600  // Home Cooldown
 //Config.warpCooldown = 7  // Warp Cooldown
 // Config.rtpCooldown = 120  // RTP Cooldown
 Config.commandCooldown = 7  // Command Cooldown
@@ -27,7 +27,7 @@ Config.homeCountdown = 7  // Countdown before Teleport
 //Config.rtpCountdown = 5  // Countdown before Teleport
 
 // Home Configuration
-Config.homeLimit = 5 // Limit Home for Player
+Config.homeLimit = 10 // Limit Home for Player
 Config.homeCost = 3000
 
 // Combat Configuration
@@ -143,6 +143,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     log: true,
     //tempban: true,
     gm: true,
+    home: true,
   }
 }
 
