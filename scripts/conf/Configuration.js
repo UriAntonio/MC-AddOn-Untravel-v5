@@ -145,10 +145,13 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     gm: true,
   }
 }
+
 Config.ranks = {
   staff: {
-    list: [],
-    Admin: 1,
+    list: ["Adminer",`Moderator`, "Helper"],
+    Adminer: "Rank:§l§b★★★★★★",
+    Moderator: "Rank:§l§b★★★★★",
+    Helper: "Rank:§l§b★★★",
   },
   members: {},
   selecto: {}
