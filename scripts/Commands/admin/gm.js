@@ -1,7 +1,6 @@
 import { Log } from "../../Modules/Log/Log";
 import Server from "../../server";
 
-const prefix = Server.getPrefix()
 const gm = {
     gmC: "creative",
     gmS: "survival",
