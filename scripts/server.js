@@ -9,6 +9,7 @@ import Setting from "./Modules/Server/Setting";
 import PlayerClass from "./Modules/PlayerClass";
 //
 import Money from "./Modules/Finance/Money";
+import Fund from "./Modules/Finance/Funds";
 //
 const Event = [
   "chatSend",
@@ -40,6 +41,7 @@ class ServerClass {
     this.WarpDB = new Database("warpDB")
     this.BackDB = new Database("backDB")
     this.BanDB = new Database("banDB")
+    this.Fund = Fund
     this.Setting = new Setting()
     this.Money = Money
     this.TPS = getTPS

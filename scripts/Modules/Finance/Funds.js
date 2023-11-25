@@ -4,14 +4,15 @@ import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
 import Server from "../../server";
 
-
-const MoneyObjective = "Money"
-const MoneyStructure = {
+const FundsObjective = "Fund"
+const FundsStructure = {
     playerName: String.prototype,
     playerMoney: Number.prototype
 }
 
-class MoneySystem {
+let FundsName = Config.FundsName 
+
+class FundsSystem {
     #isLoaded; #Readyplayer
     constructor() {
         this.#isLoaded = false
@@ -20,36 +21,36 @@ class MoneySystem {
 
     async #init() {
         // await Server.waitLoaded()
-        this.MoneyDatabase = new Database("moneyDB")
-        if (!checkObjective(MoneyObjective)) await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
+        this.FundsDatabase = new Database("fundsDB")
+        if (!checkObjective(FundsObjective)) await world.scoreboard.addObjective(FundsObjective, FundsObjective)
         this.#isLoaded = true
         this.#Readyplayer = []
 
         world.afterEvents.playerSpawn.subscribe(async (data) => {
             let player = data.player
             if (data.initialSpawn) {
-                let playerMoney = this.MoneyDatabase.get(player.name)
+                let playerMoney = this.FundsDatabase.get(FundsName)
                 //Server.sendMessage(`${playerMoney} 1`)
                 if (playerMoney == undefined) {
-                    playerMoney = this.getMoney(player.name)
-                //    Server.sendMessage(`${playerMoney} 2`)
-            }
-                
+                    playerMoney = this.getMoney(FundsName)
+                    //    Server.sendMessage(`${playerMoney} 2`)
+                }
+
                 if (playerMoney == undefined) {
                     playerMoney = this.getStarterMoney()
-                //    Server.sendMessage(`${playerMoney} 3`)
+                    //    Server.sendMessage(`${playerMoney} 3`)
                 }
-                
-                this.setMoney(player.name, playerMoney)
+
+                this.setMoney(FundsName, playerMoney)
                 this.#Readyplayer.push(player.name)
             }
         })
 
-        world.afterEvents.worldInitialize.subscribe( async (data) =>{
+        world.afterEvents.worldInitialize.subscribe(async (data) => {
             world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
         })
 
-        world.afterEvents.playerLeave.subscribe( async (data) => 
+        world.afterEvents.playerLeave.subscribe(async (data) =>
             this.#Readyplayer.splice(this.#Readyplayer.findIndex(i => i == data.playerName), 1)
         )
 
@@ -57,8 +58,8 @@ class MoneySystem {
             world.getAllPlayers().forEach(player => {
                 if (!player.isValid()) return
                 if (!this.#Readyplayer.find(p => p == player.name)) return
-                let money = this.getMoney(player.name)
-                this.MoneyDatabase.set(player.name, money)
+                let money = this.getMoney(FundsName)
+                this.FundsDatabase.set(FundsName, money)
             })
         })
     }
@@ -80,44 +81,33 @@ class MoneySystem {
     }
 
     /**
-     * Obten el Dinero del Jugadore
-     * @param {string} playerName
+     * Obten el Dinero del Fondo
+     * @param {string} FundsName
      * @param {number}
      * @param {PlayerClass} player
      */
-    getMoney(playerName) {
-        let player = Server.getPlayer(playerName)
-        let playerMoney
-        if (player != undefined) {
-            playerMoney = player.getScore(MoneyObjective)
-        } else {
-            playerMoney = this.MoneyDatabase.get(playerName)
-        }
-        if (playerMoney == undefined) this.setMoney(playerName, this.getStarterMoney())
+    getMoney() {
+        let playerMoney = this.FundsDatabase.get(FundsName)
+        if (playerMoney == undefined) this.setMoney(FundsName, this.getStarterMoney())
         return playerMoney ?? this.getStarterMoney()
     }
 
     /**
-     * Asigna el Dinero al Jugador
-     * @param {string} playerName
+     * Asigna el Dinero al Fondo
+     * @param {string} FundsName
      * @param {number} money
      */
-    async setMoney(playerName, money) {
-        let player = Server.getPlayer(playerName)
-        if (player != undefined) {
-            player.setScore(MoneyObjective, money)
-        } else {
-            await this.MoneyDatabase.set(playerName, money)
-        }
+    async setMoney(money) {
+        await this.FundsDatabase.set(FundsName, money)
     }
 
     /**
-     * retorna Toda la Informacion guardada en la Base de datos Money
-     * @returns {MoneyStructure}
+     * retorna Toda la Informacion guardada en la Base de datos Fund
+     * @returns {FundsStructure}
      */
     getAllMoney() {
         let Data = []
-        this.MoneyDatabase.forEach((key, value) => {
+        this.FundsDatabase.forEach((key, value) => {
             Data.push({
                 playerName: key,
                 playerMoney: value
@@ -127,12 +117,12 @@ class MoneySystem {
     }
 
     async resetData() {
-        await this.MoneyDatabase.clear()
-        await world.scoreboard.removeObjective(MoneyObjective)
-        await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
-      }
+        await this.FundsDatabase.clear()
+        await world.scoreboard.removeObjective(FundsObjective)
+        await world.scoreboard.addObjective(FundsObjective, FundsObjective)
+    }
 }
 
-const Money = new MoneySystem()
+const Fund = new FundsSystem()
 
-export default Money
+export default Fund
