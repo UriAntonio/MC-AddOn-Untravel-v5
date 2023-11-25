@@ -139,7 +139,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
    // adminpanel: true,
     //mute: true,
     //unmute: true,
-    //inventorysee: true,
+    invsee: true,
     log: true,
     //tempban: true,
     gm: true,
