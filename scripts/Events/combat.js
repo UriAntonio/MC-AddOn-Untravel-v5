@@ -69,25 +69,26 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
 
 Server.System.runInterval(() => {
     if (!isCombatOn) return
-    let fisrtLine
-    let line2
-    let line3
+
     Server.world.getAllPlayers().forEach(player => {
+        //console.log(`${player}`)
+        let fisrtLine
+        let line2
+        let line3
         if (Combat.stopCombat(player.name))
             Server.System.run(() => player.sendMessage(`§a■§aYa no estas en combate`))
         if (Combat.isCombat(player.name)) {
             let enemyName = Combat.getCombat(player.name)
-            fisrtLine =`§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`
-            
+            fisrtLine = `§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`
+
         }
         if (Action.hasMsg(player.name)) {
             line3 = Action.getActionMsg(player.name,)
-            
+
         }
-        Server.actionBar(player, fisrtLine, line2, line3 )
+        Server.actionBar(player, fisrtLine, line2, line3)
 
     })
-    
-}, 20)
 
+}, 20)
 
