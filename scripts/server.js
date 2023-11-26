@@ -11,6 +11,7 @@ import PlayerClass from "./Modules/PlayerClass";
 import Money from "./Modules/Finance/Money";
 import Fund from "./Modules/Finance/Funds";
 //
+import Dynamic from "./Extensions/Database";
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -24,7 +25,8 @@ const Event = [
 
 const Extensions = {
   "Bow-ding": false,
-  "Gamemode": false
+  "Gamemode": false,
+  "Database": false,
   //"HealthDisplay": true,
 }
 
@@ -237,7 +239,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   })
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Server.world.getAllPlayers()
-    .filter(p => p.hasTag(Config.AdminTag))
+    .filter(p => p.isAdmin())
     .forEach(p => {
       p.sendMessage(`§bAdmin El Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
     })
@@ -246,6 +248,10 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
     Server.PlayerOnline[player.name] = Date.now()
   })
   Log(`§2Se agrego fechas`)
+
+  Dynamic.set(Config.AdminTag, Config.AdminKey)
+  Dynamic.set("word", Config.ConfigPassword)
+  Log(`Se agrregaron llaves`)
 
   //let land = await Restful.request("land-isActive")
   //Server.usingLandClaim = land?.active ?? false
