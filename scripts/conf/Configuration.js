@@ -94,6 +94,7 @@ Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada par
 Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
 Config.lockServer = false
 Config.debug = true
+Config.ConfigPassword = variables.get("Cpassword")
 Config.FundsName = "§g■§6Fondos Generales"
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
 Config.Commands = {  // Commands Configuration (Don't change, unless you understand the code)
@@ -107,7 +108,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   money: {
     cartera: true,
-    //pay: true,
+    pay: true,
     topmoney: true,
     //shop: true,
     //sell: true,
@@ -129,7 +130,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //tpasetting: true
   },
   admin: {
-    //setmoney: true,
+    setmoney: true,
     //setwarp: true,
     //delwarp: true,
     //broadcast: true,
@@ -149,6 +150,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     gm: true,
     home: true,
     funds: true,
+    config: true,
   }
 }
 
