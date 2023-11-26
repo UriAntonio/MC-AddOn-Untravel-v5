@@ -3,14 +3,18 @@ import Server from "../server"
 import { getScore, setScore } from "./Server/Scoreboard";
 import Config from "../conf/Configuration";
 import Combat from "./Server/Combat";
+import Database from "../Extensions/Database";
+
 
 const PlayerClass = Object.assign(mc.Player.prototype, {
   /**
  * Checa si el Player es admin
+ * @ {data}
  * @returns {boolean}
  */
   isAdmin() {
-    return this.hasTag(Config.AdminTag)
+    return Database.get(Config.AdminTag) === Database.get(Config.AdminTag, this)
+    
   },
   /**
    * Checa si el Player apaga TPA
