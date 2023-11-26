@@ -16,7 +16,8 @@ Server.Commands.register({
     }
     let helpMessage = `§1------------------------------\n§a■§6Help Mensage ("§e?§6" Esto significa que es opcional o podria no ser llenado)`
     for (const category of commandCategory) {
-      if (category == "Admin" && !player.hasTag(Config.AdminTag)) continue;
+      if (category == "Admin" && !player.isAdmin()) continue;
+      if (category == "Op" && !player.hasTag("Adminer")) continue;
       if ((Server.Setting.get(`${category.toLowerCase()}System`) ?? true) == false) continue;
       let commands = commandList.filter(c => c.category == category)
       helpMessage += `\n §9Comandos ${category} :`

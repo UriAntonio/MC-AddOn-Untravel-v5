@@ -27,7 +27,7 @@ Server.Commands.register({
   let balance = Money.getMoney(player.name)
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
-  if (!player.hasTag(Config.AdminTag) && homeCount >= (Server.Setting.get("homeLimit") ?? Config.homeLimit))
+  if (!player.isAdmin() && homeCount >= (Server.Setting.get("homeLimit") ?? Config.homeLimit))
     return player.sendMessage("§a■§cYa tienes el Maximo de hogares!")
   let name = args.slice(0).join(" ")
   let playerHome = HomeDB.keys().find(key => key == `${player.name}-${name}`)
