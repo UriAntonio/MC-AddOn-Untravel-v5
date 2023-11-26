@@ -19,7 +19,6 @@ Server.Commands.register({
   for (let i = 0; i < show; i++) {
     let playerName = BalanceData[i].playerName
     let playerMoney = Number(BalanceData[i].playerMoney)
-    player.sendMessage(`${playerMoney}`)
     message += `\n§9${i + 1}. §3${playerName}: §b${Utility.formatMoney(playerMoney)}`
   }
   player.sendMessage(message)
