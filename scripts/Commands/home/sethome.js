@@ -42,7 +42,7 @@ Server.Commands.register({
       z: player.location.z,
       dimension: player.dimension.id
     }
-    Money.setMoney(player, balance - cost)
+    Money.setMoney(player.name, balance - cost)
     await HomeDB.set(`${player.name}-${name}`, homeObject)
     player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
     return
