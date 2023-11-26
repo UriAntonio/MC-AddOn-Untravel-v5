@@ -3,7 +3,9 @@ import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 import { Log } from "../Modules/Log/Log";
 
-
+/**
+ * @param {PlayerClass} player
+ */
 
 Server.world.beforeEvents.chatSend.subscribe((eventData) => {
     let player = eventData.sender;
@@ -48,7 +50,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
             return eventData.cancel = true
         }
         //valida que el comando no sea de clase Admin
-        if (cmd.admin && !player.hasTag(Config.AdminTag)) {
+        if (cmd.admin && !player.isAdmin()) {
             player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }

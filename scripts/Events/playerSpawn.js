@@ -20,7 +20,7 @@ function rankFilter(player) {
 }
 
 
-  if (player.hasTag(Config.AdminTag)) {
+  if (player.isAdmin()) {
     player.addTag("Rank:§l§b★★★★★★★")
   }
 }
@@ -46,14 +46,21 @@ function onJoinSpawn(player) {
         player.triggerEvent("minecraft:kick");
       }
     }
-    if (player.hasTag(Config.AdminTag)) {
-      player.addTag("Rank:§l§b★★★★★★★")
+    if (player.isAdmin()) {
+      if (!player.hasTag("Rank:§l§b★★★★★★★")) {
+        player.addTag("Rank:§l§b★★★★★★★")
+      }
+      if (!player.hasTag("Notify")) {
+        player.addTag("Notify")
+      }
+      
+      
     }
     let gamemode
-    player.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
+    //player.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
     //Verificamos el modo de juego del jugador
     gamemode = player.gamemode
-    if (!player.hasTag(Config.AdminTag)) {
+    if (!player.isAdmin()) {
       gamemode = "survival"
     }
     welcome(player, gamemode);

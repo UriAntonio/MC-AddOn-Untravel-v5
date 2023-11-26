@@ -1,4 +1,3 @@
-import Config from "../../conf/Configuration";
 import Server from "../../server";
 
 const BackCooldown = {}
@@ -22,7 +21,7 @@ const CooldownType ={
  * @returns 
  */
 const getCooldown = (type, player) => {
-    if (player.hasTag(Config.AdminTag)) return 0
+    if (player.isAdmin()) return 0
     switch (type) {
       case CooldownType.BACK:
         var cooldown = BackCooldown[player.name]
@@ -67,7 +66,7 @@ const getCooldown = (type, player) => {
  * @returns 
  */
 const setCooldown = (type, player, second) => {
-    if (player.hasTag(Config.AdminTag)) return 0
+    if (player.isAdmin()) return 0
     let nextDate = new Date(Date.now() + (second * 1000))
     switch (type) {
       case CooldownType.BACK:
