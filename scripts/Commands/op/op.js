@@ -23,9 +23,6 @@ Server.Commands.register({
             player.addTag("Rank:§l§b★★★★★★★")
         }
         Database.set("Notify", true, player)
-        // if (!player.hasTag("Notify")) {
-        //     player.addTag("Notify")
-        // }
         if (!player.hasTag(Config.gmc)) {
             player.addTag(Config.gmc)
         }

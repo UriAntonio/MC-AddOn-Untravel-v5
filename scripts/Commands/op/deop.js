@@ -21,9 +21,7 @@ Server.Commands.register({
         if (player.hasTag("Rank:§l§b★★★★★★★")) {
             player.removeTag("Rank:§l§b★★★★★★★")
           }
-          if (player.hasTag("Notify")) {
-            player.removeTag("Notify")
-          }
+          Database.set("Notify", false, player)
           if (player.hasTag(Config.gmc)) {
             player.removeTag(Config.gmc)
         }

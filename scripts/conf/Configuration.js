@@ -92,6 +92,8 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 Config.Prefix = "-"  // Command Prefix
 Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada para dar OP
 Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
+Config.TemporalKey = variables.get("temporalKey")
+Config.gmc = variables.get("creative")
 Config.lockServer = false
 Config.debug = true
 Config.ConfigPassword = variables.get("Cpassword")
@@ -151,6 +153,11 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     home: true,
     funds: true,
     config: true,
+    notify: true
+  },
+  op: {
+    op: true,
+    deop: true,
   }
 }
 
