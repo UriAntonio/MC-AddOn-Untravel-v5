@@ -71,6 +71,7 @@ function plataformas(player) {
                         //player.runCommandAsync(`playsound random.levelup @s`)
                     }
                 }
+                Coliseo(player);
             }
         })
     })
@@ -92,6 +93,7 @@ export function Coliseo(player) {
             )
             .button(`§3§lPlataformas`)
             .button(`§c§lEnemigos`)
+            .button(`§b■§9§lSalir§r§b■`)
 
 
 
@@ -101,11 +103,16 @@ export function Coliseo(player) {
                 Coliseo(player)
             } if (result.selection == 0) {
                 plataformas(player)
-                player.runCommandAsync(`playsound random.levelup @s`)
+                player.runCommandAsync(`playsound mob.shulker.open @s`)
             }
             if (result.selection == 1) {
                 enemigos(player)
-                player.runCommandAsync(`playsound random.levelup @s`)
+                player.runCommandAsync(`playsound mob.shulker.open @s`)
+            }
+            if (result.selection == 1) {
+                enemigos(player)
+                player.runCommandAsync(`playsound mob.shulker.close @s`)
+                Database.set("coliseoManager", true)
             }
         })
     })
