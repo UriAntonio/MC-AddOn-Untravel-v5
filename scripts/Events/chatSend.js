@@ -62,7 +62,8 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         })
         //ejecuta el cooldown para los comandos
         setCooldown("command", player, Server.Setting.get("commandCooldown") ?? Config.commandCooldown)
-        Log(`[Command] ${player.name} uso el comando §7${cmd.name}.`)
+        if (cmd.category = "Op") return Log(`[Command] ${player.name} uso el comando §7${cmd.name}`)
+        Log(`[Command] ${player.name} uso el comando §7${cmd.name} | argr: ${args}.`)
     }
     //Se asigna rango
     for (const tag of tags) {
