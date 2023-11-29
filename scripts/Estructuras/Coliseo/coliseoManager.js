@@ -1,6 +1,6 @@
 import { ActionFormData } from "@minecraft/server-ui";
 import Server from "../../server";
-import { salonData } from "./Data/coliseoCommnads";
+import { salonData, arenaData, lavaData, picinaData, bedrockData } from "./Data/coliseoCommnads";
 
 
 function enemigos(player) {
@@ -61,18 +61,62 @@ function plataformas(player) {
             if (result.canceled) {
                 Coliseo(player)
             }
-            if (result.selection == 0) {
+            if (result.selection == 0) {//Salon
 
                 for (let i = 0; i < salonData.length; i++) {
                     try {
                         player.runCommandAsync(`${salonData[i]}`);
                     } catch (error) {
                         player.sendMessage(`error: ${error}`)
-                        //player.runCommandAsync(`playsound random.levelup @s`)
                     }
                 }
                 Coliseo(player);
             }
+            if (result.selection == 1) {//Arena
+
+                for (let i = 0; i < arenaData.length; i++) {
+                    try {
+                        player.runCommandAsync(`${arenaData[i]}`);
+                    } catch (error) {
+                        player.sendMessage(`error: ${error}`)
+                    }
+                }
+                Coliseo(player);
+            }
+            if (result.selection == 2) {//Foso de Lava
+
+                for (let i = 0; i < lavaData.length; i++) {
+                    try {
+                        player.runCommandAsync(`${lavaData[i]}`);
+                    } catch (error) {
+                        player.sendMessage(`error: ${error}`)
+                    }
+                }
+                Coliseo(player);
+            }
+            if (result.selection == 3) {//Picina
+
+                for (let i = 0; i < picinaData.length; i++) {
+                    try {
+                        player.runCommandAsync(`${picinaData[i]}`);
+                    } catch (error) {
+                        player.sendMessage(`error: ${error}`)
+                    }
+                }
+                Coliseo(player);
+            }
+            if (result.selection == 4) {//Jaula
+
+                for (let i = 0; i < bedrockData.length; i++) {
+                    try {
+                        player.runCommandAsync(`${bedrockData[i]}`);
+                    } catch (error) {
+                        player.sendMessage(`error: ${error}`)
+                    }
+                }
+                Coliseo(player);
+            }
+            
         })
     })
 }

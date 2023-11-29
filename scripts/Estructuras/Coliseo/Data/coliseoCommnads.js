@@ -19,5 +19,19 @@ export const salonData = [
     "kill @e[type=vex,r=40]",
     "kill @e[type=evocation_illager,r=40]",
     "kill @e[type=pillager,r=40]",
-    "kill @e[type=ravager,r=40]"
+    "kill @e[type=ravager,r=40]",
+    "playsound beacon.activate @a[r=100]"
+  ]
+
+  export const arenaData = [
+    "playsound raid.horn @a[r=100]"
+  ]
+  export const lavaData = [
+    "playsound portal.travel @a[r=100]"
+  ]
+  export const picinaData = [
+    "playsound cauldron.fillwater @a[r=100]"
+  ]
+  export const bedrockData = [
+    "playsound random.explode @a[r=100]"
   ]
