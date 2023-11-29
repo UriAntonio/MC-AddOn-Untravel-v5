@@ -109,8 +109,7 @@ export function Coliseo(player) {
                 enemigos(player)
                 player.runCommandAsync(`playsound mob.shulker.open @s`)
             }
-            if (result.selection == 1) {
-                enemigos(player)
+            if (result.selection == 2) {
                 player.runCommandAsync(`playsound mob.shulker.close @s`)
                 Database.set("coliseoManager", true)
             }
