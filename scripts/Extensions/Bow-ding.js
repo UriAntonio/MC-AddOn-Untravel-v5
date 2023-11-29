@@ -22,7 +22,7 @@ Server.world.afterEvents.entitySpawn.subscribe( async ({entity}) =>{
             volume: 0.4,
             pitch: 0.5,
          }
-         Log(` disparo ${source.nameTag} a ${hitInfo.entity.nameTag} `)
+         //Log(` disparo ${source.nameTag} a ${hitInfo.entity.nameTag} `)
          source.playSound("random.orb", soundoption)
          Server.world.afterEvents.projectileHitEntity.unsubscribe(callback)
     }
