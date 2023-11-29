@@ -10,10 +10,16 @@ Server.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         player.sendMessage(`§a■§cNo tienes permisos aqui`)
         event.cancel = true;
     }
-    if (block.typeId === "minecraft:chemistry_table" && Database.get("coliseoManager") == true) {
-        Coliseo(player)
-        Database.set("coliseoManager", false)
+    if (block.typeId === "minecraft:chemistry_table") {
         event.cancel = true;
+        if (Database.get("coliseoManager") == true) {
+            Coliseo(player)
+            Database.set("coliseoManager", false)
+        } else {
+            player.sendMessage("§a■§cColiseo Manager en uso")
+        }
+        
+        
     }
 }
 )
