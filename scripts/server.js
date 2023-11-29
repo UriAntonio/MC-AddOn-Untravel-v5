@@ -21,6 +21,7 @@ const Event = [
   "entityDie",
   "combat",
   "playerInteract",
+  "systemrun",
 ]
 
 const Extensions = {
