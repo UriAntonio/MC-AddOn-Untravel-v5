@@ -11,7 +11,7 @@ Server.Commands.register({
     usage: "?",
     aliases: ["cfg"],
     admin: true,
-    category: "Admin",
+    category: "Op",
 
 }, (data, player, args) => {
 
