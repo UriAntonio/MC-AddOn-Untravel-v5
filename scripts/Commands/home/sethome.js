@@ -1,3 +1,4 @@
+import Fund from "../../Modules/Finance/Funds"
 import Money from "../../Modules/Finance/Money"
 import Config from "../../conf/Configuration"
 import Server from "../../server"
@@ -23,7 +24,7 @@ Server.Commands.register({
     cost = cost + cost;
 
   }
-
+let balanceFund = Fund.getMoney()
   let balance = Money.getMoney(player.name)
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
@@ -43,6 +44,7 @@ Server.Commands.register({
       dimension: player.dimension.id
     }
     Money.setMoney(player.name, balance - cost)
+    Fund.setMoney(balanceFund + cost)
     await HomeDB.set(`${player.name}-${name}`, homeObject)
     player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
     return
@@ -55,5 +57,6 @@ Server.Commands.register({
   }
   //Money.setMoney(player, balance - cost)
   await HomeDB.set(`${player.name}-${name}`, homeObject)
+  
   player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
 })
