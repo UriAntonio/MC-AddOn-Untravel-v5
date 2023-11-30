@@ -48,7 +48,7 @@ class FundsSystem {
         })
 
         world.afterEvents.worldInitialize.subscribe(async (data) => {
-            if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("base de datos creada")
+            if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("Base de datos Fund creada")
 
             world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
         })
@@ -131,7 +131,9 @@ class FundsSystem {
 
     async resetData() {
         await Database.delete(FundsName)
-        await world.scoreboard.removeObjective(FundsName)
+        //await world.scoreboard.removeObjective(FundsName)
+        await Database.set(FundsName, JSON.stringify({ current: 0 }))
+        //LogWarn("Base de datos Fund Inicializada")
         //await world.scoreboard.addObjective(FundsName, FundsName)
     }
 }
