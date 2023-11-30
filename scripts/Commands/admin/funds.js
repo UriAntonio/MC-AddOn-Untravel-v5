@@ -17,8 +17,8 @@ Server.Commands.register({
   if (BalanceData.length < 10) show = BalanceData.length
   let message = "§1------------------------------\n§a■§1[§9Fondos Generales Del Servidor§1]"
   for (let i = 0; i < show; i++) {
-    let playerName = BalanceData[i].playerName
-    let playerMoney = Number(BalanceData[i].playerMoney)
+    let playerName = BalanceData[i].fund
+    let playerMoney = Number(BalanceData[i].fundsMoney)
     message += `\n§9${i + 1}. §3${playerName}: §b${Utility.formatMoney(playerMoney)}`
   }
   player.sendMessage(message)

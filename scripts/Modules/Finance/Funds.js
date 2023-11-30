@@ -1,16 +1,17 @@
 import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
-import { Database } from "../DataBase/Database";
+//import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
 import Server from "../../server";
+import { LogWarn } from "../Log/Log";
 
-const FundsObjective = "Fund"
+
 const FundsStructure = {
-    playerName: String.prototype,
-    playerMoney: Number.prototype
+    fund: String.prototype,
+    fundsMoney: Number.prototype
 }
 
-let FundsName = Config.FundsName 
+const FundsName = Config.FundsName
 
 class FundsSystem {
     #isLoaded; #Readyplayer
@@ -21,47 +22,49 @@ class FundsSystem {
 
     async #init() {
         // await Server.waitLoaded()
-        this.FundsDatabase = new Database("fundsDB")
-        if (!checkObjective(FundsObjective)) await world.scoreboard.addObjective(FundsObjective, FundsObjective)
+        //this.FundsDatabase = new Database("fundsDB")
+        //if (!checkObjective(FundsName)) await world.scoreboard.addObjective(FundsName, FundsName)
         this.#isLoaded = true
-        this.#Readyplayer = []
+        //this.#Readyplayer = []
 
-        world.afterEvents.playerSpawn.subscribe(async (data) => {
-            let player = data.player
+        world.afterEvents.playerSpawn.subscribe((data) => {
+            //let player = data.player
             if (data.initialSpawn) {
-                let playerMoney = this.FundsDatabase.get(FundsName)
-                //Server.sendMessage(`${playerMoney} 1`)
-                if (playerMoney == undefined) {
-                    playerMoney = this.getMoney(FundsName)
-                    //    Server.sendMessage(`${playerMoney} 2`)
+                let fundsMoney //= this.FundsDatabase.get(FundsName)
+                //Server.sendMessage(`${fundsMoney} 1`)
+                if (fundsMoney == undefined) {
+                    fundsMoney = this.getMoney()
+                    //    Server.sendMessage(`${fundsMoney} 2`)
                 }
 
-                if (playerMoney == undefined) {
-                    playerMoney = this.getStarterMoney()
-                    //    Server.sendMessage(`${playerMoney} 3`)
+                if (fundsMoney == undefined) {
+                    fundsMoney = this.getStarterMoney()
+                    //    Server.sendMessage(`${fundsMoney} 3`)
                 }
 
-                this.setMoney(FundsName, playerMoney)
-                this.#Readyplayer.push(player.name)
+                this.setMoney(fundsMoney)
+                //this.#Readyplayer.push(player.name)
             }
         })
 
         world.afterEvents.worldInitialize.subscribe(async (data) => {
+            if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("base de datos creada")
+
             world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
         })
 
-        world.afterEvents.playerLeave.subscribe(async (data) =>
-            this.#Readyplayer.splice(this.#Readyplayer.findIndex(i => i == data.playerName), 1)
-        )
+        //world.afterEvents.playerLeave.subscribe(async (data) =>
+        //this.#Readyplayer.splice(this.#Readyplayer.findIndex(i => i == data.playerName), 1)
+        //)
 
-        system.runInterval(() => {
-            world.getAllPlayers().forEach(player => {
-                if (!player.isValid()) return
-                if (!this.#Readyplayer.find(p => p == player.name)) return
-                let money = this.getMoney(FundsName)
-                this.FundsDatabase.set(FundsName, money)
-            })
-        })
+        // system.runInterval(() => {
+        //     world.getAllPlayers().forEach(player => {
+        //         if (!player.isValid()) return
+        //         if (!this.#Readyplayer.find(p => p == player.name)) return
+        //         let money = this.getMoney(FundsName)
+        //         this.FundsDatabase.set(FundsName, money)
+        //     })
+        // })
     }
 
     /**
@@ -69,7 +72,7 @@ class FundsSystem {
      * @returns {number}
      */
     getStarterMoney() {
-        return Server.Setting.get("starterMoney") ?? Config.starterMoney
+        return Config.starterMoney
     }
 
     /**
@@ -77,7 +80,7 @@ class FundsSystem {
      * @returns {number}
      */
     getMaxMoney() {
-        return Server.Setting.get("maxMoney") ?? Config.maxMoney
+        return Config.maxMoney
     }
 
     /**
@@ -86,9 +89,14 @@ class FundsSystem {
      * @returns {number}
      */
     getMoney() {
-        let playerMoney = this.FundsDatabase.get(FundsName)
-        if (playerMoney == undefined) this.setMoney(FundsName, this.getStarterMoney())
-        return playerMoney ?? this.getStarterMoney()
+        let FundsValue = Database.get(FundsName)
+        let fundsObject = JSON.parse(FundsValue)
+        let fundsMoney = fundsObject.current
+        //LogWarn(`${FundsValue},${fundsMoney}`)
+        if (fundsMoney == undefined || fundsMoney == null) Database.set(FundsName, JSON.stringify({ current: Number(this.getStarterMoney()) }))
+
+        //LogWarn(`${FundsValue},${fundsMoney}`)
+        return fundsMoney ?? this.getStarterMoney()
     }
 
     /**
@@ -96,8 +104,12 @@ class FundsSystem {
      *
      * @param {number} money
      */
-    async setMoney(money) {
-        await this.FundsDatabase.set(FundsName, money)
+    setMoney(money) {
+        try {
+            Database.set(FundsName, JSON.stringify({ current: Number(money) }))
+        } catch (error) {
+            LogWarn(`${error}`)
+        }
     }
 
     /**
@@ -106,19 +118,21 @@ class FundsSystem {
      */
     getAllMoney() {
         let Data = []
-        this.FundsDatabase.forEach((key, value) => {
-            Data.push({
-                playerName: key,
-                playerMoney: value
-            })
+        let FundsValue = Database.get(FundsName)
+        let fundsMoney = JSON.parse(FundsValue)
+        let numberFunds = fundsMoney.current
+        Data.push({
+            fund: FundsName,
+            fundsMoney: numberFunds
         })
+        //Server.sendMessage(`${JSON.stringify(Data)}`)
         return Data
     }
 
     async resetData() {
-        await this.FundsDatabase.clear()
-        await world.scoreboard.removeObjective(FundsObjective)
-        await world.scoreboard.addObjective(FundsObjective, FundsObjective)
+        await Database.delete(FundsName)
+        await world.scoreboard.removeObjective(FundsName)
+        //await world.scoreboard.addObjective(FundsName, FundsName)
     }
 }
 
