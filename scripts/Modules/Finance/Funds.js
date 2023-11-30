@@ -83,8 +83,7 @@ class FundsSystem {
     /**
      * Obten el Dinero del Fondo
      * @param {string} FundsName
-     * @param {number}
-     * @param {PlayerClass} player
+     * @returns {number}
      */
     getMoney() {
         let playerMoney = this.FundsDatabase.get(FundsName)
@@ -94,7 +93,7 @@ class FundsSystem {
 
     /**
      * Asigna el Dinero al Fondo
-     * @param {string} FundsName
+     *
      * @param {number} money
      */
     async setMoney(money) {
