@@ -117,7 +117,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //auctionhouse: true
   },
   home: {
-    //home: true,
+    home: true,
     sethome: true,
     delhome: true,
     listhome: true
@@ -150,14 +150,13 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     log: true,
     //tempban: true,
     gm: true,
-    home: true,
     funds: true,
-    config: true,
     notify: true
   },
   op: {
     op: true,
     deop: true,
+    config: true,
   }
 }
 
