@@ -24,6 +24,7 @@ Server.Commands.register({
       if (playerHome.dimension == "minecraft:nether" || player.dimension.id == "minecraft:nether") cost = Config.homeTpCostNether
       if (playerHome.dimension == "minecraft:end" || player.dimension.id == "minecraft:end") cost = Config.homeTpCostEnd
       if (player.isCombat()) return player.sendMessage("§a■§cEstas en Combate!")
+      if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
       if (getCooldown("home", player) > 0) return player.sendMessage(`§a■§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("home", player)}s`)
       let homeCD = Server.Setting.get("homeCooldown") ?? Config.homeCooldown
       setCooldown("home", player, homeCD)
