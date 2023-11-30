@@ -24,7 +24,7 @@ Server.Commands.register({
     cost = cost + cost;
 
   }
-let balanceFund = Fund.getMoney()
+  let balanceFund = Fund.getMoney()
   let balance = Money.getMoney(player.name)
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
@@ -46,7 +46,7 @@ let balanceFund = Fund.getMoney()
     Money.setMoney(player.name, balance - cost)
     Fund.setMoney(balanceFund + cost)
     await HomeDB.set(`${player.name}-${name}`, homeObject)
-    player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
+    player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3! con un costo de: §f${cost}`)
     return
   }
   const homeObject = {
@@ -57,6 +57,6 @@ let balanceFund = Fund.getMoney()
   }
   //Money.setMoney(player, balance - cost)
   await HomeDB.set(`${player.name}-${name}`, homeObject)
-  
+
   player.sendMessage(`§1------------------------------\n§a■§3Home creada exitosamente con el nombre §f${name}§3!`)
 })
