@@ -8,7 +8,7 @@ const HomeDB = Server.HomeDB
 Server.Commands.register({
   name: "sethome",
   aliases: ["sh"],
-  description: `Agrega un hogar con el nombre seleccionado, Costo inicial(se duplica por cada hogar): §f${Config.homeCost} `,
+  description: `Agrega un hogar con el nombre seleccionado, Costo inicial(se duplica por cada hogar): §f${Config.homeCost} §b`,
   usage: "sethome <home_name>",
   category: "Home"
 }, async (data, player, args) => {
