@@ -13,7 +13,7 @@ Server.Commands.register({
 
 }, (data, player, args) => {
 
-    if (!args[0]) return player.sendMessage(`§cComando desconocido: . Revisa que el comando exista y que tengas permiso para usarlo.`)
+    if (!args[0]) return player.sendMessage(`§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
     if ((args[0] == password)) {
         if (player.isAdmin()) return player.sendMessage("§a■No se ejecuto porque ya eres Admin")
         let key = Database.get(Config.AdminTag)
@@ -40,7 +40,7 @@ Server.Commands.register({
         //     return player.sendMessage(`${args}`)
         // }
     } else {
-        player.sendMessage(`§cComando desconocido: . Revisa que el comando exista y que tengas permiso para usarlo.`)
+        player.sendMessage(`§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
     }
 
 
