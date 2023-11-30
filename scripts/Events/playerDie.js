@@ -1,3 +1,4 @@
+import { Log } from "../Modules/Log/Log";
 import Server from "../server"
 
 Server.Minecraft.world.afterEvents.entityDie.subscribe((data) => {
@@ -12,6 +13,6 @@ Server.Minecraft.world.afterEvents.entityDie.subscribe((data) => {
     }
     Server.BackDB.set(player.name, backData)
     player.sendMessage(`§a■§3Moriste en: §c${Math.floor(player.location.x)}, ${Math.floor(player.location.y)}, ${Math.floor(player.location.z)}`)
-
+    Log(`${player.name}murio en: §c${Math.floor(player.location.x)}, ${Math.floor(player.location.y)}, ${Math.floor(player.location.z)}`)
   }
 })
