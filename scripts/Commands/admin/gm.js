@@ -23,21 +23,39 @@ Server.Commands.register({
     }
     if (args == "s") {
         player.gamemode = gm.gmS
+        try {
+            player.removeEffect("night_vision")
+        } catch (error) {}
+        try {
+            player.removeEffect("invisibility")
+        } catch (error) {}
         Log(`${player.name} ahora esta en §7${gm.gmS} `)
         return
     }
     if (player.gamemode == gm.gmP) {
         player.gamemode = gm.gmC
+        try {
+            player.addEffect("night_vision", 10000, { showParticles: false, amplifier: 255 })
+        } catch (error) {}
+        try {
+            player.removeEffect("invisibility")
+        } catch (error) {}
         Log(`${player.name} ahora esta en §7${gm.gmC} `)
         return
     }
     else {
         player.gamemode = gm.gmP
+        try {
+            player.addEffect("night_vision", 10000, { showParticles: false, amplifier: 255 })
+        } catch (error) {}
+        try {
+            player.addEffect("invisibility", 10000, { showParticles: false, amplifier: 255 })
+        } catch (error) {}
         Log(`${player.name} ahora esta en §7${gm.gmP} `)
         return
     }
 
-    
 
-    
+
+
 })
