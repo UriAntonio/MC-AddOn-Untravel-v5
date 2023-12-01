@@ -12,10 +12,12 @@ const CooldownType = {
   TPA: "tpa",
   HOME: "home",
   WARP: "warp",
-  COMMAND: "command",
-  COLISEO: "coliseo"
+  COMMAND: "command"
 }
 
+const WorldCooldownType = {
+  COLISEO: "coliseo"
+}
 /**
  * Obten el Player cooldown
  * @param {string} type 
@@ -66,6 +68,19 @@ const getCooldown = (type, player) => {
   }
 }
 
+const getWorldCooldown = (type, playerName) => {
+  switch (type) {
+    case WorldCooldownType.COLISEO:
+      var cooldown = ColiseoCooldown[playerName]
+      if (!cooldown) return 0
+      if (Date.now() >= cooldown) return 0
+      return Math.ceil((cooldown - Date.now()) / 1000)
+
+    default:
+      return 0
+  }
+}
+
 /**
 * Asigna el Player cooldown
 * @param {string} type 
@@ -106,4 +121,16 @@ const setCooldown = (type, player, second) => {
   }
 }
 
-export { setCooldown, getCooldown }
+const setWorldCooldown = (type, playerName, second) => {
+  let nextDate = new Date(Date.now() + (second * 1000))
+  switch (type) {
+    case WorldCooldownType.COLISEO:
+      ColiseoCooldown[playerName] = nextDate
+      break
+
+    default:
+      break;
+  }
+}
+
+export { setCooldown, getCooldown, setWorldCooldown, getWorldCooldown }
