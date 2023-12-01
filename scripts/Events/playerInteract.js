@@ -11,13 +11,12 @@ Server.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         event.cancel = true;
     }
 
-    
+
     if (block.typeId === "minecraft:chemistry_table") {
         event.cancel = true;
         if (Database.get("coliseoManager") == true) {
 
             coliseoCost(player)
-            Database.set("coliseoManager", false)
         } else {
             player.sendMessage("§a■§cEl Coliseo esta desactivado")
         }
