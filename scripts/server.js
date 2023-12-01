@@ -253,7 +253,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Dynamic.set(Config.AdminTag, Config.AdminKey)
   Dynamic.set("word", Config.ConfigPassword)
   Dynamic.set("coliseoManager", true)
-  Dynamic.set("coliseoCooldown", 0)
+  Dynamic.set("coliseoCooldown", "")
   Log(`Se agrregaron llaves`)
 
   //let land = await Restful.request("land-isActive")
