@@ -175,7 +175,7 @@ export function coliseoCost (player) {
                 + `\n   §l§9Cinco diferentes escenarios§r   `
                 + `§bMira todas los modos de juego`
             )
-            .button(`§g§lPagar ${cost}`)
+            .button(`§6§lPagar ${cost}`)
             .button(`§0§lSalir`)
 
 
