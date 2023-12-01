@@ -1,6 +1,4 @@
-import { welcome } from "../util/newMemberMessage";
 import Server from "../server";
-import Config from "../conf/Configuration";
 import { ForceOpen } from "../Modules/Server/Forms";
 import { MessageFormData } from "@minecraft/server-ui";
 import { LogDataMsg } from "../Modules/Log/msgLog";
@@ -34,7 +32,7 @@ let logDataMsg = [...LogDataMsg].reverse()
 Server.world.beforeEvents.itemUse.subscribe((data) => {
     const source = data.source
     const items = data.itemStack
-    if (items.hasTag("msgLog") &&
+    if (items.typeId == "mx:new" &&
         source.isAdmin()) {
        MsgLogs(source)
     }
