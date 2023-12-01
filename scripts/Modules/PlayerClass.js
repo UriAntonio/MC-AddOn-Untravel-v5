@@ -119,7 +119,7 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
      * @returns {mc.EntityEquipmentInventoryComponent}
      */
   getEquipmentInventory() {
-    return this.getComponent("minecraft:equipment_inventory")
+    return this.getComponent("minecraft:equippable")
   },
 
   /**
