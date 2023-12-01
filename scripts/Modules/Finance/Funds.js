@@ -50,7 +50,7 @@ class FundsSystem {
         world.afterEvents.worldInitialize.subscribe(async (data) => {
             if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("Base de datos Fund creada")
 
-            world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
+            //world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
         })
 
         //world.afterEvents.playerLeave.subscribe(async (data) =>
