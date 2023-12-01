@@ -62,7 +62,7 @@ Server.world.afterEvents.entityDie.subscribe((data) => {
 
         player.sendMessage(`§a■§3Has muerto y perdiste: §b${Utility.formatMoney(get)}`)
         let enemy = Server.getPlayer(enemyName)
-        Action.setAction(enemy, 3, `§3Obtuviste §b${Utility.formatMoney(get)}`)
+        Action.addAction(enemy, 3, `§3Obtuviste §b${Utility.formatMoney(get)}`)
     }
 })
 
@@ -82,8 +82,12 @@ Server.System.runInterval(() => {
             fisrtLine = `§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`
 
         }
-        if (Action.hasMsg(player.name)) {
-            line3 = Action.getActionMsg(player.name,)
+        if (Action.hasMsg(player.name, 2)) {
+            line2 = Action.getLineMsg(player.name, 2)
+
+        }
+        if (Action.hasMsg(player.name, 3)) {
+            line3 = Action.getLineMsg(player.name, 3)
 
         }
         Server.actionBar(player, fisrtLine, line2, line3)

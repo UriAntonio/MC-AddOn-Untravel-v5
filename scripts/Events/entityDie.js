@@ -16,5 +16,5 @@ Server.world.afterEvents.entityDie.subscribe( async data => {
     if (player.getMoney() + moneyEarn > Server.Money.getMaxMoney()) moneyEarn = Server.Money.getMaxMoney() - player.getMoney()
     if (moneyEarn <= 0) return
     await player.setMoney(player.getMoney() + moneyEarn)
-    Action.setAction(player, 3,`§3Obtiviste §b${Utility.formatMoney(moneyEarn)}`)
+    Action.addAction(player, 3,`§3Obtiviste §b${Utility.formatMoney(moneyEarn)}`)
 })

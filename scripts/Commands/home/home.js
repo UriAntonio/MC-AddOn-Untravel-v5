@@ -3,6 +3,7 @@ import Config from "../../conf/Configuration"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
 import Money from "../../Modules/Finance/Money"
 import Fund from "../../Modules/Finance/Funds"
+import Action from "../../Modules/Log/ActionLog"
 
 const HomeDB = Server.HomeDB
 
@@ -45,7 +46,8 @@ Server.Commands.register({
           player.onScreenDisplay.setActionBar(`§a■§bNo te muevas por: §f${countdown}s`)
           countdown--
           await Server.sleep(1000)
-          player.onScreenDisplay.setActionBar(`§a■§bNo te muevas por: §f${countdown}s`)
+          Action.addAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
+          //player.onScreenDisplay.setActionBar(`§a■§bNo te muevas por: §f${countdown}s`)
         }
       }
       Money.setMoney(player.name, balance - cost)
