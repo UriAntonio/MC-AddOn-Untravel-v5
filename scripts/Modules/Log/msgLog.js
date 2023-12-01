@@ -2,7 +2,7 @@
 
 let LogDataMsg = []
 const SystemLogMsg = (log) => {
-  LogData.push("[SystemMsg] " + log)
+  LogDataMsg.push("[SystemMsg] " + log)
   //console.log(`[System]  ${log}`)
   //need tu add a inside log system in server
   return //Server.sendMsgAll(`@a[tag="Notify"]`, `§8[System] ${log}`)
