@@ -121,7 +121,7 @@ function plataformas(player) {
     })
 }
 
-export function Coliseo(player) {
+ function Coliseo(player) {
 
     Server.System.run(() => {
 
@@ -156,6 +156,41 @@ export function Coliseo(player) {
             if (result.selection == 2) {
                 player.runCommandAsync(`playsound mob.shulker.close @s`)
                 Database.set("coliseoManager", true)
+            }
+        })
+    })
+}
+
+export function coliseoCost (player) {
+
+    Server.System.run(() => {
+        let cost = 1
+        let ui_Coliseo = new ActionFormData()
+            .title(`§b■§9§lColiseo§r§b■`)
+            .body(`     §9Bienvenidos al Coliseo`
+                + `\n§bAqui donde la sangre de heroes fue derramada`
+                + `\nAqui podras encontrar:`
+                + `\n   §l§9Enemigos§r`
+                + `\n§bPuedes invocar mobs enemigos para luchar`
+                + `\n   §l§9Cinco diferentes escenarios§r   `
+                + `§bMira todas los modos de juego`
+            )
+            .button(`§g§lPagar ${cost}`)
+            .button(`§0§lSalir`)
+
+
+
+        ui_Coliseo.show(player).then((result) => {
+
+            if (result.canceled) {
+                player.runCommandAsync(`playsound mob.shulker.close @s`)
+            } if (result.selection == 0) {
+                player.runCommandAsync(`playsound mob.shulker.open @s`)
+                player.runCommandAsync(`playsound random.levelup @s`)
+                Coliseo(player)
+            }
+            if (result.selection == 1) {
+                player.runCommandAsync(`playsound mob.shulker.close @s`)
             }
         })
     })
