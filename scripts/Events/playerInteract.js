@@ -1,5 +1,5 @@
 import Server from "../server";
-import { Coliseo } from "../Estructuras/Coliseo/coliseoManager";
+import { Coliseo, coliseoCost } from "../Estructuras/Coliseo/coliseoManager";
 
 
 
@@ -13,10 +13,11 @@ Server.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     if (block.typeId === "minecraft:chemistry_table") {
         event.cancel = true;
         if (Database.get("coliseoManager") == true) {
-            Coliseo(player)
+
+            coliseoCost(player)
             Database.set("coliseoManager", false)
         } else {
-            player.sendMessage("§a■§cColiseo Manager en uso")
+            player.sendMessage("§a■§cEl Coliseo esta desactivado")
         }
         
         
