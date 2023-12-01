@@ -2,6 +2,7 @@ import Config from "../conf/Configuration";
 import Server from "../server";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 import { Log } from "../Modules/Log/Log";
+import { msgLog } from "../Modules/Log/msgLog";
 
 /**
  * @param {PlayerClass} player
@@ -80,6 +81,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         Server.sendMsgAll(
             "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
         )
+        msgLog(`§r§o§g${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`)
         eventData.cancel = true;
     }
 })
