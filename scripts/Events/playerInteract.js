@@ -1,5 +1,5 @@
 import Server from "../server";
-import { Coliseo, coliseoCost } from "../Estructuras/Coliseo/coliseoManager";
+import { coliseoCost } from "../Estructuras/Coliseo/coliseoManager";
 
 
 
