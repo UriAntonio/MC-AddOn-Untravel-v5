@@ -18,6 +18,7 @@ Config.homeCooldown = 300  // Home Cooldown
 //Config.warpCooldown = 7  // Warp Cooldown
 // Config.rtpCooldown = 120  // RTP Cooldown
 Config.commandCooldown = 7  // Command Cooldown
+Config.coliseoCooldown = 600  // Command Cooldown
 
 // Teleport Countdown Configuration
 //Config.backCountdown = 7  // Countdown before Teleport
