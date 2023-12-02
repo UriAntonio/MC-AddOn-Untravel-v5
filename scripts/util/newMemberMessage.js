@@ -25,11 +25,17 @@ const Updates = {
           + `\n§l§2Recompensas por Farmeo§r   `
           + `\n      Ahora los mobs te dan cierta cantidad de dinero de forma aleatoria entre mas peligroso mas dinero`
         )
-        .button(`§a§lJuguemos!`);
+        .button(`§a§lJuguemos!`)
+        .button(`§0§lRegresar!`)
       upd.show(playerid).then((result) => {
         if (result.canceled) {
           versiones(playerid, gamemode)
-        } else {
+        } if (result.selection == 0) {
+          playerid.runCommandAsync(`playsound random.levelup @s`)
+          playerid.runCommandAsync(`gamemode ${gamemode}`)
+        }
+        if (result.selection == 1) {
+          versiones(playerid, gamemode)
           playerid.runCommandAsync(`playsound random.levelup @s`)
           playerid.runCommandAsync(`gamemode ${gamemode}`)
         }
@@ -51,14 +57,21 @@ const Updates = {
           + `\n   §6-playerlist (-playerson, -players, -pl)§r`
           + `\n      Ve la lsita de jugadores y su tiempo de conexion actual`
         )
-        .button(`§a§lJuguemos!`);
+        .button(`§a§lJuguemos!`)
+        .button(`§0§lRegresar!`)
       upd.show(playerid).then((result) => {
         if (result.canceled) {
           versiones(playerid, gamemode)
-        } else {
-          playerid.runCommandAsync(`playsound random.levelup @s`)
-          playerid.runCommandAsync(`gamemode ${gamemode}`)
-        }
+        } 
+       if (result.selection == 0) {
+        playerid.runCommandAsync(`playsound random.levelup @s`)
+        playerid.runCommandAsync(`gamemode ${gamemode}`)
+      }
+      if (result.selection == 1) {
+        versiones(playerid, gamemode)
+        playerid.runCommandAsync(`playsound random.levelup @s`)
+        playerid.runCommandAsync(`gamemode ${gamemode}`)
+      }
       })
     })
   },
@@ -77,18 +90,56 @@ const Updates = {
           + `\n   §6-listhome (-homelist, -homes, -lh)§r`
           + `\n      Muestra todos tus home`
         )
-        .button(`§a§lJuguemos!`);
+        .button(`§a§lJuguemos!`)
+        .button(`§0§lRegresar!`)
       upd.show(playerid).then((result) => {
         if (result.canceled) {
           versiones(playerid, gamemode)
-        } else {
+        } if (result.selection == 0) {
+          playerid.runCommandAsync(`playsound random.levelup @s`)
+          playerid.runCommandAsync(`gamemode ${gamemode}`)
+        }
+        if (result.selection == 1) {
+          versiones(playerid, gamemode)
           playerid.runCommandAsync(`playsound random.levelup @s`)
           playerid.runCommandAsync(`gamemode ${gamemode}`)
         }
       })
     })
   },
-  3: null,
+  3: function updateAnuncio_3(playerid, gamemode) {
+    Server.System.run(() => {
+      let upd = new ActionFormData()
+        .title(`§2§lUpdate`)
+        .body(`§rActualizacion §l§gV.1.0.3 §6Finance§r`
+          + `\n§l§2Comandos Personalizados§r`
+          + `\n   §6-pay (-pagar, -p)§r`
+          + `\n      Hacer transferencias o pagar a otro jugador`
+          + `\n   §6-topmoney (-topbal, -topcartera, -topbalance, -tm)§r`
+          + `\n      Mira la table de posicion de dinero`
+          + `\n   §6-delhome (-dhome, -dh)§r`
+          + `\n      borra o remueve un home $te rembolsa la midad del $$`
+          + `\n   §6-listhome (-homelist, -homes, -lh)§r`
+          + `\n      Muestra todos tus home`
+        )
+        .button(`§a§lJuguemos!`)
+        .button(`§0§lRegresar!`)
+      upd.show(playerid).then((result) => {
+        if (result.canceled) {
+          versiones(playerid, gamemode)
+        }
+         if (result.selection == 0) {
+          playerid.runCommandAsync(`playsound random.levelup @s`)
+          playerid.runCommandAsync(`gamemode ${gamemode}`)
+        }
+        if (result.selection == 1) {
+          versiones(playerid, gamemode)
+          playerid.runCommandAsync(`playsound random.levelup @s`)
+          playerid.runCommandAsync(`gamemode ${gamemode}`)
+        }
+      })
+    })
+  },
   4: null
 }
 
