@@ -3,7 +3,7 @@ import Server from "../../server"
 
 
 Server.Commands.register({
-    name: "coliso",
+    name: "coliseo",
     description: "Enciende o paga el Coliseo",
     usage: "coliseo <true | false>",
     admin: true,
