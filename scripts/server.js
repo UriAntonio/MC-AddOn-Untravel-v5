@@ -252,7 +252,7 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
 
   Dynamic.set(Config.AdminTag, Config.AdminKey)
   Dynamic.set("word", Config.ConfigPassword)
-  Dynamic.set("coliseoManager", true)
+  Dynamic.set("coliseoManager", true) //si esta en false el CM estara apagado y no se podra usar
   Dynamic.set("coliseoCooldown", "")
   Log(`Se agrregaron llaves`)
 
