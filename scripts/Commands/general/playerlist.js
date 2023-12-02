@@ -3,7 +3,7 @@ import Server from "../../server"
 Server.Commands.register({
   name: "playerlist",
   aliases: ["playerson", "players", "pl"],
-  description: "Para ver la lista de jugadores",
+  description: "Para ver la lista de jugadores y tiempo conectados",
   usage: "playerlist",
   category: "General"
 }, async (data, player, args) => {
