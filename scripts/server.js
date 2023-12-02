@@ -4,7 +4,7 @@ import Config from "./conf/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, LogWarn, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";
-import getTPS from "./util/TickPerSecond"
+import getTPS from "./Modules/Utilities/TickPerSecond"
 import Setting from "./Modules/Server/Setting";
 import PlayerClass from "./Modules/PlayerClass";
 //
