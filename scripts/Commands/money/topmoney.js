@@ -4,7 +4,7 @@ import Server from "../../server"
 
 Server.Commands.register({
   name: "topmoney",
-  aliases: ["topbal", "topcartera", "topbalance"],
+  aliases: ["topbal", "topcartera", "topbalance", "tm"],
   description: "Mira la tabla de posiciones de Dinero",
   usage: "topmoney",
   category: "Money"

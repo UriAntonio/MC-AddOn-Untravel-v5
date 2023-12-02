@@ -5,7 +5,7 @@ import Server from "../../server";
 Server.Commands.register({
     name: "pay",
     description: "Paga a algien , Tranferencia",
-    aliases: ["pagar"],
+    aliases: ["pagar", "-p"],
     usage: "pay <player_nombre> <cantidad>",
     category: "Money"
   }, async (data, player, args) => {
