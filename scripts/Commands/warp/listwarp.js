@@ -1,22 +1,23 @@
-import Server from "../../main"
+import Server from "../../server"
 
 const WarpDB = Server.WarpDB
 
 Server.Commands.register({
   name: "listwarp",
-  description: "Provides list of available warp",
+  description: "Provee una lista de los warps disponibles",
+  aliases: ["lw"],
   usage: "listwarp",
   category: "Warp"
 }, async (data, player, args) => {
   let message = ""
   WarpDB.forEach((key, value) => {
     let placeName = key
-    message += `\n§e  -§a ${placeName}`;
+    message += `\n§1  -§b ${placeName}`;
   })
   if (message != "") {
-    player.sendMessage("§eWarps list :" + message)
+    player.sendMessage("§1------------------------------\n§a■§9Warps list :" + message)
   }
   else {
-    player.sendMessage("§cNo warps have been set.")
+    player.sendMessage("§1------------------------------\n§a■§cNo hay Warps puestos.")
   }
 })
