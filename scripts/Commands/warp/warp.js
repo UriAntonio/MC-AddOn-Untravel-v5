@@ -1,27 +1,35 @@
-import Config from "../../Configuration"
-import Server from "../../main"
-import { getCooldown, setCooldown } from "../../Modules/Cooldown"
+import Config from "../../conf/Configuration"
+import Server from "../../server"
+import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
+import Action from "../../Modules/Log/ActionLog"
+import Fund from "../../Modules/Finance/Funds"
+import Money from "../../Modules/Finance/Money"
 
 const WarpDB = Server.WarpDB
 
 Server.Commands.register({
   name: "warp",
-  description: "Teleport to selected warp",
-  usage: "warp <place_name>",
+  description: "Teleport al warp seleccionado",
+  usage: "warp <nombre_de_lugar>",
   aliases: ["w"],
   category: "Warp"
 }, async (data, player, args) => {
-  if (!args[0]) return player.sendMessage("§cInput a warp name.")
+  let cost = Config.warpCost
+  let balanceFund = Fund.getMoney()
+  let balance = Money.getMoney(player.name)
+  if (!args[0]) return player.sendMessage("§a■§cIngresa el mombre del Warp.")
   let name = args.slice(0).join(" ")
   let warp = WarpDB.get(name)
   if (warp != undefined) {
-    if (player.isCombat()) return player.sendMessage("§cYou are in combat!")
-    if (getCooldown("warp", player) > 0) return player.sendMessage(`§cYou just use warp command! In cooldown for §e${getCooldown("warp", player)}s.`)
+    if (name.toLowerCase() == "coliseo") cost = Config.warpColiseo
+    if (player.isCombat()) return player.sendMessage("§a■§cEstas en Combate!")
+    if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
+    if (getCooldown("warp", player) > 0) return player.sendMessage(`§a■§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("warp", player)}s.`)
     let warpCD = Server.Setting.get("warpCooldown") ?? Config.warpCooldown
     setCooldown("warp", player, warpCD)
     let warpCountdown = Server.Setting.get("warpCountdown") ?? Config.warpCountdown
     if (warpCountdown > 0 && !player.isAdmin()) {
-      player.sendMessage(`§eDo not move for ${warpCountdown} second to teleport!`)
+      player.sendMessage(`§a■§bNo te muevas por: §f${warpCountdown}§b segundos para Teletransportarte!`)
       let playerPosition = player.location
       let cancel = false
       let canceled = false
@@ -29,20 +37,22 @@ Server.Commands.register({
       for (let i = 0; i < warpCountdown; i++) {
         if (player.isCombat() || player.location.x != playerPosition.x || player.location.y != playerPosition.y || player.location.z != playerPosition.z) cancel = true
         if (cancel) {
-          if (!canceled) player.sendMessage("§cCanceled!")
+          if (!canceled) player.sendMessage("§1------------------------------\n§a■§cCancelado!")
           canceled = true
           return;
         }
-        player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
+        Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
         countdown--
         await Server.sleep(1000)
-        player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
+        Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
       }
+      Money.setMoney(player.name, balance - cost)
+      Fund.setMoney(balanceFund + cost)
     }
-    player.sendMessage("§eTeleporting...")
+    player.sendMessage("§a■§3Teletransportando...")
     await Server.teleportPlayer(player, warp, { dimension: Server.getDimension(warp.dimension) })
-    player.sendMessage("§aSuccessfully Teleported.")
+    player.sendMessage("§1------------------------------\n§a■§3Teletransportado Correctamente.")
   } else {
-    player.sendMessage("§cInvalid warp.")
+    player.sendMessage("§a■§cWarp Invalido.")
   }
 })
