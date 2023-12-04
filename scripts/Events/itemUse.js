@@ -11,7 +11,6 @@ import { Player } from "@minecraft/server";
  */
 function MsgLogs(player) {
     let logDataMsg = [...LogDataMsg].reverse()
-    logDataMsg.splice(0, 1)
     Server.System.run(() => {
         const logForm = new MessageFormData()
             .title("§9§l Msg Logs")
