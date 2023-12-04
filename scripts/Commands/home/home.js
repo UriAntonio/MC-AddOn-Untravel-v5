@@ -43,11 +43,11 @@ Server.Commands.register({
             canceled = true
             return;
           }
-          player.onScreenDisplay.setActionBar(`§a■§bNo te muevas por: §f${countdown}s`)
+          Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
           countdown--
           await Server.sleep(1000)
-          Action.addAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
-          //player.onScreenDisplay.setActionBar(`§a■§bNo te muevas por: §f${countdown}s`)
+          Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
+          
         }
       }
       Money.setMoney(player.name, balance - cost)
