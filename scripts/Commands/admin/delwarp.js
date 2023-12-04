@@ -6,7 +6,8 @@ Server.Commands.register({
   name: "delwarp",
   description: "Remueve un Warp",
   usage: "delwarp <nombre_del_lugar>",
-  permission: "warp",
+  aliases: ["dw"],
+  admin: true,
   category: "Admin"
 }, async (data, player, args) => {
   if (!args[0]) return player.sendMessage("§a■§cIngresa el mombre del Warp.")

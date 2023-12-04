@@ -6,7 +6,8 @@ Server.Commands.register({
   name: "setwarp",
   description: "Crea un nuevo Warp",
   usage: "setwarp <nombre_del_lugar>",
-  permission: "warp",
+  aliases: ["sw"],
+  admin: true,
   category: "Admin"
 }, async (data, player, args) => {
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para el Warp.")
