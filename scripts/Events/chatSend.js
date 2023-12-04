@@ -30,7 +30,7 @@ Server.world.beforeEvents.chatSend.subscribe((eventData) => {
         //let get = Server.Commands.get()
         //let adminN = cmd.admin
         //let tags = Config.AdminTag
-        if (getCooldown("command", player) > 0) return player.sendMessage(`§a■§4Porfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
+        if (getCooldown("command", player) > 0) return player.sendMessage(`§a■§cPorfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
         if (!cmd) {
             //player.sendMessage(`1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
             player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
