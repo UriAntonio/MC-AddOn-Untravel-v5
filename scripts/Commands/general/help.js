@@ -34,7 +34,7 @@ Server.Commands.register({
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
     if ((Server.Setting.get(`${command.settingname}System`) ?? Config.Commands[command.category.toLowerCase()][command.settingname]) == false)
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
-    if (command.admin && !player.hasTag("admin"))
+    if (command.admin && !player.isAdmin())
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
 
     let helpMessage = `§1------------------------------\n§a■§9 Comando : ${command.name[0].toUpperCase() + command.name.substring(1)}
