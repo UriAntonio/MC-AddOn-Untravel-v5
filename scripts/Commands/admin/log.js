@@ -25,8 +25,8 @@ Server.Commands.register({
     if(!res.canceled) {
         if (res.selection == 1) {
             //ClearLog()
-            Log(`[Logs] ${player.name} Logs limpiados`)
-            return player.sendMessage("§1------------------------------\n§a■§3Se limpiaron los Logs correctamente")
+            //Log(`[Logs] ${player.name} Logs limpiados`)
+            //return player.sendMessage("§1------------------------------\n§a■§3Se limpiaron los Logs correctamente")
           }
     }
 })
