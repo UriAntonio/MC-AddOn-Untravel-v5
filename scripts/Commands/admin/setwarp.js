@@ -1,18 +1,18 @@
-import Server from "../../main"
+import Server from "../../server"
 
 const WarpDB = Server.WarpDB
 
 Server.Commands.register({
   name: "setwarp",
-  description: "Create a new warp",
-  usage: "setwarp <place_name>",
+  description: "Crea un nuevo Warp",
+  usage: "setwarp <nombre_del_lugar>",
   permission: "warp",
   category: "Admin"
 }, async (data, player, args) => {
-  if (!args[0]) return player.sendMessage("§cInput a warp name.")
+  if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para el Warp.")
   let name = args.slice(0).join(" ")
   let warp = WarpDB.get(name)
-  if (warp != undefined) return player.sendMessage("§cDuplicate warp name, no warp was created.")
+  if (warp != undefined) return player.sendMessage("§a■§cNombre de Warp duplicado, Warp no fue creado.")
   const placeObject = {
     x: player.location.x,
     y: player.location.y,
@@ -20,5 +20,5 @@ Server.Commands.register({
     dimension: player.dimension.id
   }
   await WarpDB.set(name, placeObject)
-  player.sendMessage(`§aSuccessfully add warp place with name ${name}!`)
+  player.sendMessage(`§1------------------------------\n§a■§3Warp creada exitosamente con el nombre §f${name}§3!`)
 })

@@ -1,18 +1,18 @@
-import Server from "../../main"
+import Server from "../../server"
 
 const WarpDB = Server.WarpDB
 
 Server.Commands.register({
   name: "delwarp",
-  description: "Removes a warp",
-  usage: "delwarp <place_name>",
+  description: "Remueve un Warp",
+  usage: "delwarp <nombre_del_lugar>",
   permission: "warp",
   category: "Admin"
 }, async (data, player, args) => {
-  if (!args[0]) return player.sendMessage("§cInput a warp name.")
+  if (!args[0]) return player.sendMessage("§a■§cIngresa el mombre del Warp.")
   let name = args.slice(0).join(" ")
   let warp = WarpDB.get(name)
-  if (warp == undefined) return player.sendMessage("§cInvalid warp.")
+  if (warp == undefined) return player.sendMessage("§a■§cWarp no valido.")
   await WarpDB.delete(name)
-  player.sendMessage(`§aSuccessfully remove warp place with name ${name}!`)
+  player.sendMessage(`§1------------------------------\n§a■§3Eliminado exitosamente el Warp con el nombre §f${name}§3!`)
 })
