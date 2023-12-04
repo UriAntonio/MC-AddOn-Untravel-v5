@@ -22,4 +22,5 @@ Server.Commands.register({
   }
   await WarpDB.set(name, placeObject)
   player.sendMessage(`§1------------------------------\n§a■§3Warp creada exitosamente con el nombre §f${name}§3!`)
+  Log(`[ WARP ]${player.name} agregó §b${name}§`)
 })
