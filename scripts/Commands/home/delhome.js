@@ -39,7 +39,7 @@ Server.Commands.register({
       return
     }
     await HomeDB.delete(playerHome)
-    player.sendMessage(`§a■§3Eliminado exitosamente el hogar con el nombre §f${name}§3!`)
+    player.sendMessage(`§1------------------------------\n§a■§3Eliminado exitosamente el hogar con el nombre §f${name}§3!`)
   } else {
     player.sendMessage("§a■§cHogar no valido.")
   }
