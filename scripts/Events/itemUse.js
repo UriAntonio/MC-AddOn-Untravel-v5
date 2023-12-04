@@ -3,6 +3,7 @@ import { ForceOpen } from "../Modules/Server/Forms";
 import { MessageFormData } from "@minecraft/server-ui";
 import { LogDataMsg } from "../Modules/Log/msgLog";
 import { Player } from "@minecraft/server";
+import Action from "../Modules/Log/ActionLog"
 
 /**
  * 
@@ -36,6 +37,7 @@ Server.world.beforeEvents.itemUse.subscribe((data) => {
     const items = data.itemStack
     if (items.typeId == "mx:new" &&
         source.isAdmin()) {
+            if (source.isSneaking) return Action.setAction(source, 2, "sniking")
         MsgLogs(source)
     }
 })
