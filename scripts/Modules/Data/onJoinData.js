@@ -1,5 +1,5 @@
 export const onJoinData = [
     "gamerule sendcommandfeedback false",
-    "gamerule commandblockoutput false",
+    "gamerule commandblocksenabled false",
     `ability @a[tag=mayfly] mayfly true`,
 ]
