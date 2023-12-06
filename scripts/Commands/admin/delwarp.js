@@ -17,5 +17,5 @@ Server.Commands.register({
   if (warp == undefined) return player.sendMessage("§a■§cWarp no valido.")
   await WarpDB.delete(name)
   player.sendMessage(`§1------------------------------\n§a■§3Eliminado exitosamente el Warp con el nombre §f${name}§3!`)
-  Log(`[ WARP ]${player.name} eliminó §b${name}§`)
+  Log(`[ WARP ]${player.name} eliminó §b${name}`)
 })
