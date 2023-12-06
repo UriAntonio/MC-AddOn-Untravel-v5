@@ -62,7 +62,9 @@ function plataformas(player) {
                 Coliseo(player)
             }
             if (result.selection == 0) {//Salon
-
+                //poner un seguro pa evitar que se ponga si esta whiter activo
+                //execute @e[type=mx:coliseo,r=100] ~ ~ ~ say §a§lPara cambiar de plataforma se debera matar al jefe enemigo
+                //execute @e[type=mx:coliseo,r=100] ~ ~ ~ say §l§aJefe principal eliminado
                 for (let i = 0; i < salonData.length; i++) {
                     try {
                         player.runCommandAsync(`${salonData[i]}`);
@@ -106,7 +108,7 @@ function plataformas(player) {
                 Coliseo(player);
             }
             if (result.selection == 4) {//Jaula
-
+                //Pon un seguro para la jaula como: plataforma: bedrock
                 for (let i = 0; i < bedrockData.length; i++) {
                     try {
                         player.runCommandAsync(`${bedrockData[i]}`);
@@ -121,7 +123,7 @@ function plataformas(player) {
     })
 }
 
- function Coliseo(player) {
+export function Coliseo(player) {
 
     Server.System.run(() => {
 
