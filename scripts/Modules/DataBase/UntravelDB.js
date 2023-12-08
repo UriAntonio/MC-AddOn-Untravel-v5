@@ -10,15 +10,23 @@ export class DB {
     constructor(name) {
         this.userkey = name;
         if (!Database.has(name)) Database.set(name, "{}");
-        this.data = Database.get(name);
+        this.data = JSON.parse(Database.get(name));
     }
 
+    /**
+     * 
+     * @param {string} key 
+     * @param {any} value 
+     */
     set(key, value) {
-        this.data[key] = value;
+        console.log(`key: ${key} | value ${value}`)
+        
+        this.data[key] = value
+        console.log(`${JSON.stringify(this.data)}`);
         Database.set(this.userkey, JSON.stringify(this.data));
     }
 
-    get(key) {
+    get(key) { 
         return this.data[key];
     }
 

@@ -34,6 +34,11 @@ Config.homeTpCost = 50
 Config.homeTpCostNether = 1000
 Config.homeTpCostEnd = 5000
 
+// Warp Configuration
+Config.warpCost = 200
+Config.warpColiseo = 800
+
+
 // Combat Configuration
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
@@ -124,8 +129,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     listhome: true
   },
   warp: {
-    //warp: true,
-    //listwarp: true
+    warp: true,
+    listwarp: true
   },
   tpa: {
     //tpa: true,
@@ -134,12 +139,12 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   admin: {
     setmoney: true,
-    //setwarp: true,
-    //delwarp: true,
+    setwarp: true,
+    delwarp: true,
     //broadcast: true,
     //kick: true,
-    //ban: true,
-    //unban: true,
+    ban: true,
+    unban: true,
     //setting: true,
     //shopsetting: true,
     //sellsetting: true,
@@ -152,7 +157,10 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //tempban: true,
     gm: true,
     funds: true,
-    notify: true
+    notify: true,
+    coliseo: true,
+    allhomes: true,
+    allmoney: true,
   },
   op: {
     op: true,

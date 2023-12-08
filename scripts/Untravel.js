@@ -12,6 +12,7 @@ import Money from "./Modules/Finance/Money";
 import Fund from "./Modules/Finance/Funds";
 //
 import Dynamic from "./Extensions/Database";
+import { DB } from "./Modules/DataBase/UntravelDB";
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -43,7 +44,7 @@ class UntravelClass {
     this.HomeDB = new Database("homeDB")
     this.WarpDB = new Database("warpDB")
     this.BackDB = new Database("backDB")
-    this.BanDB = new Database("banDB")
+    this.BanDB = new DB("banDB")
     this.Fund = Fund
     this.Setting = new Setting()
     this.Money = Money

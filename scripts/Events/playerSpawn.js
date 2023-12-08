@@ -5,6 +5,8 @@ import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 
+const BanDB = Untravel.BanDB
+
 function rankFilter(player) {
   let tags = player.getTags()
   let rank
@@ -79,6 +81,17 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
   let player = loaded.player;
   // Ejecuta la funcion con el tick event
   if (loaded.initialSpawn) {
+    //Verificacion de Baneo
+    if (BanDB.has(player.name)) {
+      
+      let banData = BanDB.get(player.name)
+      if (!banData.duration) return player.kick(`\n§l§cFUISTE BANNEADO!\n§bRazon:§r ${banData.reason}\n§eBanned Por:§r ${banData.by}\n§6Si piensas que hubo un error\ncomunicate a §bsupport@untravelmx.com  §r`)
+      if (Date.now() > banData.duration) {
+        BanDB.delete(player.name)
+      } else {
+        return player.kick(`\n§l§cFUISTE BANNEADO!\n§bRazon:§r ${banData.reason} \n§r\n§eBanned Por:§r${banData.by} \n§cDuration : §e${Utility.formatTextFutureDate(banData.duration)}`)
+      }
+    }
     Untravel.PlayerOnline[player.name] = Date.now()
     Untravel.System.run(() => {
       onJoinSpawn(player);
