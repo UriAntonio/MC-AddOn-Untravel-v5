@@ -1,9 +1,9 @@
-import Server from '../server';
+import Untravel from '../Untravel';
 import Config from '../conf/Configuration';
 import { LogWarn } from '../Modules/Log/Log';
 
-Server.System.runInterval( () => {
-    Server.world.getAllPlayers().forEach(player => {
+Untravel.System.runInterval( () => {
+    Untravel.world.getAllPlayers().forEach(player => {
 let gms = "survival"
 //gamemode s @a[m=1,tag=!Adminer]
 if ((player.gamemode == "creative") && !player.hasTag(Config.gmc)) {
@@ -20,6 +20,6 @@ if ((statusNotify == false) && player.hasTag("Notify")) {
     })
 }, 20)
 
-Server.System.runInterval( () => {
+Untravel.System.runInterval( () => {
 Database.set("coliseoManager", true)
 },3000)

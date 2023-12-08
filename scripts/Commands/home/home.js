@@ -1,13 +1,13 @@
-import Server from "../../server"
+import Untravel from "../../Untravel"
 import Config from "../../conf/Configuration"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
 import Money from "../../Modules/Finance/Money"
 import Fund from "../../Modules/Finance/Funds"
 import Action from "../../Modules/Log/ActionLog"
 
-const HomeDB = Server.HomeDB
+const HomeDB = Untravel.HomeDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "home",
   description: `Comando MUY poderoso para\n teletransporte a el hogar seleccionado; \nImpuesto Magico en Overworld, Nether, End: §f${Config.homeTpCost}, ${Config.homeTpCostNether}, ${Config.homeTpCostEnd}§b, \nEnfriamiento: ${Config.homeCooldown} §b`,
   usage: "home <home_name>",
@@ -27,9 +27,9 @@ Server.Commands.register({
       if (player.isCombat()) return player.sendMessage("§a■§cEstas en Combate!")
       if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
       if (getCooldown("home", player) > 0) return player.sendMessage(`§a■§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("home", player)}s`)
-      let homeCD = Server.Setting.get("homeCooldown") ?? Config.homeCooldown
+      let homeCD = Untravel.Setting.get("homeCooldown") ?? Config.homeCooldown
       setCooldown("home", player, homeCD)
-      let homeCountdown = Server.Setting.get("homeCountdown") ?? Config.homeCountdown
+      let homeCountdown = Untravel.Setting.get("homeCountdown") ?? Config.homeCountdown
       if (homeCountdown > 0) {
         player.sendMessage(`§a■§bNo te muevas por: §f${homeCountdown}§b segundos para Teletransportarte!`)
         let playerPosition = player.location
@@ -45,7 +45,7 @@ Server.Commands.register({
           }
           Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
           countdown--
-          await Server.sleep(1000)
+          await Untravel.sleep(1000)
           Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
           
         }
@@ -53,12 +53,12 @@ Server.Commands.register({
       Money.setMoney(player.name, balance - cost)
       Fund.setMoney(balanceFund + cost)
       player.sendMessage("§a■§3Teletransportando...")
-      await Server.teleportPlayer(player, playerHome, { dimension: Server.getDimension(playerHome.dimension) })
+      await Untravel.teleportPlayer(player, playerHome, { dimension: Untravel.getDimension(playerHome.dimension) })
       player.sendMessage("§1------------------------------\n§a■§3Teletransportado Correctamente.")
       return
     }
     player.sendMessage("§a■§3Teletransportando...")
-    await Server.teleportPlayer(player, playerHome, { dimension: Server.getDimension(playerHome.dimension) })
+    await Untravel.teleportPlayer(player, playerHome, { dimension: Untravel.getDimension(playerHome.dimension) })
     player.sendMessage("§1------------------------------\n§a■§3Teletransportado Correctamente.")
   } else {
     player.sendMessage("§a■§cHogar Invalido.")

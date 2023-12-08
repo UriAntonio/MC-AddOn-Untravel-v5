@@ -1,8 +1,8 @@
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-const WarpDB = Server.WarpDB
+const WarpDB = Untravel.WarpDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "listwarp",
   description: "Provee una lista de los warps disponibles",
   aliases: ["lw"],

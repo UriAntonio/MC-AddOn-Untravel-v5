@@ -1,13 +1,13 @@
 import Config from "../../conf/Configuration"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
 import Action from "../../Modules/Log/ActionLog"
 import Fund from "../../Modules/Finance/Funds"
 import Money from "../../Modules/Finance/Money"
 
-const WarpDB = Server.WarpDB
+const WarpDB = Untravel.WarpDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "warp",
   description: "Teleport al warp seleccionado",
   usage: "warp <nombre_de_lugar>",
@@ -25,9 +25,9 @@ Server.Commands.register({
     if (player.isCombat()) return player.sendMessage("§a■§cEstas en Combate!")
     if (balance < cost) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
     if (getCooldown("warp", player) > 0) return player.sendMessage(`§a■§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("warp", player)}s.`)
-    let warpCD = Server.Setting.get("warpCooldown") ?? Config.warpCooldown
+    let warpCD = Untravel.Setting.get("warpCooldown") ?? Config.warpCooldown
     setCooldown("warp", player, warpCD)
-    let warpCountdown = Server.Setting.get("warpCountdown") ?? Config.warpCountdown
+    let warpCountdown = Untravel.Setting.get("warpCountdown") ?? Config.warpCountdown
     if (warpCountdown > 0 && !player.isAdmin()) {
       player.sendMessage(`§a■§bNo te muevas por: §f${warpCountdown}§b segundos para Teletransportarte!`)
       let playerPosition = player.location
@@ -43,14 +43,14 @@ Server.Commands.register({
         }
         Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
         countdown--
-        await Server.sleep(1000)
+        await Untravel.sleep(1000)
         Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
       }
       Money.setMoney(player.name, balance - cost)
       Fund.setMoney(balanceFund + cost)
     }
     player.sendMessage("§a■§3Teletransportando...")
-    await Server.teleportPlayer(player, warp, { dimension: Server.getDimension(warp.dimension) })
+    await Untravel.teleportPlayer(player, warp, { dimension: Untravel.getDimension(warp.dimension) })
     player.sendMessage("§1------------------------------\n§a■§3Teletransportado Correctamente.")
   } else {
     player.sendMessage("§a■§cWarp Invalido.")

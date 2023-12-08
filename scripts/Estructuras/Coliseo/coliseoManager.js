@@ -1,11 +1,11 @@
 import { ActionFormData } from "@minecraft/server-ui";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import { salonData, arenaData, lavaData, picinaData, bedrockData } from "./Data/coliseoCommnads";
 
 
 function enemigos(player) {
 
-    Server.System.run(() => {
+    Untravel.System.run(() => {
 
         let enemies = new ActionFormData()
             .title(`§b■§9§lEnemigos§r§b■`)
@@ -36,7 +36,7 @@ function enemigos(player) {
 
 function plataformas(player) {
 
-    Server.System.run(() => {
+    Untravel.System.run(() => {
 
         let platform = new ActionFormData()
             .title(`§b■§9§lPlataformas§r§b■`)
@@ -125,7 +125,7 @@ function plataformas(player) {
 
 export function Coliseo(player) {
 
-    Server.System.run(() => {
+    Untravel.System.run(() => {
 
         let ui_Coliseo = new ActionFormData()
             .title(`§b■§9§lColiseo Manager§r§b■`)
@@ -165,7 +165,7 @@ export function Coliseo(player) {
 
 export function coliseoCost (player) {
 
-    Server.System.run(() => {
+    Untravel.System.run(() => {
         let cost = 1
         let ui_Coliseo = new ActionFormData()
             .title(`§b■§9§lColiseo§r§b■`)

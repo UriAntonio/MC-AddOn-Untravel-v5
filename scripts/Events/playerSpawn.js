@@ -1,7 +1,7 @@
 import { onJoinData } from "../Modules/Data/onJoinData.js";
 import { welcome } from "../util/newMemberMessage.js";
 import Config from "../conf/Configuration.js";
-import Server from "../server.js";
+import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 
@@ -35,14 +35,14 @@ function onJoinSpawn(player) {
   try {
     player.runCommandAsync(`testfor @s`);
 
-    // Bloquea el server si esta en true
+    // Bloquea el Untravel si esta en true
     if (Config.lockServer) {
       let reason = "Bajo Mantenimiento! Perdón por las molestias.";
       try {
-        // Kick a los jugadores del server
+        // Kick a los jugadores del Untravel
         player.runCommandAsync(`kick ${JSON.stringify(player.name)} ${reason}`);
       } catch (error) {
-        // Despawn players from server
+        // Despawn players from Untravel
         player.triggerEvent("minecraft:kick");
       }
     }
@@ -74,18 +74,18 @@ function onJoinSpawn(player) {
   } catch (error) { LogWarn(`§cError al unirse: ${player} | ${error}`) }
 }
 
-Server.world.afterEvents.playerSpawn.subscribe((loaded) => {
+Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
   // Toma el nombre del jugador que se esta uniendo
   let player = loaded.player;
   // Ejecuta la funcion con el tick event
   if (loaded.initialSpawn) {
-    Server.PlayerOnline[player.name] = Date.now()
-    Server.System.run(() => {
+    Untravel.PlayerOnline[player.name] = Date.now()
+    Untravel.System.run(() => {
       onJoinSpawn(player);
     });
 
   } else {
-    if ((Server.Setting.get("backSystem") ?? true) == false) return
+    if ((Untravel.Setting.get("backSystem") ?? true) == false) return
     //player.sendMessage(`§eYou died. use §a!back§e to teleport to your death location.`)
   }
 

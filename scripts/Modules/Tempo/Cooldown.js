@@ -1,4 +1,4 @@
-import Server from "../../server";
+import Untravel from "../../Untravel";
 
 const BackCooldown = {}
 const TPACooldown = {}
@@ -84,7 +84,7 @@ const getWorldCooldown = (type, playerName) => {
 /**
 * Asigna el Player cooldown
 * @param {string} type 
-* @param {Server.Player} player 
+* @param {Untravel.Player} player 
 * @param {number} second 
 * @returns 
 */

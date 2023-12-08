@@ -19,9 +19,9 @@ export class CommandBuilder {
    * Registra un comando con una llamada de vuelta
    * @param {registerInformation} register Un  objeto de informacion necesaria para registrar el comando personalizado
    * @param {(data: mc.ChatSendBeforeEvent, player: PlayerClass, args: Array<string>) => void} callback Codigo que tu quieres ejecutar cuando el comando sea ejecutado
-   * @example import { Server } from "../../Minecraft";
-   *  Server.commands.register({ name: 'ping' }, (data, args) => {
-   *  Server.broadcast('Pong!', data.sender.name);
+   * @example import { Untravel } from "../../Minecraft";
+   *  Untravel.commands.register({ name: 'ping' }, (data, args) => {
+   *  Untravel.broadcast('Pong!', data.sender.name);
    * });
    * 
    * Asegurate de agregar el comando a Config y que el nombre sea igual al archivo

@@ -1,8 +1,8 @@
 import { Log } from "../../Modules/Log/Log"
 import Utility from "../../Modules/Utilities/Utility"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "setmoney",
     aliases: ["sm"],
     description: "Establese el dinero de un jugador",
@@ -15,7 +15,7 @@ Server.Commands.register({
     if (!extractData) return player.sendMessage("§a■§cIngresa un mombre de Jugador.")
     args = extractData.string.split(" ")
     if (!args[0]) return player.sendMessage("§a■§cIngresa una cantidad.")
-    let targetPlayer = await Server.getPlayer(extractData.name)
+    let targetPlayer = await Untravel.getPlayer(extractData.name)
     if (targetPlayer != undefined) {
       let amount = Number(args[0])
       if (!Number.isInteger(amount)) return player.sendMessage("§a■§cIngresa la cantidad en un Numero.")

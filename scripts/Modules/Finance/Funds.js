@@ -2,7 +2,7 @@ import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
 //import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import { LogWarn } from "../Log/Log";
 
 
@@ -21,7 +21,7 @@ class FundsSystem {
     }
 
     async #init() {
-        // await Server.waitLoaded()
+        // await Untravel.waitLoaded()
         //this.FundsDatabase = new Database("fundsDB")
         //if (!checkObjective(FundsName)) await world.scoreboard.addObjective(FundsName, FundsName)
         this.#isLoaded = true
@@ -31,15 +31,15 @@ class FundsSystem {
             //let player = data.player
             if (data.initialSpawn) {
                 let fundsMoney //= this.FundsDatabase.get(FundsName)
-                //Server.sendMessage(`${fundsMoney} 1`)
+                //Untravel.sendMessage(`${fundsMoney} 1`)
                 if (fundsMoney == undefined) {
                     fundsMoney = this.getMoney()
-                    //    Server.sendMessage(`${fundsMoney} 2`)
+                    //    Untravel.sendMessage(`${fundsMoney} 2`)
                 }
 
                 if (fundsMoney == undefined) {
                     fundsMoney = this.getStarterMoney()
-                    //    Server.sendMessage(`${fundsMoney} 3`)
+                    //    Untravel.sendMessage(`${fundsMoney} 3`)
                 }
 
                 this.setMoney(fundsMoney)
@@ -125,7 +125,7 @@ class FundsSystem {
             fund: FundsName,
             fundsMoney: numberFunds
         })
-        //Server.sendMessage(`${JSON.stringify(Data)}`)
+        //Untravel.sendMessage(`${JSON.stringify(Data)}`)
         return Data
     }
 

@@ -1,6 +1,6 @@
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "playerlist",
   aliases: ["playerson", "players", "pl"],
   description: "Para ver la lista de jugadores y tiempo conectados",
@@ -8,9 +8,9 @@ Server.Commands.register({
   category: "General"
 }, async (data, player, args) => {
   let message = "§1------------------------------\n§a■§1[§9LISTA DE JUGADORES§1]"
-    Server.Minecraft.world.getAllPlayers().forEach(plr => {
+    Untravel.Minecraft.world.getAllPlayers().forEach(plr => {
       const DateNow = new Date()
-      const DateLogin = Server.PlayerOnline[plr.name]
+      const DateLogin = Untravel.PlayerOnline[plr.name]
       const SecondPlayed = Math.ceil((DateNow - DateLogin) / 1000);
       message += `\n§1 | §3${plr.name} §1| §bEn Linea por`
       if (SecondPlayed >= 86400) {

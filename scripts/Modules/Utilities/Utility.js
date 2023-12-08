@@ -1,6 +1,6 @@
 import * as mc from "@minecraft/server"
 import Config from "../../conf/Configuration"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 const Utility = {}
 
 const ExtractResult = {
@@ -68,7 +68,7 @@ Utility.capitalized = (string) => {
  * @returns {string}
  */
 Utility.formatMoney = (money, withPrefix = true) => {
-  const currencyPrefix = Server.Setting.get("currencyPrefix") ?? Config.currencyPrefix
+  const currencyPrefix = Untravel.Setting.get("currencyPrefix") ?? Config.currencyPrefix
   return `${withPrefix ? currencyPrefix : ""}${money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
 }
 

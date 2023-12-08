@@ -1,8 +1,8 @@
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-const HomeDB = Server.HomeDB
+const HomeDB = Untravel.HomeDB
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "allhomes",
     aliases: ["ah"],
     description: "ve lista completa de homes guardados",

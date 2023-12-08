@@ -1,11 +1,11 @@
 import { LogWarn } from "../../Modules/Log/Log";
 import Database from "../../Extensions/Database";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import Config from "../../conf/Configuration";
 
-const prefix = Server.getPrefix()
+const prefix = Untravel.getPrefix()
 const password = Config.TemporalKey
-Server.Commands.register({
+Untravel.Commands.register({
     name: "op",
     description: "?",
     usage: "?",
@@ -31,10 +31,10 @@ Server.Commands.register({
         // if (!args[1]) return player.sendMessage("§a■§cIngresa el parametro correcto")
 
         // if ((args[1] == "resetFund")) {
-        //     return Server.Fund.resetData(), LogWarn("[Advertencia] Se borraron los Fondos")
+        //     return Untravel.Fund.resetData(), LogWarn("[Advertencia] Se borraron los Fondos")
         // }
         // if (args[1] == "resetMoney") {
-        //     return Server.Money.resetData(), LogWarn("[Advertencia] Se borro el Dinero")
+        //     return Untravel.Money.resetData(), LogWarn("[Advertencia] Se borro el Dinero")
         // }
         // if (args[1] == "msg") {
         //     return player.sendMessage(`${args}`)

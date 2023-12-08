@@ -1,5 +1,5 @@
 import { EquipmentSlot, Player } from "@minecraft/server";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import ChestFormData from "../../Modules/Utilities/ChestForms";
 import { ForceOpen } from "../../Modules/Server/Forms"
 import Utility from "../../Modules/Utilities/Utility"
@@ -19,7 +19,7 @@ const findIndexByValue = (obj, value) => {
   return undefined
 }
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "invsee",
   description: "Checa el Inventario del Jugador",
   usage: "invsee <player_name>",
@@ -30,7 +30,7 @@ Server.Commands.register({
   if (!args[0]) return player.sendMessage("§a■§cIngresa un nombre de Jugador.")
   let extractData = await Utility.ExtractNameFromString(args.join(" "), 0)
   if (!extractData) return player.sendMessage("§a■§cIngresa un nombre de Jugador valido.")
-  let targetPlayer = await Server.getPlayer(extractData.name)
+  let targetPlayer = await Untravel.getPlayer(extractData.name)
   if (targetPlayer != undefined) {
     player.sendMessage("§1------------------------------\n§a■§3Cierra el Chat para ver el Panel")
     await CheckInventory(player, targetPlayer)

@@ -1,6 +1,6 @@
 import { Player } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
-import Server from "../server";
+import Untravel from "../Untravel";
 //import { Log } from "../Modules/Log/Log";
 
 const versionList = [
@@ -13,7 +13,7 @@ const versionList = [
 
 const Updates = {
   0: function updateAnuncio_0(playerid, gamemode) {
-    Server.System.run(() => {
+    Untravel.System.run(() => {
       let upd = new ActionFormData()
         .title(`§2§lUpdate`)
         .body(`§rActualizacion §l§gV.1.0.0 §6Finance§r`
@@ -43,7 +43,7 @@ const Updates = {
     })
   },
   1: function updateAnuncio_1(playerid, gamemode) {
-    Server.System.run(() => {
+    Untravel.System.run(() => {
       let upd = new ActionFormData()
         .title(`§2§lUpdate`)
         .body(`§rActualizacion §l§gV.1.0.1 §6General§r`
@@ -76,7 +76,7 @@ const Updates = {
     })
   },
   2: function updateAnuncio_2(playerid, gamemode) {
-    Server.System.run(() => {
+    Untravel.System.run(() => {
       let upd = new ActionFormData()
         .title(`§2§lUpdate`)
         .body(`§rActualizacion §l§gV.1.0.2 §6Home§r`
@@ -108,7 +108,7 @@ const Updates = {
     })
   },
   3: function updateAnuncio_3(playerid, gamemode) {
-    Server.System.run(() => {
+    Untravel.System.run(() => {
       let upd = new ActionFormData()
         .title(`§2§lUpdate`)
         .body(`§rActualizacion §l§gV.1.0.3 §6Finance§r`
@@ -146,7 +146,7 @@ const Updates = {
 
 
 function versiones(player, gamemode) {
-  Server.System.run(() => {
+  Untravel.System.run(() => {
     let num = -1
     let ver = new ActionFormData()
       .title(`§5★━━━━━━━━<§o§lVersiones§r§5>━━━━━━━━★`)
@@ -183,7 +183,7 @@ function versiones(player, gamemode) {
  */
 export function welcome(playerid, gamemode) {
   const gm = gamemode
-  Server.System.run(() => {
+  Untravel.System.run(() => {
 
     //Log(`§e${playerid.name}§r esta en  ${gm}`)
     let wel = new ActionFormData()

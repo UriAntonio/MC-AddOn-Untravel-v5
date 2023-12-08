@@ -125,7 +125,7 @@ class ServerClass {
   }
 
   /**
-   * Send Server Message
+   * Send Untravel Message
    * @param {string} message
    */
   async sendMessage(message) {
@@ -134,7 +134,7 @@ class ServerClass {
 
   async sendMsgAll(target, message) {
     try {
-      Server.overworld.runCommandAsync(
+      Untravel.overworld.runCommandAsync(
         `tellraw ${/^ *@[spear]( *\[.*\] *)?$/.test(target)
           ? target
           : JSON.stringify(target)
@@ -218,11 +218,11 @@ class ServerClass {
   }
 }
 
-const Server = new ServerClass()
+const Untravel = new ServerClass()
 
-Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
+Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
   const date = Date.now()
-  //await Server.waitLoaded()
+  //await Untravel.waitLoaded()
   Object.keys(Config.Commands).forEach(category => {
     Object.keys(Config.Commands[category]).forEach(cmd => {
       if (!Config.Commands[category][cmd]) return;
@@ -239,14 +239,14 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
     }).catch(err => LogWarn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
   })
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
-  Server.world.getAllPlayers()
+  Untravel.world.getAllPlayers()
     .filter(p => p.isAdmin())
     .forEach(p => {
       p.sendMessage(`§bAdmin El Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
     })
 
-  Server.world.getAllPlayers().forEach((player) => {
-    Server.PlayerOnline[player.name] = Date.now()
+    Untravel.world.getAllPlayers().forEach((player) => {
+      Untravel.PlayerOnline[player.name] = Date.now()
   })
   Log(`§2Se agrego fechas`)
 
@@ -257,11 +257,11 @@ Server.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Log(`Se agrregaron llaves`)
 
   //let land = await Restful.request("land-isActive")
-  //Server.usingLandClaim = land?.active ?? false
+  //Untravel.usingLandClaim = land?.active ?? false
 })
 
 //mc.world.afterEvents.playerSpawn.subscribe(data => {
-//  if (data.initialSpawn) data.player.sendMessage(`Type "${Server.getPrefix()}help" for more information.`)
+//  if (data.initialSpawn) data.player.sendMessage(`Type "${Untravel.getPrefix()}help" for more information.`)
 //})
 
 mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
@@ -269,4 +269,4 @@ mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
   SystemLog(`§cWatchdog Terminate: ${data.terminateReason}`)
 })
 
-export default Server
+export default Untravel

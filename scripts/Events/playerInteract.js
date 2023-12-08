@@ -1,11 +1,11 @@
-import Server from "../server";
+import Untravel from "../Untravel";
 import { coliseoCost } from "../Estructuras/Coliseo/coliseoManager";
 import { getWorldCooldown } from "../Modules/Tempo/Cooldown";
 
 
 
 
-Server.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
+Untravel.world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     const { block, itemStack, player } = event;
     if (block.typeId === "minecraft:chest" && player.hasTag("lockChest")) {
         player.sendMessage(`§a■§cNo tienes permisos aqui`)

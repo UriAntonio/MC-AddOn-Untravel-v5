@@ -2,7 +2,7 @@ import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
 import { Database } from "../DataBase/Database";
 import { checkObjective } from "../Server/Scoreboard";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 
 
 const MoneyObjective = "Money"
@@ -19,7 +19,7 @@ class MoneySystem {
     }
 
     async #init() {
-        // await Server.waitLoaded()
+        // await Untravel.waitLoaded()
         this.MoneyDatabase = new Database("moneyDB")
         if (!checkObjective(MoneyObjective)) await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
         this.#isLoaded = true
@@ -29,15 +29,15 @@ class MoneySystem {
             let player = data.player
             if (data.initialSpawn) {
                 let playerMoney = this.MoneyDatabase.get(player.name)
-                //Server.sendMessage(`${playerMoney} 1`)
+                //Untravel.sendMessage(`${playerMoney} 1`)
                 if (playerMoney == undefined) {
                     playerMoney = this.getMoney(player.name)
-                //    Server.sendMessage(`${playerMoney} 2`)
+                //    Untravel.sendMessage(`${playerMoney} 2`)
             }
                 
                 if (playerMoney == undefined) {
                     playerMoney = this.getStarterMoney()
-                //    Server.sendMessage(`${playerMoney} 3`)
+                //    Untravel.sendMessage(`${playerMoney} 3`)
                 }
                 
                 this.setMoney(player.name, playerMoney)
@@ -68,7 +68,7 @@ class MoneySystem {
      * @returns {number}
      */
     getStarterMoney() {
-        return Server.Setting.get("starterMoney") ?? Config.starterMoney
+        return Untravel.Setting.get("starterMoney") ?? Config.starterMoney
     }
 
     /**
@@ -76,7 +76,7 @@ class MoneySystem {
      * @returns {number}
      */
     getMaxMoney() {
-        return Server.Setting.get("maxMoney") ?? Config.maxMoney
+        return Untravel.Setting.get("maxMoney") ?? Config.maxMoney
     }
 
     /**
@@ -86,7 +86,7 @@ class MoneySystem {
      * @param {PlayerClass} player
      */
     getMoney(playerName) {
-        let player = Server.getPlayer(playerName)
+        let player = Untravel.getPlayer(playerName)
         let playerMoney
         if (player != undefined) {
             playerMoney = player.getScore(MoneyObjective)
@@ -103,7 +103,7 @@ class MoneySystem {
      * @param {number} money
      */
     async setMoney(playerName, money) {
-        let player = Server.getPlayer(playerName)
+        let player = Untravel.getPlayer(playerName)
         if (player != undefined) {
             player.setScore(MoneyObjective, money)
         } else {

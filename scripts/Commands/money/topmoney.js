@@ -1,15 +1,15 @@
 import Utility from "../../Modules/Utilities/Utility"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "topmoney",
   aliases: ["topbal", "topcartera", "topbalance", "tm"],
   description: "Mira la tabla de posiciones de Dinero",
   usage: "topmoney",
   category: "Money"
 }, async (data, player, args) => {
-  let BalanceData = Server.Money.getAllMoney()
+  let BalanceData = Untravel.Money.getAllMoney()
   if (BalanceData.length <= 0) return player.sendMessage("§1------------------------------\n§a■§3No hay jugadores con fondos.")
   BalanceData.sort((a, b) => b.playerMoney - a.playerMoney)
   let show = 10

@@ -1,5 +1,5 @@
 import { Log } from "../../Modules/Log/Log";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 
 const gm = {
     gmC: "creative",
@@ -8,7 +8,7 @@ const gm = {
     gmP: "spectator"
 };
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "gm",
     description: "Cambia el modo de juego",
     usage: "gm",

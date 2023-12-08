@@ -1,5 +1,5 @@
 import * as mc from "@minecraft/server"
-import Server from "../server"
+import Untravel from "../Untravel"
 import { getScore, setScore } from "./Server/Scoreboard";
 import Config from "../conf/Configuration";
 import Combat from "./Server/Combat";
@@ -34,7 +34,7 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
    * @returns {mc.Container}
    */
   getInvetory() {
-    return Server.getInventory(this)
+    return Untravel.getInventory(this)
   },
   /**
    * Obten la cantidad de Items en el Inventory
@@ -57,7 +57,7 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
   * @returns {Promise<mc.CommandResult>}
   */
   async kick(message) {
-    return await Server.runCommand(`kick "${this.name}" ${message ?? ""}`)
+    return await Untravel.runCommand(`kick "${this.name}" ${message ?? ""}`)
   },
   /**
      * Checa si el Player esta silenciado
@@ -104,7 +104,7 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
    * @returns {number}
    */
   getMoney() {
-    return Server.Money.getMoney(this.name)
+    return Untravel.Money.getMoney(this.name)
   },
 
   /**
@@ -112,7 +112,7 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
    * @param {number} amount cantidad
    */
   async setMoney(amount) {
-    await Server.Money.setMoney(this.name, amount)
+    await Untravel.Money.setMoney(this.name, amount)
   },
   /**
      * Obten el Equipment Inventory del Jugador

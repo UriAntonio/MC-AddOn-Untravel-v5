@@ -1,8 +1,8 @@
 import Utility from "../../Modules/Utilities/Utility"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "allmoney",
   aliases: ["am"],
   description: "Mira todos lo que tienen Dinero",
@@ -10,7 +10,7 @@ Server.Commands.register({
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
-  let BalanceData = Server.Money.getAllMoney()
+  let BalanceData = Untravel.Money.getAllMoney()
   if (BalanceData.length <= 0) return player.sendMessage("§1------------------------------\n§a■§3No hay jugadores con fondos.")
   BalanceData.sort((a, b) => b.playerMoney - a.playerMoney)
   let show =  BalanceData.length

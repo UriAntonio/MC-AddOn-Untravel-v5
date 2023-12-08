@@ -1,12 +1,12 @@
 import Fund from "../../Modules/Finance/Funds"
 import Money from "../../Modules/Finance/Money"
 import Config from "../../conf/Configuration"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
 
-const HomeDB = Server.HomeDB
+const HomeDB = Untravel.HomeDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "delhome",
   aliases: ["dhome", "dh"],
   description: "Borra o Remueve un hogar",

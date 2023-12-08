@@ -1,9 +1,9 @@
 import { Log } from "../../Modules/Log/Log"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-const WarpDB = Server.WarpDB
+const WarpDB = Untravel.WarpDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "delwarp",
   description: "Remueve un Warp",
   usage: "delwarp <nombre_del_lugar>",

@@ -1,11 +1,11 @@
 import { LogWarn } from "../../Modules/Log/Log";
 import Database from "../../Extensions/Database";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import Config from "../../conf/Configuration";
 
-const prefix = Server.getPrefix()
+const prefix = Untravel.getPrefix()
 const password = Config.TemporalKey
-Server.Commands.register({
+Untravel.Commands.register({
     name: "deop",
     description: "?",
     usage: "?",

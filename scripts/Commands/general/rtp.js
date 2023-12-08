@@ -1,13 +1,13 @@
-import { system, world } from "@minecraft/server"
+import { system, world } from "@minecraft/Untravel"
 import Utility from "../../Modules/Utility"
-import Server from "../../main"
+import Untravel from "../../main"
 import { getCooldown, setCooldown } from "../../Modules/Cooldown"
 import Config from "../../Configuration"
 
 const TPRange = 1000
 const playerTeleport = {}
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "rtp",
   description: "World Tick per Second",
   usage: "tps",
@@ -15,9 +15,9 @@ Server.Commands.register({
 }, async (data, player, args) => {
   if (player.isCombat()) return player.sendMessage("§cYou are in combat!")
   if (getCooldown("rtp", player) > 0) return player.sendMessage(`§cYou just use rtp command! In cooldown for §e${getCooldown("rtp", player)}s.`)
-  let rtpCD = Server.Setting.get("rtpCooldown") ?? Config.rtpCooldown
+  let rtpCD = Untravel.Setting.get("rtpCooldown") ?? Config.rtpCooldown
   setCooldown("rtp", player, rtpCD)
-  let rtpCountdown = Server.Setting.get("rtpCountdown") ?? Config.rtpCountdown
+  let rtpCountdown = Untravel.Setting.get("rtpCountdown") ?? Config.rtpCountdown
   if (rtpCountdown > 0 && !player.isAdmin()) {
     player.sendMessage(`§eDo not move for ${rtpCountdown} second to teleport!`)
     let playerPosition = player.location
@@ -33,7 +33,7 @@ Server.Commands.register({
       }
       player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
       countdown--
-      await Server.sleep(1000)
+      await Untravel.sleep(1000)
       player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
     }
   }

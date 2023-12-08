@@ -1,10 +1,10 @@
 import { Log, LogData } from "../../Modules/Log/Log";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 import { MessageFormData } from "@minecraft/server-ui";
 import { ForceOpen } from "../../Modules/Server/Forms";
 
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "log",
     description: "Checa todos los Logs",
     usage: "log",

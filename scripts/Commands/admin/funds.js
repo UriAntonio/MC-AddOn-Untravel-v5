@@ -1,16 +1,16 @@
 import Utility from "../../Modules/Utilities/Utility"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "funds",
   aliases: ["f", "fund"],
-  description: "Mira los Fondos Generales de Server",
+  description: "Mira los Fondos Generales de Untravel",
   usage: "funds",
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
-  let BalanceData = Server.Fund.getAllMoney()
+  let BalanceData = Untravel.Fund.getAllMoney()
   if (BalanceData.length == 0) return player.sendMessage("§1------------------------------\n§a■§3No hay Fondos registrados.")
   BalanceData.sort((a, b) => b.playerMoney - a.playerMoney)
   let show = 10

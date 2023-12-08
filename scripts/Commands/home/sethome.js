@@ -1,11 +1,11 @@
 import Fund from "../../Modules/Finance/Funds"
 import Money from "../../Modules/Finance/Money"
 import Config from "../../conf/Configuration"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
-const HomeDB = Server.HomeDB
+const HomeDB = Untravel.HomeDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "sethome",
   aliases: ["sh"],
   description: `Agrega un hogar con el nombre seleccionado, Costo inicial(se duplica por cada hogar): §f${Config.homeCost} §b`,
@@ -28,7 +28,7 @@ Server.Commands.register({
   let balance = Money.getMoney(player.name)
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para tu hogar.")
   let homeCount = HomeDB.keys().filter(t => t.startsWith(player.name)).length
-  if (!player.isAdmin() && homeCount >= (Server.Setting.get("homeLimit") ?? Config.homeLimit))
+  if (!player.isAdmin() && homeCount >= (Untravel.Setting.get("homeLimit") ?? Config.homeLimit))
     return player.sendMessage("§a■§cYa tienes el Maximo de hogares!")
   let name = args.slice(0).join(" ")
   let playerHome = HomeDB.keys().find(key => key == `${player.name}-${name}`)

@@ -1,10 +1,10 @@
 
 import Database from "../../Extensions/Database";
 import { Log } from "../../Modules/Log/Log";
-import Server from "../../server";
+import Untravel from "../../Untravel";
 
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "notify",
     description: "Habilita o desabilita las notificaciones en ti mismo. true - false",
     usage: "notify <boolean>",

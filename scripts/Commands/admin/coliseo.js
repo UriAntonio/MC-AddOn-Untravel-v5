@@ -1,8 +1,8 @@
 import { Log } from "../../Modules/Log/Log"
-import Server from "../../server"
+import Untravel from "../../Untravel"
 
 
-Server.Commands.register({
+Untravel.Commands.register({
     name: "coliseo",
     description: "Enciende o paga el Coliseo",
     usage: "coliseo <true | false>",
