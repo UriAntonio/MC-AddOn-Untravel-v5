@@ -3,15 +3,15 @@
  * Project: https://github.com/JaylyDev/ScriptAPI
  */
 import { Player } from "@minecraft/server";
-import Server from "../server";
+import Untravel from "../Untravel";
 import { Log } from "../Modules/Log/Log";
 
-Server.world.afterEvents.entitySpawn.subscribe( async ({entity}) =>{
+Untravel.world.afterEvents.entitySpawn.subscribe( async ({entity}) =>{
     // Since you cannot retrive projectile infomation from projectileHit event, we have to
   // subscribe to entitySpawn event to compare with the projectile information fired by projectileHit event.
   
   if (entity.typeId !== "minecraft:arrow") return;
-  const callback = Server.world.afterEvents.projectileHitEntity.subscribe(async (arg) => {
+  const callback = Untravel.world.afterEvents.projectileHitEntity.subscribe(async (arg) => {
     const {source, proyectile} = arg
     //source es el que dispara
     //hitInfo.entity es el golpeado
@@ -24,7 +24,7 @@ Server.world.afterEvents.entitySpawn.subscribe( async ({entity}) =>{
          }
          //Log(` disparo ${source.name} a ${hitInfo.entity.name} `)
          source.playSound("random.orb", soundoption)
-         Server.world.afterEvents.projectileHitEntity.unsubscribe(callback)
+         Untravel.world.afterEvents.projectileHitEntity.unsubscribe(callback)
     }
   })
 })

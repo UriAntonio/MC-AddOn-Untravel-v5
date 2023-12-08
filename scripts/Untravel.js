@@ -34,7 +34,7 @@ const Extensions = {
 
 
 
-class ServerClass {
+class UntravelClass {
   constructor() {
     this.Commands = CommandBuilder
     this.Minecraft = mc
@@ -218,7 +218,7 @@ class ServerClass {
   }
 }
 
-const Untravel = new ServerClass()
+const Untravel = new UntravelClass()
 
 Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
   const date = Date.now()
