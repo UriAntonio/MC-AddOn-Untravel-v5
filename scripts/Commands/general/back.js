@@ -1,9 +1,9 @@
-import Config from "../../Configuration"
-import Server from "../../main"
+import Config from "../../conf/Configuration"
+import Untravel from "../../Untravel"
 import { getCooldown, setCooldown } from "../../Modules/Cooldown"
-const BackDB = Server.BackDB
+const BackDB = Untravel.BackDB
 
-Server.Commands.register({
+Untravel.Commands.register({
   name: "back",
   description: "Teleport to last died location",
   usage: "back",
@@ -13,9 +13,9 @@ Server.Commands.register({
   if (backData != undefined) {
     if (player.isCombat()) return player.sendMessage("§cYou are in combat!")
     if (getCooldown("back", player) > 0) return player.sendMessage(`You just use back command! In cooldown for §e${getCooldown("back", player)}s.`)
-    let backCD = Server.Setting.get("backCooldown") ?? Config.backCooldown
+    let backCD = Untravel.Setting.get("backCooldown") ?? Config.backCooldown
     setCooldown("back", player, backCD)
-    let backCountdown = Server.Setting.get("backCountdown") ?? Config.backCountdown
+    let backCountdown = Untravel.Setting.get("backCountdown") ?? Config.backCountdown
     if (backCountdown > 0 && !player.isAdmin()) {
       player.sendMessage(`§eDo not move for ${backCountdown} second to teleport!`)
       let playerPosition = player.location
@@ -31,12 +31,12 @@ Server.Commands.register({
         }
         player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
         countdown--
-        await Server.sleep(1000)
+        await Untravel.sleep(1000)
         player.onScreenDisplay.setActionBar(`§eDo not move for §c${countdown}s`)
       }
     }
     player.sendMessage("§eTeleporting...")
-    await Server.teleportPlayer(player, backData, { dimension: Server.getDimension(backData.dimension) })
+    await Untravel.teleportPlayer(player, backData, { dimension: Untravel.getDimension(backData.dimension) })
     player.sendMessage("§aSuccessfully Teleported.")
   } else {
     player.sendMessage("§cYou do not have died location!")
