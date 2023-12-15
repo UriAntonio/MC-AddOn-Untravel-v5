@@ -1,3 +1,4 @@
+
 /**
  * @author KlarixMx and Corrected by THE BOSS9345. This DB Class Use DatabaseDynamicProperty By THE BOSS9345.
  * 
@@ -52,7 +53,16 @@ export class DB {
         if (!this.data[key]) return false
         return true
     }
-    static entries() {
+    /**
+     * 
+     * @returns object
+     */
+    entries() {
         return this.data;
+    }
+    forEach(callback) {
+        for (const [key, value] of Object.entries(this.data)) {
+            callback(key, value)   
+        }
     }
 }
