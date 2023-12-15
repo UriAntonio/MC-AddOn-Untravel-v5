@@ -14,7 +14,7 @@ export class DB {
     }
 
     /**
-     * Set a value in a key inside of DB
+     * Add a value in a key inside of DB
      * @param {string} key 
      * @param {any} value 
      */
@@ -43,6 +43,8 @@ export class DB {
 
     /**
      * Verify if DB has element key
+     * 
+     * if it has return True else return False
      * @param {string} key 
      * @returns  boolean
      */

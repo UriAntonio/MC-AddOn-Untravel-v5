@@ -6,6 +6,7 @@ import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 
 const BanDB = Untravel.BanDB
+const TimeDB = Untravel.TimeDB
 
 function rankFilter(player) {
   let tags = player.getTags()
@@ -93,6 +94,15 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
       }
     }
     Untravel.PlayerOnline[player.name] = Date.now()
+    if (TimeDB.has(player.name) == false) {
+      let now = Date.now()
+      TimeDB.set(player.name, now)
+    }
+    if (TimeDB.get(player.name) == null | undefined) {
+      let now = Date.now()
+      TimeDB.set(player.name, now)
+      LogWarn(`[ Time ] Ocurrio un error y se le reasigno el tiempo a ${player.name}`)
+    }
     Untravel.System.run(() => {
       onJoinSpawn(player);
     });

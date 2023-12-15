@@ -45,6 +45,7 @@ class UntravelClass {
     this.WarpDB = new Database("warpDB")
     this.BackDB = new Database("backDB")
     this.BanDB = new DB("banDB")
+    this.TimeDB = new DB("time")
     this.Fund = Fund
     this.Setting = new Setting()
     this.Money = Money

@@ -112,7 +112,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     playerlist: true,
     tps: true,
     //message: true,
-    //rtp: true
+    //rtp: true,
+    time: true
   },
   money: {
     cartera: true,
