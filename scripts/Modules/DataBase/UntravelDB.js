@@ -14,29 +14,40 @@ export class DB {
     }
 
     /**
-     * 
+     * Set a value in a key inside of DB
      * @param {string} key 
      * @param {any} value 
      */
     set(key, value) {
-        console.log(`key: ${key} | value ${value}`)
-        
         this.data[key] = value
-        console.log(`${JSON.stringify(this.data)}`);
         Database.set(this.userkey, JSON.stringify(this.data));
     }
 
-    get(key) { 
+    /**
+     * Get de value stored in the Key
+     * @param {string} key 
+     * @returns {Object} { value }
+     */
+    get(key) {
         return this.data[key];
     }
 
+    /**
+     * Delet the key and value stored in
+     * @param {string} key 
+     */
     delete(key) {
         delete this.data[key];
         Database.set(this.userkey, JSON.stringify(this.data));
     }
 
+    /**
+     * Verify if DB has element key
+     * @param {string} key 
+     * @returns  boolean
+     */
     has(key) {
-        if(!this.data[key]) return false
+        if (!this.data[key]) return false
         return true
     }
     static entries() {
