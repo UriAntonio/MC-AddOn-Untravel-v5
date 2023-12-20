@@ -65,4 +65,17 @@ export class DB {
             callback(key, value)   
         }
     }
+    keys() {
+        let keys = []
+        for (const [key, value] of Object.entries(this.data)) keys.push(key)
+        return keys;
+    }
+    values() {
+        let values = []
+        for (const [key, value] of Object.entries(this.data)) values.push(value)
+        return values;
+    }
+    get lenght() {
+        return Object.entries(this.data).length
+    }
 }
