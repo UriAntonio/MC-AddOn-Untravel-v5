@@ -1,9 +1,7 @@
-import { system, world } from "@minecraft/server";
+import { world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
-//import { Database } from "../DataBase/Database";
-import { checkObjective } from "../Server/Scoreboard";
-import Untravel from "../../Untravel";
 import { LogWarn } from "../Log/Log";
+import { DB } from "../DataBase/UntravelDB";
 
 
 const FundsStructure = {
@@ -13,8 +11,8 @@ const FundsStructure = {
 
 const FundsName = Config.FundsName
 
-class FundsSystem {
-    #isLoaded; #Readyplayer
+class FundSystem {
+    #isLoaded;
     constructor() {
         this.#isLoaded = false
         this.#init()
@@ -22,7 +20,7 @@ class FundsSystem {
 
     async #init() {
         // await Untravel.waitLoaded()
-        //this.FundsDatabase = new Database("fundsDB")
+        this.FundsDatabase = new DB("Fund")
         //if (!checkObjective(FundsName)) await world.scoreboard.addObjective(FundsName, FundsName)
         this.#isLoaded = true
         //this.#Readyplayer = []
@@ -30,7 +28,7 @@ class FundsSystem {
         world.afterEvents.playerSpawn.subscribe((data) => {
             //let player = data.player
             if (data.initialSpawn) {
-                let fundsMoney //= this.FundsDatabase.get(FundsName)
+                let fundsMoney = this.FundsDatabase.get(FundsName)
                 //Untravel.sendMessage(`${fundsMoney} 1`)
                 if (fundsMoney == undefined) {
                     fundsMoney = this.getMoney()
@@ -47,11 +45,11 @@ class FundsSystem {
             }
         })
 
-        world.afterEvents.worldInitialize.subscribe(async (data) => {
-            if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("Base de datos Fund creada")
+        //world.afterEvents.worldInitialize.subscribe(async (data) => {
+            //if (Database.has(FundsName) == false) Database.set(FundsName, JSON.stringify({ current: 0 })), LogWarn("Base de datos Fund creada")
 
             //world.getAllPlayers().forEach(player => this.#Readyplayer.push(player.name))
-        })
+        //})
 
         //world.afterEvents.playerLeave.subscribe(async (data) =>
         //this.#Readyplayer.splice(this.#Readyplayer.findIndex(i => i == data.playerName), 1)
@@ -89,12 +87,10 @@ class FundsSystem {
      * @returns {number}
      */
     getMoney() {
-        let FundsValue = Database.get(FundsName)
-        let fundsObject = JSON.parse(FundsValue)
-        let fundsMoney = fundsObject.current
+        let fundsMoney = this.FundsDatabase.get(FundsName)
+        
         //LogWarn(`${FundsValue},${fundsMoney}`)
-        if (fundsMoney == undefined || fundsMoney == null) Database.set(FundsName, JSON.stringify({ current: Number(this.getStarterMoney()) }))
-
+        if (fundsMoney == undefined | null) this.FundsDatabase.set(FundsName, this.getStarterMoney())
         //LogWarn(`${FundsValue},${fundsMoney}`)
         return fundsMoney ?? this.getStarterMoney()
     }
@@ -106,7 +102,7 @@ class FundsSystem {
      */
     setMoney(money) {
         try {
-            Database.set(FundsName, JSON.stringify({ current: Number(money) }))
+            this.FundsDatabase.set(FundsName, money)
         } catch (error) {
             LogWarn(`${error}`)
         }
@@ -118,26 +114,24 @@ class FundsSystem {
      */
     getAllMoney() {
         let Data = []
-        let FundsValue = Database.get(FundsName)
-        let fundsMoney = JSON.parse(FundsValue)
-        let numberFunds = fundsMoney.current
+        let FundsValue = this.FundsDatabase.get(FundsName)
         Data.push({
             fund: FundsName,
-            fundsMoney: numberFunds
+            fundsMoney: FundsValue
         })
         //Untravel.sendMessage(`${JSON.stringify(Data)}`)
         return Data
     }
 
     async resetData() {
-        await Database.delete(FundsName)
+        await this.FundsDatabase.delete(FundsName)
         //await world.scoreboard.removeObjective(FundsName)
-        await Database.set(FundsName, JSON.stringify({ current: 0 }))
+        await this.FundsDatabase.set(FundsName, 0)
         //LogWarn("Base de datos Fund Inicializada")
         //await world.scoreboard.addObjective(FundsName, FundsName)
     }
 }
 
-const Fund = new FundsSystem()
+const Fund = new FundSystem()
 
 export default Fund
