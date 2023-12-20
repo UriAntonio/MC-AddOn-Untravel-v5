@@ -42,8 +42,8 @@ class UntravelClass {
     this.System = mc.system
     this.PlayerOnline = {}
     this.HomeDB = new Database("homeDB")
-    this.WarpDB = new Database("warpDB")
-    this.BackDB = new Database("backDB")
+    this.WarpDB = new DB("warpDB")
+    this.BackDB = new DB("backDB")
     this.BanDB = new DB("banDB")
     this.TimeDB = new DB("time")
     this.LastDB = new DB("lastJoinDB")
