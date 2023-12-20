@@ -1,25 +1,25 @@
 import { ActionFormData } from "@minecraft/server-ui";
 import Untravel from "../../Untravel";
 import { ForceOpen } from "../../Modules/Server/Forms";
-import { LogWarn } from "../../Modules/Log/Log";
+
 
 const TimeDB = Untravel.TimeDB
 
 Untravel.Commands.register({
     name: "time",
-    description: "Ve el tiempo de coneccion general a partir del 14/12/23)",
+    description: "Ve el tiempo de coneccion general a partir del 19/12/23)",
     category: "General",
     usage: "time",
 }, async (data, player, args) => {
-    let title ="§a■§1[§9TIEMPO DE JUGADORES§1]§a■"
+    let title ="§a■§1[§9TIEMPO ONLINE DE JUGADORES§1]§a■"
     let message = ""
-    LogWarn(`${JSON.stringify(TimeDB.entries())}`)
     TimeDB.forEach((key, value) => {
       let plr = key
       const DateNow = new Date()
-      const DateLogin = value//TimeDB.get(plr)
-      const SecondPlayed = Math.ceil((DateNow - DateLogin) / 1000);
-      message += `\n§1 | §3${plr} §1| §bOnline desde§1 -`
+      const DateLogin = Untravel.PlayerOnline[plr]
+      const TimePlayed = value
+      const SecondPlayed = value + Math.ceil((DateNow - DateLogin) / 1000);
+      message += `\n§1 | §3${plr} §1| §bOnline Total§1 -`
       if (SecondPlayed >= 86400) {
         let day = Math.floor(SecondPlayed / 86400)
         message += ` §f${day} §bdias,`
