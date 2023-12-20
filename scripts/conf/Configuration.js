@@ -113,7 +113,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     tps: true,
     //message: true,
     //rtp: true,
-    time: true
+    time: true,
+    
   },
   money: {
     cartera: true,
@@ -162,6 +163,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     coliseo: true,
     allhomes: true,
     allmoney: true,
+    lastjoin: true,
   },
   op: {
     op: true,

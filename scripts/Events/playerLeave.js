@@ -3,6 +3,7 @@ import { Log } from "../Modules/Log/Log"
 import Untravel from "../Untravel"
 
 const TimeDB = Untravel.TimeDB
+const LastDB = Untravel.LastDB
 /**
  * @param {Player} data
  */
@@ -14,6 +15,7 @@ Untravel.Minecraft.world.afterEvents.playerLeave.subscribe((data) => {
   const TimePlayed = Math.ceil((DateNow - DateLogin))
   TimeDB.set(playerN, TimeSaved + TimePlayed)
   Untravel.PlayerOnline[playerN] = undefined
+  LastDB.set(playerN, DateNow)
 })
 
 /**
