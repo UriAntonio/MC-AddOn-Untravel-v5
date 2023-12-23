@@ -1,6 +1,7 @@
 import { ActionFormData } from "@minecraft/server-ui";
 import Untravel from "../../Untravel";
 import { ForceOpen } from "../../Modules/Server/Forms";
+import Config from "../../conf/Configuration";
 
 
 const LastDB = Untravel.LastDB
@@ -35,7 +36,7 @@ Untravel.Commands.register({
       message += ` §f${second % 60} §bsegundos`
     })
     const form = new ActionFormData().title(`${title}`).body(`${message}`).button("§9Ok")
-    player.sendMessage("§1------------------------------\n§a■§3Cierra el Chat para ver el Panel")
+    player.sendMessage(Config.FormMessage)
     let res = await ForceOpen(player, form)
     if (!res.canceled){
         player.playSound("random.levelup")

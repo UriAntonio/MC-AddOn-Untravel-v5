@@ -158,6 +158,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     log: true,
     //tempban: true,
     gm: true,
+    item: true,
     funds: true,
     notify: true,
     coliseo: true,
@@ -183,7 +184,8 @@ Config.ranks = {
   selecto: {}
 
 }
-
+Config.serverStyler = "§1------------------------------\n"
+Config.FormMessage = `${Config.serverStyler}■§3Cierra el Chat para ver el Panel`
 // Dangerous Setting (Only change if you know)
 
 /**
