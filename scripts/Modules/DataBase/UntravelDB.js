@@ -60,21 +60,37 @@ export class DB {
     entries() {
         return this.data;
     }
+    /**
+     * A function that be executed in eache key of the DB usinf Kay and value as param
+     * @param {Function} callback 
+     */
     forEach(callback) {
         for (const [key, value] of Object.entries(this.data)) {
             callback(key, value)   
         }
     }
+    /**
+     * get an Array of all the keys in the DB
+     * @returns Array[]
+     */
     keys() {
         let keys = []
         for (const [key, value] of Object.entries(this.data)) keys.push(key)
         return keys;
     }
+    /**
+     * Get an Array of all values in the DB
+     * @returns Array[]
+     */
     values() {
         let values = []
         for (const [key, value] of Object.entries(this.data)) values.push(value)
         return values;
     }
+    /**
+     * Get the total lenght of a DB
+     * @returns number
+     */
     get lenght() {
         return Object.entries(this.data).length
     }
