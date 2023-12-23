@@ -42,7 +42,7 @@ class UntravelClass {
     this.Minecraft = mc
     this.System = mc.system
     this.PlayerOnline = {}
-    this.HomeDB = new Database("homeDB")
+    this.HomeDB = new DB("homeDB")
     this.WarpDB = new DB("warpDB")
     this.BackDB = new DB("backDB")
     this.BanDB = new DB("banDB")
