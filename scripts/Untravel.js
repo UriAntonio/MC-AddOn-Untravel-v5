@@ -29,6 +29,7 @@ const Extensions = {
   "Bow-ding": false,
   "Gamemode": false,
   "Database": false,
+  "mobStack": false
   //"HealthDisplay": true,
 }
 
