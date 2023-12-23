@@ -14,6 +14,10 @@ export class DB {
         this.data = JSON.parse(Database.get(name));
     }
 
+    update() {
+Database.set(this.userkey, JSON.stringify(this.data))
+return true
+}
     /**
      * Add a value in a key inside of DB
      * @param {string} key 
@@ -21,7 +25,7 @@ export class DB {
      */
     set(key, value) {
         this.data[key] = value
-        Database.set(this.userkey, JSON.stringify(this.data));
+        this.update();
     }
 
     /**
@@ -39,7 +43,7 @@ export class DB {
      */
     delete(key) {
         delete this.data[key];
-        Database.set(this.userkey, JSON.stringify(this.data));
+        this.update();
     }
 
     /**
