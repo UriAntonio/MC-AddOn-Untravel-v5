@@ -15,9 +15,9 @@ export class DB {
     }
 
     update() {
-Database.set(this.userkey, JSON.stringify(this.data))
-return true
-}
+        Database.set(this.userkey, JSON.stringify(this.data))
+        return true
+    }
     /**
      * Add a value in a key inside of DB
      * @param {string} key 
@@ -70,7 +70,7 @@ return true
      */
     forEach(callback) {
         for (const [key, value] of Object.entries(this.data)) {
-            callback(key, value)   
+            callback(key, value)
         }
     }
     /**
