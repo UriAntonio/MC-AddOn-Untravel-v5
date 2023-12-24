@@ -1,8 +1,7 @@
 import { system, world } from "@minecraft/server";
 import Config from "../../conf/Configuration";
-import { Database } from "../DataBase/Database";
-import { checkObjective } from "../Server/Scoreboard";
 import Untravel from "../../Untravel";
+import { DB } from "../DataBase/UntravelDB";
 
 
 const MoneyObjective = "Money"
@@ -20,8 +19,8 @@ class MoneySystem {
 
     async #init() {
         // await Untravel.waitLoaded()
-        this.MoneyDatabase = new Database("moneyDB")
-        if (!checkObjective(MoneyObjective)) await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
+        this.MoneyDatabase = new DB("moneyDB")
+        //if (!checkObjective(MoneyObjective)) await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
         this.#isLoaded = true
         this.#Readyplayer = []
 
@@ -29,15 +28,12 @@ class MoneySystem {
             let player = data.player
             if (data.initialSpawn) {
                 let playerMoney = this.MoneyDatabase.get(player.name)
-                //Untravel.sendMessage(`${playerMoney} 1`)
                 if (playerMoney == undefined) {
                     playerMoney = this.getMoney(player.name)
-                //    Untravel.sendMessage(`${playerMoney} 2`)
             }
                 
                 if (playerMoney == undefined) {
                     playerMoney = this.getStarterMoney()
-                //    Untravel.sendMessage(`${playerMoney} 3`)
                 }
                 
                 this.setMoney(player.name, playerMoney)
@@ -80,7 +76,7 @@ class MoneySystem {
     }
 
     /**
-     * Obten el Dinero del Jugadore
+     * Obten el Dinero del Jugador
      * @param {string} playerName
      * @param {number}
      * @param {PlayerClass} player
@@ -89,7 +85,7 @@ class MoneySystem {
         let player = Untravel.getPlayer(playerName)
         let playerMoney
         if (player != undefined) {
-            playerMoney = player.getScore(MoneyObjective)
+            playerMoney = this.MoneyDatabase.get(player.name)
         } else {
             playerMoney = this.MoneyDatabase.get(playerName)
         }
@@ -105,7 +101,7 @@ class MoneySystem {
     async setMoney(playerName, money) {
         let player = Untravel.getPlayer(playerName)
         if (player != undefined) {
-            player.setScore(MoneyObjective, money)
+            this.MoneyDatabase.set(player.name, money)
         } else {
             await this.MoneyDatabase.set(playerName, money)
         }
@@ -130,6 +126,8 @@ class MoneySystem {
         await this.MoneyDatabase.clear()
         await world.scoreboard.removeObjective(MoneyObjective)
         await world.scoreboard.addObjective(MoneyObjective, MoneyObjective)
+        //await this.FundsDatabase.delete(FundsName)
+        //await this.FundsDatabase.set(FundsName, 0)
       }
 }
 
