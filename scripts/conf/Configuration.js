@@ -184,8 +184,8 @@ Config.ranks = {
   selecto: {}
 
 }
-Config.serverStyler = "§1------------------------------\n"
-Config.FormMessage = `${Config.serverStyler}■§3Cierra el Chat para ver el Panel`
+Config.serverStyler = "§1------------------------------\n§a■"
+Config.FormMessage = `${Config.serverStyler}§3Cierra el Chat para ver el Panel`
 // Dangerous Setting (Only change if you know)
 
 /**
