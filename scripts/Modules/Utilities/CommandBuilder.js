@@ -17,26 +17,26 @@ export class CommandBuilder {
   }
     /**
    * Registra un comando con una llamada de vuelta
-   * @param {registerInformation} register Un  objeto de informacion necesaria para registrar el comando personalizado
+   * @param {registerInformation} add Un  objeto de informacion necesaria para registrar el comando personalizado
    * @param {(data: mc.ChatSendBeforeEvent, player: PlayerClass, args: Array<string>) => void} callback Codigo que tu quieres ejecutar cuando el comando sea ejecutado
    * @example import { Untravel } from "../../Minecraft";
-   *  Untravel.commands.register({ name: 'ping' }, (data, args) => {
+   *  Untravel.cmd.register({ name: 'ping' }, (data, args) => {
    *  Untravel.broadcast('Pong!', data.sender.name);
    * });
    * 
    * Asegurate de agregar el comando a Config y que el nombre sea igual al archivo
    */
-    register(register, callback) {
+    add(add, callback) {
       let form = {
-        name: register.name.toLowerCase(),
-        aliases: register.aliases
-          ? register.aliases.map((v) => v.toLowerCase())
+        name: add.name.toLowerCase(),
+        aliases: add.aliases
+          ? add.aliases.map((v) => v.toLowerCase())
           : null,
-        description: register.description,
-        category: register.category || "None",
-        usage: register.usage,
-        admin: register.admin || false,
-        settingname: register.settingname || register.name.toLowerCase(),
+        description: add.description,
+        category: add.category || "None",
+        usage: add.usage,
+        admin: add.admin || false,
+        settingname: add.settingname || add.name.toLowerCase(),
         callback,
       };
       this._registrationInformation.push(form)
