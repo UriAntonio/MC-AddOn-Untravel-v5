@@ -38,7 +38,7 @@ const Extensions = {
 
 class UntravelClass {
   constructor() {
-    this.Commands = CommandBuilder
+    this.cmd = CommandBuilder
     this.Minecraft = mc
     this.System = mc.system
     this.PlayerOnline = {}

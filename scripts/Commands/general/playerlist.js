@@ -1,6 +1,6 @@
 import Untravel from "../../Untravel"
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "playerlist",
   aliases: ["playerson", "players", "pl"],
   description: "Para ver la lista de jugadores y tiempo conectados",

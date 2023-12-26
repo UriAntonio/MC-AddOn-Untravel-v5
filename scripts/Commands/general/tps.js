@@ -1,6 +1,6 @@
 import Untravel from "../../Untravel"
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "tps",
   description: "Checa los Tick por Segundo del Servidor",
   usage: "tps",

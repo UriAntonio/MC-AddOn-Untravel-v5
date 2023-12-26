@@ -6,7 +6,7 @@ import Untravel from "../../Untravel"
 
 const HomeDB = Untravel.HomeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "delhome",
   aliases: ["dhome", "dh"],
   description: "Borra o Remueve un hogar",

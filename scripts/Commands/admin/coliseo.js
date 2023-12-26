@@ -2,7 +2,7 @@ import { Log } from "../../Modules/Log/Log"
 import Untravel from "../../Untravel"
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "coliseo",
     description: "Enciende o paga el Coliseo",
     usage: "coliseo <true | false>",

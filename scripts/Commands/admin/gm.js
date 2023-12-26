@@ -8,7 +8,7 @@ const gm = {
     gmP: "spectator"
 };
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "gm",
     description: "Cambia el modo de juego",
     usage: "gm",

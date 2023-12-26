@@ -2,7 +2,7 @@ import Utility from "../../Modules/Utilities/Utility"
 import Untravel from "../../Untravel"
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "topmoney",
   aliases: ["topbal", "topcartera", "topbalance", "tm"],
   description: "Mira la tabla de posiciones de Dinero",

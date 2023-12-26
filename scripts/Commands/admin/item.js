@@ -5,7 +5,7 @@ import { ForceOpen } from "../../Modules/Server/Forms";
 import Config from "../../conf/Configuration";
 import { LogWarn } from "../../Modules/Log/Log";
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "item",
     description: "Crea un item con lore Personalizado",
     category: "Admin",

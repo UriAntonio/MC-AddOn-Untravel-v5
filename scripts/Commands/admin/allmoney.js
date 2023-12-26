@@ -2,7 +2,7 @@ import Utility from "../../Modules/Utilities/Utility"
 import Untravel from "../../Untravel"
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "allmoney",
   aliases: ["am"],
   description: "Mira todos lo que tienen Dinero",

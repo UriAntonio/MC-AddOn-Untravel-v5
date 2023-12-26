@@ -4,7 +4,7 @@ import { LogWarn } from "../../Modules/Log/Log"
 
 const BanDB = Untravel.BanDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "ban",
   description: "Banea a un Jugador",
   usage: "ban <player_name> <reason?>",

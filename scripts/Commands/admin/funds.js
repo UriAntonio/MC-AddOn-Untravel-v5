@@ -2,7 +2,7 @@ import Utility from "../../Modules/Utilities/Utility"
 import Untravel from "../../Untravel"
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "funds",
   aliases: ["f", "fund"],
   description: "Mira los Fondos Generales de Untravel",

@@ -3,7 +3,7 @@ import Untravel from "../../Untravel"
 
 const WarpDB = Untravel.WarpDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "setwarp",
   description: "Crea un nuevo Warp",
   usage: "setwarp <nombre_del_lugar>",

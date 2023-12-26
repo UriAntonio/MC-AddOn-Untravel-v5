@@ -2,7 +2,7 @@ import Untravel from "../../Untravel"
 
 const HomeDB = Untravel.HomeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "allhomes",
     aliases: ["ah"],
     description: "ve lista completa de homes guardados",

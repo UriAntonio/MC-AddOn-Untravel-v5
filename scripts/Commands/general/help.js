@@ -1,7 +1,7 @@
 import Config from "../../conf/Configuration"
 import Untravel from "../../Untravel"
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "help",
   aliases: ["h"],
   description: " Puedes ver mas detalles de cada comando",
@@ -9,7 +9,7 @@ Untravel.Commands.register({
   category: "General"
 }, async (data, player, args) => {
   if (!args[0]) {
-    const commandList = Untravel.Commands.getAllRegistation()
+    const commandList = Untravel.cmd.getAllRegistation()
     let commandCategory = []
     for (const command of commandList) {
       if (!commandCategory.includes(command.category)) commandCategory.push(command.category)
@@ -29,7 +29,7 @@ Untravel.Commands.register({
     player.sendMessage(helpMessage)
   } else {
     const commandName = args[0]
-    let command = Untravel.Commands.getRegistration(commandName)
+    let command = Untravel.cmd.getRegistration(commandName)
     if (!command)
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
     if ((Untravel.Setting.get(`${command.settingname}System`) ?? Config.Commands[command.category.toLowerCase()][command.settingname]) == false)

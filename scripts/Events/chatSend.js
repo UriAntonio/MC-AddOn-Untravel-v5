@@ -25,18 +25,12 @@ Untravel.world.beforeEvents.chatSend.subscribe((eventData) => {
         eventData.cancel = true;
         let args = msg.slice(prefix.length).trim().split(/ +/)
         const commandCall = args.shift().toLowerCase()
-        let cmd = Untravel.Commands.getRegistration(commandCall)
-        //let all = Untravel.Commands.getAllRegistation()
-        //let get = Untravel.Commands.get()
-        //let adminN = cmd.admin
-        //let tags = Config.AdminTag
+        let cmd = Untravel.cmd.getRegistration(commandCall)
         if (getCooldown("command", player) > 0) return player.sendMessage(`§a■§cPorfavor espera, el comando esta en cooldown por §e${getCooldown("command", player)}s!`)
         if (!cmd) {
-            //player.sendMessage(`1§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.${cmd}.... ${all} ... ${get}`)
-            player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
+           player.sendMessage(`§cComando desconocido: ${commandCall}. Revisa que el comando exista y que tengas permiso para usarlo.`)
             return eventData.cancel = true
         }
-        //player.sendMessage(`§c${commandCall}.. ${cmd.name}`)
         /**
          * recuerda registrar el comando en {Settings}
          * esto verifica que el comando no seaa de la categoria System o si esta desabilitado

@@ -7,7 +7,7 @@ import Action from "../../Modules/Log/ActionLog"
 
 const HomeDB = Untravel.HomeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "home",
   description: `Comando MUY poderoso para\n teletransporte a el hogar seleccionado; \nImpuesto Magico en Overworld, Nether, End: §f${Config.homeTpCost}, ${Config.homeTpCostNether}, ${Config.homeTpCostEnd}§b, \nEnfriamiento: ${Config.homeCooldown} §b`,
   usage: "home <home_name>",

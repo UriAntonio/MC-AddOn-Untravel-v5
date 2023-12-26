@@ -6,7 +6,7 @@ import Config from "../../conf/Configuration";
 
 const LastDB = Untravel.LastDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "last",
     description: "Ve la ultima conexion de lun jugador ,a partir del 19/12/23)",
     category: "Admin",

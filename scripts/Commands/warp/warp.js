@@ -7,7 +7,7 @@ import Money from "../../Modules/Finance/Money"
 
 const WarpDB = Untravel.WarpDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "warp",
   description: "Teleport al warp seleccionado",
   usage: "warp <nombre_de_lugar>",

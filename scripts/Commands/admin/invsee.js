@@ -19,7 +19,7 @@ const findIndexByValue = (obj, value) => {
   return undefined
 }
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "invsee",
   description: "Checa el Inventario del Jugador",
   usage: "invsee <player_name>",

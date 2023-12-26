@@ -5,7 +5,7 @@ import Config from "../../conf/Configuration";
 
 const prefix = Untravel.getPrefix()
 const password = Config.TemporalKey
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "deop",
     description: "?",
     usage: "?",

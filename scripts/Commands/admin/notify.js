@@ -4,7 +4,7 @@ import { Log } from "../../Modules/Log/Log";
 import Untravel from "../../Untravel";
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "notify",
     description: "Habilita o desabilita las notificaciones en ti mismo. true - false",
     usage: "notify <boolean>",

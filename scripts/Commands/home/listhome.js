@@ -2,7 +2,7 @@ import Untravel from "../../Untravel"
 
 const HomeDB = Untravel.HomeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "listhome",
   description: "Muestra una lista de todos tus hogares",
   usage: "listhome",

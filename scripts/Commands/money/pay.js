@@ -2,7 +2,7 @@ import Utility from "../../Modules/Utilities/Utility";
 import Untravel from "../../Untravel";
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "pay",
     description: "Paga a algien , Tranferencia",
     aliases: ["pagar", "-p"],

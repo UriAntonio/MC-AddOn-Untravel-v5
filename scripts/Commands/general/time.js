@@ -5,7 +5,7 @@ import { ForceOpen } from "../../Modules/Server/Forms";
 
 const TimeDB = Untravel.TimeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "time",
     description: "Ve el tiempo de coneccion general a partir del 19/12/23)",
     category: "General",

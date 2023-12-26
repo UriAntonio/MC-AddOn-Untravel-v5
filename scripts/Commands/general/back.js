@@ -3,7 +3,7 @@ import Untravel from "../../Untravel"
 import { getCooldown, setCooldown } from "../../Modules/Cooldown"
 const BackDB = Untravel.BackDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "back",
   description: "Teleport to last died location",
   usage: "back",

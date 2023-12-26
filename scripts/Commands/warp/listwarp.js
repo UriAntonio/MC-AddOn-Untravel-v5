@@ -2,7 +2,7 @@ import Untravel from "../../Untravel"
 
 const WarpDB = Untravel.WarpDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "listwarp",
   description: "Provee una lista de los warps disponibles",
   aliases: ["lw"],

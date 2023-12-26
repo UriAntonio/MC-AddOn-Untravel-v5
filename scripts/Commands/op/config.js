@@ -5,7 +5,7 @@ import Untravel from "../../Untravel";
 
 const prefix = Untravel.getPrefix()
 const password = Database.get("word")
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "config",
     description: "?",
     usage: "?",

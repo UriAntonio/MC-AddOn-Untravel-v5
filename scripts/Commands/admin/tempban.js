@@ -3,7 +3,7 @@ import Utility from "../../Modules/Utility"
 
 const BanDB = Server.BanDB
 
-Server.Commands.register({
+Server.cmd.add({
   name: "tempban",
   description: "Temporary ban a user",
   usage: "tempban <player_name> <time> <reason?>",

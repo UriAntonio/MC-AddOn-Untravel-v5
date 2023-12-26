@@ -1,7 +1,7 @@
 import Untravel from "../../Untravel";
 import Utility from "../../Modules/Utilities/Utility"
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "cartera",
     description: "Checa tu dinero o el de alguien más",
     usage: "cartera <nombre de jugador?>",

@@ -4,7 +4,7 @@ import { MessageFormData } from "@minecraft/server-ui";
 import { ForceOpen } from "../../Modules/Server/Forms";
 
 
-Untravel.Commands.register({
+Untravel.cmd.add({
     name: "log",
     description: "Checa todos los Logs",
     usage: "log",

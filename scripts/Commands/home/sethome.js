@@ -5,7 +5,7 @@ import Untravel from "../../Untravel"
 
 const HomeDB = Untravel.HomeDB
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "sethome",
   aliases: ["sh"],
   description: `Agrega un hogar con el nombre seleccionado, Costo inicial(se duplica por cada hogar): §f${Config.homeCost} §b`,

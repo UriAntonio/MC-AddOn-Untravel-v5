@@ -7,7 +7,7 @@ import Config from "../../Configuration"
 const TPRange = 1000
 const playerTeleport = {}
 
-Untravel.Commands.register({
+Untravel.cmd.add({
   name: "rtp",
   description: "World Tick per Second",
   usage: "tps",
