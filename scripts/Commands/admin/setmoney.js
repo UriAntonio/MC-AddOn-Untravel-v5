@@ -9,7 +9,7 @@ Untravel.cmd.add({
   name: "setmoney",
   aliases: ["sm"],
   description: "Establese el dinero de un jugador",
-  usage: "setmoney <player_name> <cantidad>",
+  usage: "setmoney",
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
@@ -17,8 +17,8 @@ Untravel.cmd.add({
   const playersArr = players.map(pl => pl.name)
   const f = new ModalFormData
   f.title("§a■§9§lSET MONEY§r§a■")
-  f.dropdown("§bSelect a player to transfer to.", playersArr)
-  f.textField(`§3Cantidad:\n`, '')
+  f.dropdown("§bSelecciona al Jugador.", playersArr)
+  f.textField(`§3Cantidad a establecer:\n`, '')
   player.sendMessage(Config.FormMessage)
   let response = await ForceOpen(player, f)
   if (response.formValues != undefined) {
@@ -28,13 +28,9 @@ Untravel.cmd.add({
     } else {
       let targetSelected = playersArr[response.formValues[0]]
       let targetPlayer = await Untravel.getPlayer(targetSelected)
-      if (targetPlayer != undefined) {
-        await targetPlayer.setMoney(amount)
-        player.sendMessage(`${Config.serverStyler}§3Se puso a §b${targetPlayer.name}§3 la cantidad de §f${Utility.formatMoney(amount)} §3exitosamente.`)
-        Log(`[ MONEY ]${player.name} puso a §b${targetPlayer.name}§3 la cantidad de §f${amount}`)
-      } else {
-        return player.sendMessage("§a■§cNo hay Objetivos que coincidan con el selector")
-      }
+      await targetPlayer.setMoney(amount)
+      player.sendMessage(`${Config.serverStyler}§3Se puso a §b${targetPlayer.name}§3 la cantidad de §f${Utility.formatMoney(amount)} §3exitosamente.`)
+      Log(`[ MONEY ]${player.name} puso a §b${targetPlayer.name}§3 la cantidad de §f${amount}`)
     }
   }
 })

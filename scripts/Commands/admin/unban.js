@@ -7,8 +7,8 @@ const BanDB = Untravel.BanDB
 
 Untravel.cmd.add({
   name: "unban",
-  description: "Desbanea al Jugador especificado",
-  usage: "unban <player_name>",
+  description: "Desbanea a un Jugador",
+  usage: "unban",
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
