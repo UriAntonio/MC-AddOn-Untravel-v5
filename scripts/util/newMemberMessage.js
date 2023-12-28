@@ -190,7 +190,7 @@ export function welcome(playerid, gamemode) {
       .title(`§5★━━━━━━━━<§o§lBienvenido§r§5>━━━━━━━━★`)
       .body(
         `\n§rBienvenido de nuevo a §l§dUntravel§6Mx`
-        + `\n§5${playerid.nameTag}§r.`
+        + `\n§5${playerid.name}§r.`
         + `\nEsperamos y te la pases bien`
         + ` cualquier error o sugerencia`
         + ` acércate a nosotros en:`
