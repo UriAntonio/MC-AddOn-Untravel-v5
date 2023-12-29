@@ -3,7 +3,9 @@ import Untravel from "../Untravel";
 import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
 import { Log } from "../Modules/Log/Log";
 import { msgLog } from "../Modules/Log/msgLog";
+import untravel from "../Extensions/untravel";
 
+const {symbols: {Bronze}} = untravel
 /**
  * @param {PlayerClass} player
  */
@@ -57,7 +59,8 @@ Untravel.world.beforeEvents.chatSend.subscribe((eventData) => {
         })
         //ejecuta el cooldown para los comandos
         setCooldown("command", player, Untravel.Setting.get("commandCooldown") ?? Config.commandCooldown)
-        if (cmd.category == "Op") return Log(`[OP][Command] ${player.name} uso el comando §7${cmd.name}`)
+        if (cmd.category == "Op") return Log(`[ OP ][Command] ${player.name} uso el comando §7${cmd.name}`)
+        if (!args[0]) return Log(`[Command] ${player.name} uso el comando §7${cmd.name}.`)
         Log(`[Command] ${player.name} uso el comando §7${cmd.name} | argumentos: ${args}.`)
     }
     //Se asigna rango
@@ -68,14 +71,15 @@ Untravel.world.beforeEvents.chatSend.subscribe((eventData) => {
         }
     }
     if (!rank) {
-        rank = "★";
+        let member = Bronze
+        rank = member;
     }
     //envia el mensaje al chat general
     if (!eventData.cancel) {
         Untravel.sendMsgAll(
-            "@a", `§r§o§7${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`
+            "@a", `§r§o§7${player.name}§7 [§r${rank}§o§7] >> §r${msg}`
         )
-        msgLog(`§r§o§g${player.name}§7 [§8${rank}§r§o§7] >> §r${msg}`)
+        msgLog(`§r§o§g${player.name}§7 [§r${rank}§o§7] >> §r${msg}`)
         eventData.cancel = true;
     }
 })

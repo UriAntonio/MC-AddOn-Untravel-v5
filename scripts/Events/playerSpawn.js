@@ -4,10 +4,11 @@ import Config from "../conf/Configuration.js";
 import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
+import untravel from "../Extensions/untravel.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
-
+const {symbols: {Chalenger}} = untravel
 function rankFilter(player) {
   let tags = player.getTags()
   let rank
@@ -24,7 +25,7 @@ function rankFilter(player) {
 
 
   if (player.isAdmin()) {
-    player.addTag("Rank:§l§b★★★★★★★")
+    player.addTag(`Rank:§l§b${Chalenger}`)
   }
 }
 
@@ -50,14 +51,17 @@ function onJoinSpawn(player) {
       }
     }
     if (player.isAdmin()) {
-      if (!player.hasTag("Rank:§l§b★★★★★★★")) {
-        player.addTag("Rank:§l§b★★★★★★★")
+      if (!player.hasTag(`Rank:§l§b${Chalenger}`)) {
+        player.addTag(`Rank:§l§b${Chalenger}`)
       }
       if (!player.hasTag("Notify")) {
         player.addTag("Notify")
       }
       
       
+    }
+    if (!player.isAdmin() && player.hasTag(`Rank:§l§b${Chalenger}`)) {
+      player.removeTag(`Rank:§l§b${Chalenger}`)
     }
     let gamemode
     //player.runCommandAsync(`gamemode s @s[tag=!${Config.AdminTag}]`)
