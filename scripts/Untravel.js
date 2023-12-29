@@ -23,14 +23,16 @@ const Event = [
   "combat",
   "playerInteract",
   "systemRun",
+  "entityHurt",
 ]
 
 const Extensions = {
   "Bow-ding": false,
   "Gamemode": false,
   "Database": false,
-  "mobStack": false
-  //"HealthDisplay": true,
+  //"mobStack": false,
+  "untravel": false,
+  "HealthDisplay": true,
 }
 
 
@@ -162,15 +164,20 @@ class UntravelClass {
   /**
    * 
    * @param {mc.Player} target Jugador objetivo
-   * @param {string} line1 mensaje hasta arriba
-   * @param {string} line2 mensaje en medio
+   * @param {string} line0 mensaje hasta arriba
+   * @param {string} line1 mensaje en medio up
+   * @param {string} line2 mensaje en medio down
    * @param {string} line3 mensaje hasta abajo
    */
-  actionBar(target, line1, line2, line3) {
-    if (line1 == undefined) line1 = ""
+  actionBar(target, line0, line1, line2, line3) {
+    let final1, final2, final3
+    if (line0 == undefined) line0 = ""
+    line1 == undefined? final1 = "" : final1 = "\n"+line1
+    line2 == undefined? final2 = "" : final2 = "\n"+line2
+    line3 == undefined? final3 = "" : final3 = "\n"+line3
     if (line2 == undefined) line2 = ""
     if (line3 == undefined) line3 = ""
-    target.onScreenDisplay.setActionBar(`${line1+"\n"+line2+"\n"+line3}`)
+    target.onScreenDisplay.setActionBar(`${line0+final1+final2+final3}`)
   }
 
   async tagTitle(player, titleTag, titleName) {
