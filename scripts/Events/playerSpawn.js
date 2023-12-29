@@ -8,7 +8,28 @@ import untravel from "../Extensions/untravel.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
-const {symbols: {Chalenger}} = untravel
+const { symbols: { Chalenger } } = untravel
+const statsDB = Untravel.PlayerStats
+
+const playerStats = {
+  name: "",
+  money: 0,
+  //level: 0,//
+  //exp: 0,//
+  //kills: 0,//
+  //deaths: 0,//
+  //rank: [],//
+  //title: [],//
+  vidaM: 20,
+  manaM: 0,
+  regen: 2,
+  //plusRegen: 0,//
+  //vault: {//
+  //  vaultID: 0,//
+  //  key: 0//
+  //}
+}
+
 function rankFilter(player) {
   let tags = player.getTags()
   let rank
@@ -21,7 +42,7 @@ function rankFilter(player) {
       Config.ranks.staff.list
       addtag = tag + "--"
     }
-}
+  }
 
 
   if (player.isAdmin()) {
@@ -50,6 +71,26 @@ function onJoinSpawn(player) {
         player.triggerEvent("minecraft:kick");
       }
     }
+
+    let stats = statsDB.get(player.id)
+    if(stats == undefined) stats = playerStats
+    statsDB.set(player.id, stats)
+
+    statsDB.get(player.id)
+    stats.name = player.name
+    stats.money = player.getMoney()
+    stats.vidaM = player.getmaxHealth()
+    stats.manaM = player.getmaxMana()
+    stats.regen = player.getRegen()
+    statsDB.set(player.id, stats)
+    
+
+
+
+
+
+
+
     if (player.isAdmin()) {
       if (!player.hasTag(`Rank:§l§b${Chalenger}`)) {
         player.addTag(`Rank:§l§b${Chalenger}`)
@@ -57,8 +98,8 @@ function onJoinSpawn(player) {
       if (!player.hasTag("Notify")) {
         player.addTag("Notify")
       }
-      
-      
+
+
     }
     if (!player.isAdmin() && player.hasTag(`Rank:§l§b${Chalenger}`)) {
       player.removeTag(`Rank:§l§b${Chalenger}`)
@@ -88,7 +129,7 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
   if (loaded.initialSpawn) {
     //Verificacion de Baneo
     if (BanDB.has(player.name)) {
-      
+
       let banData = BanDB.get(player.name)
       if (!banData.duration) return player.kick(`\n§l§cFUISTE BANNEADO!\n§bRazon:§r ${banData.reason}\n§eBanned Por:§r ${banData.by}\n§6Si piensas que hubo un error\ncomunicate a §bsupport@untravelmx.com  §r`)
       if (Date.now() > banData.duration) {
@@ -110,6 +151,7 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
     });
 
   } else {
+    player.setHealth(player.getmaxHealth()) 
     if ((Untravel.Setting.get("backSystem") ?? true) == false) return
     //player.sendMessage(`§eYou died. use §a!back§e to teleport to your death location.`)
   }
