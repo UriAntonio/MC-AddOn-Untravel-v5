@@ -38,10 +38,10 @@ Untravel.System.runInterval(() => {
         let fisrtLine
         let line2
         let line3
-        let formatedHealth = player.formatedHealth
-        let maxHealth = player.maxHealth
-        let maxMana = player.maxMana
-        let actualMana = player.actualMana
+        let formatedHealth = player.getformatedHealth()
+        let maxHealth = player.getmaxHealth()
+        let maxMana = player.getmaxMana()
+        let actualMana = player.getMana()
         line0 = `${heart}§c${formatedHealth}/${maxHealth} ${mana}§b${actualMana}/${maxMana}`
         if (Combat.isCombat(player.name)) {
             let enemyName = Combat.getCombat(player.name)

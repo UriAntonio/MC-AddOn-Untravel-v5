@@ -70,28 +70,9 @@ Untravel.world.afterEvents.entityDie.subscribe((data) => {
 Untravel.System.runInterval(() => {
     if (!isCombatOn) return
 
-    Untravel.world.getAllPlayers().forEach(player => {
-        //console.log(`${player}`)
-        let fisrtLine
-        let line2
-        let line3
+    Untravel.world.getAllPlayers().forEach(player => {        
         if (Combat.stopCombat(player.name))
             Untravel.System.run(() => player.sendMessage(`§a■§aYa no estas en combate`))
-        if (Combat.isCombat(player.name)) {
-            let enemyName = Combat.getCombat(player.name)
-            fisrtLine = `§cEstas en combate con:§4${enemyName}\n§cDesconectarse contará como muerte`
-
-        }
-        if (Action.hasMsg(player.name, 2)) {
-            line2 = Action.getLineMsg(player.name, 2)
-
-        }
-        if (Action.hasMsg(player.name, 3)) {
-            line3 = Action.getLineMsg(player.name, 3)
-
-        }
-        Untravel.actionBar(player, fisrtLine, line2, line3)
-
     })
 
 }, 20)
