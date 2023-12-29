@@ -23,16 +23,15 @@ const Event = [
   "combat",
   "playerInteract",
   "systemRun",
-  "entityHurt",
 ]
 
 const Extensions = {
   "Bow-ding": false,
   "Gamemode": false,
   "Database": false,
-  //"mobStack": false,
   "untravel": false,
   "HealthDisplay": true,
+  "playerHealth": false
 }
 
 
@@ -50,6 +49,7 @@ class UntravelClass {
     this.BanDB = new DB("banDB")
     this.TimeDB = new DB("time")
     this.LastDB = new DB("lastJoinDB")
+    this.PlayerStats = new DB("statsDB")
     this.Fund = Fund
     this.Setting = new Setting()
     this.Money = Money
