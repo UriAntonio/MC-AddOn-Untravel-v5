@@ -9,10 +9,10 @@ const untravel = {
         trash: fromCodePoint(0xE308)
     },
     standar: {
-        actualHealth: 100,
-        maxHealth: 100,
-        actualMana: 50,
-        maxMana: 50,
+        actualHealth: 20,
+        maxHealth: 20,
+        actualMana: 0,
+        maxMana: 0,
         actualRegen: 2
     }
 }
