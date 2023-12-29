@@ -18,3 +18,14 @@ Untravel.world.afterEvents.entityDie.subscribe( async data => {
     await player.setMoney(player.getMoney() + moneyEarn)
     Action.addAction(player, 3,`§3Obtiviste §b${Utility.formatMoney(moneyEarn)}`)
 })
+
+Untravel.world.afterEvents.entityDie.subscribe((event) => {
+    const { deadEntity: entity } = event
+    const player = event.damageSource.damagingEntity
+    if (!(entity.isValid())) return
+    if (event.damageSource.cause == 'suicide') return
+    if (entity.getDynamicProperty("stack") >= 1){
+        let newentity = entity.dimension.spawnEntity(entity.typeId, entity.location)
+        newentity.setDynamicProperty("stack",entity.getDynamicProperty("stack") - 1)
+    }
+})
