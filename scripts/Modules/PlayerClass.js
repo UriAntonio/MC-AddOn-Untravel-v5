@@ -4,17 +4,27 @@ import { getScore, setScore } from "./Server/Scoreboard";
 import Config from "../conf/Configuration";
 import Combat from "./Server/Combat";
 import Database from "../Extensions/Database";
+import { Log } from "./Log/Log";
+import untravel from "../Extensions/untravel";
 
+const { standar } = untravel
 
 const PlayerClass = Object.assign(mc.Player.prototype, {
   /**
  * Checa si el Player es admin
  * @ {data}
  * @returns {boolean}
+ * @type {Player}
  */
   isAdmin() {
     return Database.get(Config.AdminTag) === Database.get(Config.AdminTag, this)
-    
+
+  },
+  isOwner() {
+    let Id = this.id
+    Log(`${Id}`)
+    if (Config.Owners.includes(Id)) return true
+    return false
   },
   /**
    * Checa si el Player apaga TPA
@@ -128,7 +138,121 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
    */
   isCombat() {
     return Combat.isCombat(this.name)
-  }
+  },
+
+  /**
+   * return the actual health of a player
+   * @returns {number}
+   */
+  getHealth() { 
+   return this.getDynamicProperty("vida") ?? standar.actualHealth
+   },
+  
+  /**
+   * set the value for health of a player
+   * @param {number} value 
+   */
+  setHealth(value) {
+    this.setDynamicProperty("vida", Math.min((value), this.getmaxHealth()))
+    },
+  
+  /**
+   * converted the output from float to Integrer of health
+   * @returns {number}
+   */
+  getformatedHealth() {
+     return (this.getHealth()).toFixed() 
+    },
+  
+  /**
+   * Get the max health of a player
+   * @returns {number}
+   */
+  getmaxHealth() { 
+    let stat = Untravel.PlayerStats.get(this.name)
+    if(stat == undefined) return standar.maxHealth
+    if (!stat["vidaM"] == undefined) return stat["vidaM"]
+    return standar.maxHealth 
+    },
+    
+  /**
+   * Set the max health of a player
+   * @param {number} value 
+   */
+  setmaxHealth(value) {
+    let stat = Untravel.PlayerStats.get(this.name)
+    stat["vidaM"] = value
+    Untravel.PlayerStats.set(this.name, stat)
+   },
+  
+  /**
+   * get tha actual mana of a player
+   * @returns {number}
+   */
+  getMana() {
+    return  this.getDynamicProperty("mana") ?? standar.actualMana    
+ },
+  
+  /**
+   * Set the actual mana of a player
+   * @param {number} value 
+   */
+  setMana(value) {
+    this.setDynamicProperty("mana", Math.min(value, this.maxMana))
+    },
+  
+    /**
+   * converted the output from float to Integrer of mana
+   * @returns {number}
+   */
+  getformatedMana() {
+    return (this.getMana()).toFixed() 
+   },
+ 
+  /**
+   * get the max mana of a player
+   * @return {number}
+   */
+  getmaxMana() {
+    let stat = Untravel.PlayerStats.get(this.name)
+    if(stat == undefined) return standar.maxMana
+    if (!stat["manaM"] == undefined) return stat["manaM"]
+    return standar.maxMana
+    },
+  
+  /**
+   * Set the max mana of a player
+   * @param {number} value 
+   */
+  setmaxMana(value) {
+    let stat = Untravel.PlayerStats.get(this.name)
+    stat["manaM"] = value
+    Untravel.PlayerStats.set(this.name, stat)
+    },
+  
+  /**
+   * Get the stat of Regeneration per porcentage of a player
+   * @return {number}
+   */
+  getRegen() {
+    let stat = Untravel.PlayerStats.get(this.name)
+    if(stat == undefined) return standar.actualRegen
+    if (!stat["regen"] == undefined) return stat["regen"]
+    return standar.actualRegen
+    },
+  
+  /**
+   * Set the percentage of regeneration of a player
+   * @param {number} value 
+   */
+  setRegen(value) {
+    let stat = Untravel.PlayerStats.get(this.name)
+    stat["regen"] = value
+    Untravel.PlayerStats.set(this.name, stat)
+    }
+
+
+
 })
 
 export default PlayerClass
