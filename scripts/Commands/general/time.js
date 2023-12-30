@@ -1,24 +1,28 @@
 import { ActionFormData } from "@minecraft/server-ui";
 import Untravel from "../../Untravel";
 import { ForceOpen } from "../../Modules/Server/Forms";
+import Config from "../../conf/Configuration";
+import { Log } from "../../Modules/Log/Log";
 
 
 const TimeDB = Untravel.TimeDB
 
 Untravel.cmd.add({
     name: "time",
-    description: "Ve el tiempo de coneccion general a partir del 19/12/23)",
+    description: "Ve el tiempo de coneccion total a partir del 29/12/23)",
     category: "General",
     usage: "time",
 }, async (data, player, args) => {
-    let title ="§a■§1[§9TIEMPO ONLINE DE JUGADORES§1]§a■"
+    let title ="§a■§1[§9TIEMPO ONLINE DE JUGADORES§1]§a■" 
     let message = ""
     TimeDB.forEach((key, value) => {
       let plr = key
       const DateNow = new Date()
-      const DateLogin = Untravel.PlayerOnline[plr]
-      const TimePlayed = value
-      const SecondPlayed = value + Math.ceil((DateNow - DateLogin) / 1000);
+      let DateLogin = Untravel.PlayerOnline[plr]
+      if (DateLogin == undefined) DateLogin = 0
+      Log(`${DateLogin}`)
+      const TimePlayed = (DateNow - DateLogin)
+      const SecondPlayed = Math.ceil((TimePlayed + value) / 1000);
       message += `\n§1 | §3${plr} §1| §bOnline Total§1 -`
       if (SecondPlayed >= 86400) {
         let day = Math.floor(SecondPlayed / 86400)
@@ -36,7 +40,7 @@ Untravel.cmd.add({
       message += ` §f${second % 60} §bsegundos`
     })
     const form = new ActionFormData().title(`${title}`).body(`${message}`).button("§9Ok")
-    player.sendMessage("§1------------------------------\n§a■§3Cierra el Chat para ver el Panel")
+    player.sendMessage(`${Config.FormMessage}`)
     let res = await ForceOpen(player, form)
     if (!res.canceled){
         player.playSound("random.levelup")
