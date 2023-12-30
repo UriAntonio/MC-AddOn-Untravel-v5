@@ -98,4 +98,11 @@ export class DB {
     get lenght() {
         return Object.entries(this.data).length
     }
+    /**
+     * Dangerous, Reset all the data (Eliminar)
+     * 
+     */
+    get reset() {
+        this.data = {};
+    }
 }
