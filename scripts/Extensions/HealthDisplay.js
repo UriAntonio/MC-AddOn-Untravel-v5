@@ -96,7 +96,7 @@ system.runInterval(() => {
         } else {
             if (world.getDynamicProperty("Types").split(",").includes(entity.typeId)) {
                 const comp = entity.getComponent("health")
-                const hunger = entity.setProperty("")
+                //const hunger = entity.setProperty("")
                 const closestEntities = closestSameMods(entity, entity.location);
                 entity.nameTag = `§c${formName(entity.typeId)} ${(comp.currentValue).toFixed()}/${comp.defaultValue}${heart}§r  [${entity.getDynamicProperty("stack")}]`
                 if (closestEntities.length > 0) {
