@@ -9,7 +9,8 @@ const LastDB = Untravel.LastDB
  */
 Untravel.Minecraft.world.afterEvents.playerLeave.subscribe((data) => {
   let playerN = data.playerName
-   const TimeSaved = TimeDB.get(playerN)
+   let TimeSaved = TimeDB.get(playerN)
+   if (TimeSaved == undefined) TimeSaved = 0
   const DateNow = Date.now()
   const DateLogin = Untravel.PlayerOnline[playerN] 
   const TimePlayed = Math.ceil((DateNow - DateLogin))
