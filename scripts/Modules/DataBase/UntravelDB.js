@@ -62,8 +62,12 @@ export class DB {
      * @returns object
      */
     entries() {
+        return Object.entries(this.data);
+    }
+    getAll() {
         return this.data;
     }
+
     /**
      * A function that be executed in eache key of the DB usinf Kay and value as param
      * @param {Function} callback 
