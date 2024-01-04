@@ -4,7 +4,9 @@
  *mas info: https://learn.microsoft.com/en-us/minecraft/creator/documents/scriptingservers
 */
 import { variables } from "@minecraft/server-admin";
+import untravel from "../Extensions/untravel";
 
+const emoji = untravel.symbols
 const Config = {}
 
 // NOT RECOMMENDED TO CHANGE, MAY CAUSE A LAG
@@ -99,6 +101,7 @@ Config.Prefix = "-"  // Command Prefix
 Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada para dar OP
 Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
 Config.TemporalKey = variables.get("temporalKey")
+Config.Owners = ["2535410465040894", "2535428592704562"]
 Config.gmc = variables.get("creative")
 Config.lockServer = false
 Config.debug = true
@@ -125,14 +128,10 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     //auctionhouse: true
   },
   home: {
-    home: true,
-    sethome: true,
-    delhome: true,
-    listhome: true
+    home: true
   },
   warp: {
-    warp: true,
-    listwarp: true
+    warp: true
   },
   tpa: {
     //tpa: true,
@@ -165,6 +164,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     allhomes: true,
     allmoney: true,
     lastjoin: true,
+    landsetting: true,
   },
   op: {
     op: true,
@@ -184,8 +184,12 @@ Config.ranks = {
   selecto: {}
 
 }
-Config.serverStyler = "§1------------------------------\n§a■"
+Config.serverStyler = "§1---------------------------\n§a»"
 Config.FormMessage = `${Config.serverStyler}§3Cierra el Chat para ver el Panel`
+Config.serverTitle = (title) => {
+let formated = `§a■§1§l[§9${title}§1]§r§a■`
+return formated
+}
 // Dangerous Setting (Only change if you know)
 
 /**
@@ -194,5 +198,62 @@ Config.FormMessage = `${Config.serverStyler}§3Cierra el Chat para ver el Panel`
  * Set to number if there is error
  */
 Config.NumberOf_1_16_100_Items = undefined
+
+/**
+ * Claim Block = How much player can claim
+ * Example: 64 Claim block, thats means player can only claim 64 block
+ * true = On
+ * false = Off
+ * Set it off = Player will not cost / use Claim Block
+ */
+Config.costClaimBlock = true
+
+/**
+ * Starter Player Claim Block
+ * Max: 2147483647
+ */
+Config.starterClaimBlock = 512
+
+/**
+ * Claim Block Objective
+ */
+Config.claimBlockObjective = "ClaimBlock"
+
+/**
+ * Money cost per block
+ * Example: If you set it to 2. Then it will cost 2 Coin per block
+ * Set it 0 to make it free
+ */
+Config.moneyCostperBlock = 2
+
+/**
+ * Particle when player set position
+ */
+Config.particleClaim = "minecraft:endrod"
+
+/**
+ * Notify when enter or exit land
+ * None = No notify
+ * ActionBar = Notify on Action Bar
+ * Chat = Notify on Chat
+ * Title = Notify on Title
+ */
+Config.notifyLand = "ActionBar"
+
+/**
+ * Item that used to set start or end position
+ */
+Config.itemClaimLand = "minecraft:golden_shovel"
+
+/**
+ * If its set to true, any explosion can't destroy land
+ */
+Config.protectLandfromExplosion = true
+
+/**
+ * If its set to true, other player can't use piston to break into other player land
+ */
+Config.allowPistonInLand = false
+
 
 export default Config
