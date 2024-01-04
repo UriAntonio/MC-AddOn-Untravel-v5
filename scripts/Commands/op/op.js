@@ -3,7 +3,6 @@ import Database from "../../Extensions/Database";
 import Untravel from "../../Untravel";
 import Config from "../../conf/Configuration";
 
-const prefix = Untravel.getPrefix()
 const password = Config.TemporalKey
 Untravel.cmd.add({
     name: "op",
@@ -15,7 +14,7 @@ Untravel.cmd.add({
 
     if (!args[0]) return player.sendMessage(`§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
     if ((args[0] == password)) {
-        if (!player.isOp()) return player.sendMessage(`§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
+        if (!player.isOp()) return player.sendMessage(`2§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
         if (player.isAdmin()) return player.sendMessage("§a■No se ejecuto porque ya eres Admin")
         let key = Database.get(Config.AdminTag)
         Database.set(Config.AdminTag, key, player)
