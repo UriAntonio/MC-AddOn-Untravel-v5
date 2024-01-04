@@ -152,7 +152,7 @@ Land.removeInvite = async (landId, playerName, targetName) => {
 }
 
 /**
- * Remove invite
+ * Set settings Land
  * @param {string} landId 
  * @param {string} playerName 
  * @param {LandSetting} settingData 
@@ -175,7 +175,7 @@ Land.setSetting = async (landId, playerName, settingData) => {
 }
 
 /**
- * Remove invite
+ * Transferir Propiedad
  * @param {string} landId 
  * @param {string} playerName 
  * @param {string} targetName 
