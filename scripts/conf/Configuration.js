@@ -98,14 +98,16 @@ Config.moneyFromMobs = { // Money drop from killing Mobs
 
 // Command Configuration
 Config.Prefix = "-"  // Command Prefix
-Config.AdminKey = variables.get("adminPassword")//contraseña que sera usada para dar OP
-Config.AdminTag = variables.get("adminTag")  //tag que sera usada solo por el admin
-Config.TemporalKey = variables.get("temporalKey")
-Config.Owners = ["2535410465040894", "2535428592704562"]
-Config.gmc = variables.get("creative")
+//contraseña que sera usada para dar OP
+Config.AdminKey = variables.get("adminPassword") ?? "2642key"
+//tag que sera usada solo por el admin
+Config.AdminTag = variables.get("adminTag") ?? "Admin"
+Config.TemporalKey = variables.get("temporalKey") ?? "7684temp"
+Config.Owners = ["2535410465040894", "2535428592704562"] ?? ["KlarixMx"]
+Config.gmc = variables.get("creative") ?? "creativo"
 Config.lockServer = false
 Config.debug = true
-Config.ConfigPassword = variables.get("Cpassword")
+Config.ConfigPassword = variables.get("Cpassword") ?? "874236pass"
 Config.FundsName = "§g■§6Fondos Generales"
 Config.serverName = `§r§b■§d§lUntravel§eMx§b■§r`
 Config.Commands = {  // Commands Configuration (Don't change, unless you understand the code)
@@ -132,6 +134,9 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   },
   warp: {
     warp: true
+  },
+  land: {
+    land: true
   },
   tpa: {
     //tpa: true,
