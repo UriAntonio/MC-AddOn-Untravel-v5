@@ -24,6 +24,7 @@ const Event = [
   "combat",
   "playerInteract",
   "systemRun",
+  "Block",
 ]
 
 const Extensions = {
@@ -153,6 +154,11 @@ class UntravelClass {
     } catch { }
   }
 
+  /**
+   * 
+   * @param {mc.Player} target 
+   * @param {string} message 
+   */
   async sendMsgToPlayer(target, message) {
     try {
       target.sendMessage(`${Config.serverStyler}${JSON.stringify(
