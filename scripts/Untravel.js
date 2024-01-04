@@ -1,5 +1,5 @@
 import * as mc from "@minecraft/server";
-//
+import * as ui from "@minecraft/server-ui"
 import Config from "./conf/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, LogWarn, SystemLog } from "./Modules/Log/Log";
@@ -13,6 +13,7 @@ import Fund from "./Modules/Finance/Funds";
 //
 import Dynamic from "./Extensions/Database";
 import { DB } from "./Modules/DataBase/UntravelDB";
+import NewSetting from "./Modules/Land/Setting";
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -50,6 +51,7 @@ class UntravelClass {
     this.TimeDB = new DB("time")
     this.LastDB = new DB("lastJoinDB")
     this.PlayerStats = new DB("statsDB")
+    this.ClaimBlocks = new DB("claimDB")
     this.Fund = Fund
     this.Setting = new Setting()
     this.Money = Money
@@ -153,11 +155,13 @@ class UntravelClass {
 
   async sendMsgToPlayer(target, message) {
     try {
-      target.runCommandAsync(
-        `tellraw @s {"rawtext":[{"text":${JSON.stringify(
-          Array.isArray(message) ? message.join("\n\u00a76") : message
-        )}}]}`
-      );
+      target.sendMessage(`${Config.serverStyler}${JSON.stringify(
+        Array.isArray(message) ? message.join("\n\u00a76") : message)}`);
+      // target.runCommandAsync(
+      //   `tellraw @s {"rawtext":[{"text":${JSON.stringify(
+      //     Array.isArray(message) ? message.join("\n\u00a76") : message
+      //   )}}]}`
+      // );
     } catch { }
   }
 
@@ -214,6 +218,58 @@ class UntravelClass {
       //    player.triggerEvent("paradox:kick");
     }
   }
+
+  GetSetting = async (settingName) => {
+    let value = NewSetting.get(settingName)
+    NewSetting.SettingData.set(settingName, value)
+    return value
+  }
+
+  
+/**
+ * 
+ * @param {Player} player 
+ * @returns 
+ */
+getClaimBlock = (player) => {
+  return this.ClaimBlocks.get(player) ?? Config.starterClaimBlock
+}
+
+/**
+ * 
+ * @param {Player} player 
+ * @param {number} amount 
+ */
+setClaimBlock = (player, amount) => {
+  return this.ClaimBlocks.set(player, amount)
+}
+
+/**
+ * Format Money
+ * @param {number} amount
+ * @param {boolean} withPrefix 
+ * @returns {string}
+ */
+formatMoney = async (amount, withPrefix = true) => {
+  let currencyPrefix = await this.GetSetting("currencyPrefix") ?? Config.currencyPrefix
+  return `${withPrefix ? currencyPrefix : ""}${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
+}
+
+/**
+ * 
+ * @param {Player} player 
+ * @param {ui.ActionFormData | ui.MessageFormData | ui.ModalFormData} form 
+ * @returns {Promise<ui.ActionFormResponse | ui.MessageFormResponse | ui.ModalFormResponse>}
+ */
+ForceOpen = async (player, form, timeout = 1200) => {
+  let startTick = this.System.currentTick
+  while ((this.System.currentTick - startTick) < timeout) {
+    const response = await form.show(player)
+    if (response.cancelationReason !== "UserBusy")
+      return response
+  }
+  return undefined
+}
 
   async waitLoaded() {
     return new Promise((resolve) => {
