@@ -23,7 +23,7 @@ Untravel.cmd.add({
   let balanceFund = Fund.getMoney()
   let balance = Money.getMoney(player.name)
   const warpsArr = WarpDB.lenght > 0 ? WarpDB.keys() : ["Sin Datos"]
-  if (player.isCombat()) return player.sendMessage("§a■§cEstas en Combate!")
+  if (player.isCombat()) return player.sendMessage(`${Config.serverStyler}§cEstas en Combate!`)
   const form = new ActionFormData().title(`${title}`).body(`${message}`)
   warpsArr.forEach(x => {
     let precio = x != "coliseo" ? Config.warpCost : Config.warpColiseo
@@ -36,14 +36,14 @@ Untravel.cmd.add({
     let selected = warpsArr[result]
     if (selected == "Sin Datos") return player.sendMessage(`${Config.serverStyler}§cNo hay Warps agregados`)
     if (selected == "coliseo") cost = Config.warpColiseo
-    if (balance < cost && !player.isAdmin()) return player.sendMessage(`§a■§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
+    if (balance < cost && !player.isAdmin()) return player.sendMessage(`${Config.serverStyler}§cNo cuentas con fondos suficiente. Costo: §f${cost}`)
     const warp = WarpDB.get(selected)
-    if (getCooldown("warp", player) > 0) return player.sendMessage(`§a■§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("warp", player)}s.`)
+    if (getCooldown("warp", player) > 0) return player.sendMessage(`${Config.serverStyler}§cYa has usado el comando home! En enfriamiento por: §f${getCooldown("warp", player)}s.`)
     let warpCD = Untravel.Setting.get("warpCooldown") ?? Config.warpCooldown
     setCooldown("warp", player, warpCD)
     let warpCountdown = Untravel.Setting.get("warpCountdown") ?? Config.warpCountdown
     if (warpCountdown > 0 && !player.isAdmin()) {
-      player.sendMessage(`§a■§bNo te muevas por: §f${warpCountdown}§b segundos para Teletransportarte!`)
+      player.sendMessage(`${Config.serverStyler}§bNo te muevas por: §f${warpCountdown}§b segundos para Teletransportarte!`)
       let playerPosition = player.location
       let cancel = false
       let canceled = false
@@ -55,15 +55,15 @@ Untravel.cmd.add({
           canceled = true
           return;
         }
-        Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
+        Action.setAction(player, 2, `${Config.serverStyler}§bNo te muevas por: §f${countdown}s`)
         countdown--
         await Untravel.sleep(1000)
-        Action.setAction(player, 2, `§a■§bNo te muevas por: §f${countdown}s`)
+        Action.setAction(player, 2, `${Config.serverStyler}§bNo te muevas por: §f${countdown}s`)
       }
       Money.setMoney(player.name, balance - cost)
       Fund.setMoney(balanceFund + cost)
     }
-    player.sendMessage("§a■§3Teletransportando...")
+    player.sendMessage(`${Config.serverStyler}§3Teletransportando...`)
     await Untravel.teleportPlayer(player, warp, { dimension: Untravel.getDimension(warp.dimension) })
     player.sendMessage(`${Config.serverStyler}§3Teletransportado Correctamente.`)
   
