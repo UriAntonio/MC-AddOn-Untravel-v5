@@ -160,9 +160,16 @@ class UntravelClass {
    * @param {string} message 
    */
   async sendMsgToPlayer(target, message) {
+    let msg
     try {
-      target.sendMessage(`${Config.serverStyler}${JSON.stringify(
-        Array.isArray(message) ? message.join("\n\u00a76") : message)}`);
+      if (Array.isArray(message)) {
+        msg = message.join("\n")
+        msg.replace(`"`, " ")
+      }
+
+      let msg = message
+      console.log(msg)
+      target.sendMessage(`${Config.serverStyler}`+"§r" + msg);
       // target.runCommandAsync(
       //   `tellraw @s {"rawtext":[{"text":${JSON.stringify(
       //     Array.isArray(message) ? message.join("\n\u00a76") : message
