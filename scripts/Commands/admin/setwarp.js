@@ -1,5 +1,6 @@
 import { Log } from "../../Modules/Log/Log"
 import Untravel from "../../Untravel"
+import Config from "../../conf/Configuration"
 
 const WarpDB = Untravel.WarpDB
 
@@ -22,6 +23,6 @@ Untravel.cmd.add({
     dimension: player.dimension.id
   }
   await WarpDB.set(name, placeObject)
-  player.sendMessage(`§1------------------------------\n§a■§3Warp creada exitosamente con el nombre §f${name}§3!`)
-  Log(`[ WARP ]${player.name} agregó §b${name}§`)
+  player.sendMessage(`${Config.serverStyler}§3Warp creada exitosamente con el nombre §f${name}§3!`)
+  Log(`[ WARP ]${player.name} agregó §b${name}`)
 })
