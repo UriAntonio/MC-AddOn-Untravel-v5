@@ -13,10 +13,11 @@ import Config from "../../conf/Configuration";
 const Position = {}
 
 Untravel.cmd.add({
-  name: "land",
-  description: "Land Claim",
-  category: "Land",
-  usage: "land help"
+  name: "domain",
+  description: "Reclama tu propio Dominio protegido",
+  category: "Domain",
+  usage: "domain help",
+  aliases: ["dominio"]
 }, async (data, player, args) => {
   switch (args[0]?.toLowerCase()) {
     case "startpos":
@@ -42,7 +43,7 @@ Untravel.cmd.add({
     case "kick":
       return KickFunction(player, args.slice(1))
 
-    case "transferownership":
+    case "transferoipropiedad":
       return TransferOwnershipFunction(player, args.slice(1))
 
     case "info":
@@ -50,7 +51,7 @@ Untravel.cmd.add({
 
     case "players":
       if (player.isAdmin()) {
-        player.sendMessage("§eClose Chat to Show UI!")
+        player.sendMessage(Config.FormMessage)
         return PlayerLandFunction(player, args.slice(1))
       }
 
@@ -60,25 +61,25 @@ Untravel.cmd.add({
     default:
       const prefix = await Untravel.GetSetting("Prefix")
       let subcommandList = {
-        "startpos": ["Set start position land"],
-        "endpos": ["Set end position land"],
-        "claim": ["Claim a land"],
-        "list": ["Provides list of your land"],
-        "unclaim": ["Unclaim a land"],
-        "invite": ["Invite player to your land", ["player_name"]],
-        "kick": ["Kick player from your land", ["player_name"]],
-        "transferOwnership": ["Transfer land ownership", ["player_name"]]
+        "startpos": ["Asigna la posicion inicial del Dominio"],
+        "endpos": ["Asigna la posicion final del Dominio"],
+        "claim": ["Afirma tu Dominio"],
+        "list": ["Prove una lista de tu Dominio"],
+        "unclaim": ["Desasegura el Dominio"],
+        "invite": ["Invita a jugadores a tu Dominio", ["player_name"]],
+        "kick": ["Expulsa a un jugador de tu Dominio", ["player_name"]],
+        "transferOwnership": ["Transfiere la Propiedad del Dominio", ["player_name"]]
       }
 
       if (player.isAdmin()) {
-        subcommandList["players"] = ["Provides list of player lands", ["player_name?"]]
+        subcommandList["players"] = ["Prove ana lista del los Dominios de los Jugadore", ["player_name?"]]
       }
 
-      let message = `§eLand command list:`
+      let message = `§3Lista de comandos del Dominio:`
       Object.keys(subcommandList).forEach(name => {
         const options = subcommandList[name]
-        const cmd = `${prefix}land ${name}`
-        message += `\n§e - §a${cmd} §e| ${cmd}${options[1] == undefined ? "" : ` ${options[1].map(v => v = `<${v}>`).join(" ")}`} (${options[0]})`
+        const cmd = `${prefix}domain ${name}`
+        message += `\n§9 - §b${cmd} §9| ${cmd}${options[1] == undefined ? "" : ` ${options[1].map(v => v = `<${v}>`).join(" ")}`} (${options[0]})`
       })
 
       Untravel.sendMsgToPlayer(player,message)
@@ -124,10 +125,10 @@ const EndPos = (player, location) => {
 const ClaimConfirm = async (player, price) => {
   if (price <= 0) return true
   const ConfirmUI = new ui.MessageFormData()
-    .title("§l§ePURCHASE CONFIRMATION")
-    .body(`Claim Land for §e${await Untravel.formatMoney(price)}§r?`)
-    .button2("§l§aACCEPT")
-    .button1("§l§cCANCEL")
+    .title(Config.serverTitle("CONFIRMACION  DE COMPRA"))
+    .body(`§3Reclamar Dominio por §g${await Untravel.formatMoney(price)}§r?`)
+    .button2("§l§bACEPTAR")
+    .button1("§l§cCANCELAR")
 
   player.sendMessage(Config.FormMessage)
   let res = await Untravel.ForceOpen(player, ConfirmUI)
@@ -162,7 +163,7 @@ const ClaimFunction = async (player, args) => {
 
     const checkOverlap = Land.checkOverlap(start, end, player)
     if (checkOverlap.isInside)
-      return Untravel.sendMsgToPlayer(player,`§cTu Land esta sobreponiendo con Land de alguien más`);
+      return Untravel.sendMsgToPlayer(player,`§cTu Dominio esta sobreponiendo con el Dominio de alguien más`);
   }
     const Confirm = await ClaimConfirm(player, moneyCost)
     if (!Confirm) {
@@ -175,7 +176,7 @@ const ClaimFunction = async (player, args) => {
   console.log("6",landResult.checkOverlap)
 
   if (!landResult.created)
-    return Untravel.sendMsgToPlayer(player,`§cTu Land se esta sobreponiendo con Land de alguien más`);
+    return Untravel.sendMsgToPlayer(player,`§cTu Dominio se esta sobreponiendo con Dominio de alguien más`);
 
   if (!player.isAdmin()) {
     await player.setMoney(playerMoney - moneyCost)
@@ -183,8 +184,8 @@ const ClaimFunction = async (player, args) => {
   }
 
   const landCenter = Land.getCenter(start, end)
-  Log(`[Land] ${player.name} created land on ${player.dimension.id} | x: ${landCenter.x} z: ${landCenter.z}`)
-  return Untravel.sendMsgToPlayer(player,`§3Creada exitosamente la nueva land${moneyCost > 0 ? ` §3con precio: §b${await Untravel.formatMoney(moneyCost)}.` : "."}`);
+  Log(`[Domain] ${player.name} creo el Dominio en ${player.dimension.id} | x: ${landCenter.x} z: ${landCenter.z}`)
+  return Untravel.sendMsgToPlayer(player,`§3Creado exitosamente el nuevo Dominio${moneyCost > 0 ? ` §3con precio: §b${await Untravel.formatMoney(moneyCost)}.` : "."}`);
 }
 
 /**
@@ -193,7 +194,7 @@ const ClaimFunction = async (player, args) => {
 const ListFunction = async (player) => {
   const playerLands = Land.getLands(player.name);
   if (playerLands.length === 0)
-    return Untravel.sendMsgToPlayer(player,"§3----- Your lands -----\n§bNo lands found.");
+    return Untravel.sendMsgToPlayer(player,"§3----- Tus Dominios -----\n§bNo se encotro Dominios.");
 
   const lands = []
   let landCount = 1
@@ -201,12 +202,12 @@ const ListFunction = async (player) => {
     .sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate))
     .forEach(
       (land) => {
-        lands.push(`§3#${landCount}. §9Land: \n §3» §9Dimension: §b${land.landDimension.split(":")[1]
+        lands.push(`§3#${landCount}. §9Domian: \n §3» §9Dimension: §b${land.landDimension.split(":")[1]
           }\n §3» §9Position: ${land.landCenter.x}, ${land.landCenter.z}\n §3» §9Members: §b${land.invites.join(", ") || "None."
           }\n §3» §9Created at: §f${land.creationDate || 0}`)
         landCount += 1
       })
-  return Untravel.sendMsgToPlayer(player,`§3----- Your lands -----\n${lands.join("\n\n")}`);
+  return Untravel.sendMsgToPlayer(player,`§3----- Tus Dominios -----\n${lands.join("\n\n")}`);
 }
 
 /**
@@ -214,14 +215,14 @@ const ListFunction = async (player) => {
  */
 const UnClaimFunction = async (player) => {
   const land = Land.testLand(player.dimension.getBlock(player.location).below().location, player.dimension)
-  if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cTienes que estar dentro de land!")
+  if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cTienes que estar dentro del Dominio!")
   if (land.owner != player.name && !player.isAdmin()) return Untravel.sendMsgToPlayer(player,"§cNo tienes permisos!")
   const { start, end } = land.data.land
   const calculatedSize = Land.calculateLandSize(start, end);
   let deleteResult = await Land.deleteLand(land.id, land.owner)
   if (deleteResult.error) return Untravel.sendMsgToPlayer(player,deleteResult.error)
   if (player.name == land.owner) Untravel.setClaimBlock(player, Untravel.getClaimBlock(player) + calculatedSize)
-  return Untravel.sendMsgToPlayer(player,"§3Se libero esta land!")
+  return Untravel.sendMsgToPlayer(player,"§3Se eliminió este Dominio!")
 }
 
 /**
@@ -234,11 +235,11 @@ const InviteFunction = async (player, args) => {
   if (targetPlayer != undefined) {
     if (player == targetPlayer) return Untravel.sendMsgToPlayer(player,"§cNo te puedes invitar a ti mismo.")
     const land = Land.testLand(player.location, player.dimension)
-    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDedes estar dentro del land!")
+    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDedes estar dentro del Dominio!")
     if (land.owner != player.name) return Untravel.sendMsgToPlayer(player,"§cNo tienes permisos!")
-    if (land.invites.includes(targetPlayer.name)) return Untravel.sendMsgToPlayer(player,`§c${targetPlayer.name} ya es miembro del land!`)
+    if (land.invites.includes(targetPlayer.name)) return Untravel.sendMsgToPlayer(player,`§c${targetPlayer.name} ya es miembro del Dominio!`)
     await Land.invitePlayer(land.id, player.name, targetPlayer.name)
-    Untravel.sendMsgToPlayer(targetPlayer,`§b${player.name} §3te dio acceso a su land.`)
+    Untravel.sendMsgToPlayer(targetPlayer,`§b${player.name} §3te dio acceso a su Dominio.`)
     Untravel.sendMsgToPlayer(player,"§3invitado exitosamente!")
   } else {
     return Untravel.sendMsgToPlayer(player,"§cNo hay objetivos que coincidan con el selector")
@@ -255,11 +256,11 @@ const KickFunction = async (player, args) => {
   if (targetPlayer != undefined) {
     if (player == targetPlayer) return Untravel.sendMsgToPlayer(player,"§cNo te puedes expulsar a ti mismo.")
     const land = Land.testLand(player.location, player.dimension)
-    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDedes estar dentro del Land!")
+    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDedes estar dentro del Dominio!")
     if (land.owner != player.name) return Untravel.sendMsgToPlayer(player,"§cNo tienes permisos!")
-    if (!land.invites.includes(targetPlayer.name)) return Untravel.sendMsgToPlayer(player,`§c${targetPlayer.name} no es miembro del land!`)
+    if (!land.invites.includes(targetPlayer.name)) return Untravel.sendMsgToPlayer(player,`§c${targetPlayer.name} no es miembro del Dominio!`)
     await Land.removeInvite(land.id, player.name, targetPlayer.name)
-    Untravel.sendMsgToPlayer(targetPlayer,`§b${player.name} §3removío tu acceso a su land.`)
+    Untravel.sendMsgToPlayer(targetPlayer,`§b${player.name} §3removío tu acceso a su Dominio.`)
     Untravel.sendMsgToPlayer(player,"§3Expulsado correctamente !")
   } else {
     return Untravel.sendMsgToPlayer(player,"§cNo hay objetivos que coincidan con el selector")
@@ -275,9 +276,9 @@ const TransferOwnershipFunction = async (player, args) => {
   let targetPlayer = world.getAllPlayers().find(p => p.name == args[0])
   if (targetPlayer != undefined) {
     const land = Land.testLand(player.location, player.dimension)
-    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDebes estar dentro del Land!")
+    if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDebes estar dentro del Dominio!")
     if (land.owner != player.name) return Untravel.sendMsgToPlayer(player,"§cNo tienes permisos!")
-    if (player == targetPlayer) return Untravel.sendMsgToPlayer(player,"§cNo eres el propietario de esta land.")
+    if (player == targetPlayer) return Untravel.sendMsgToPlayer(player,"§cNo eres el propietario de este Dominio.")
     await Land.transferOwnership(land.id, player.name, targetPlayer.name)
     Untravel.sendMsgToPlayer(targetPlayer,`§b${player.name} §3Te transfirió la Propiedad.`)
     Untravel.sendMsgToPlayer(player,`§3 Transferencia de Propiedad exitosa a §b${targetPlayer.name}.`)
@@ -301,10 +302,10 @@ const PlayerLandFunction = async (player, args) => {
   players = players.sort((a, b) => a.localeCompare(b))
   if (players.length <= 0) return Untravel.sendMsgToPlayer(player,"§cNo se detectaron Jugadores")
   let playerPanel = new ui.ActionFormData()
-    .title("§l§ePlayers List")
-    .body(`§aPlayers Online : §e${world.getAllPlayers().length}`)
+    .title(Config.serverTitle("Jugadores"))
+    .body(`§3Jugadores en Linea : §b${world.getAllPlayers().length}`)
   players.forEach(p => {
-    playerPanel.button(`§l§e${p} ${world.getAllPlayers().find(pl => pl.name == p) == undefined ? "" : "§8(§aOnline§8)"}`)
+    playerPanel.button(`§l§b${p} ${world.getAllPlayers().find(pl => pl.name == p) == undefined ? "" : "§1(§fOnline§1)"}`)
   })
 
   Untravel.ForceOpen(player, playerPanel).then(res => {
@@ -323,27 +324,27 @@ const PlayerLand = (player, targetName) => {
   const PlayerLands = Land.getLands(targetName)
   let count = 1
   let landPanel = new ui.ActionFormData()
-    .title(Config.serverTitle(`${targetName}'s Lands`))
-    .body(`§aLands : §e${PlayerLands.length}`)
+    .title(Config.serverTitle(`${targetName}'s Domains`))
+    .body(`§3Dominios : §b${PlayerLands.length}`)
   PlayerLands.forEach(p => {
-    landPanel.button(`§e#${count}\n§0X: ${p.landCenter.x} | Z: ${p.landCenter.z}`)
+    landPanel.button(`§b#${count}\n§0X: ${p.landCenter.x} | Z: ${p.landCenter.z}`)
     count += 1
   })
-  landPanel.button("§l§c<== BACK")
+  landPanel.button("§l§9<== ATRAS")
 
   Untravel.ForceOpen(player, landPanel).then(res => {
     if (!res.canceled) {
       let land = PlayerLands[res.selection]
       if (!land) return PlayerLandFunction(player, [])
       let landPanel = new ui.ActionFormData()
-        .title(Config.serverTitle(`${targetName}'s Lands`))
-        .body(`§3#${res.selection + 1}. §9Land: \n §e» §9Dimension: §b${land.landDimension.split(":")[1]
-          }\n §3» §9Position: ${land.landCenter.x}, ${land.landCenter.z}\n §e» §9Members: §b${land.invites.join(", ") || "None."
+        .title(Config.serverTitle(`${targetName}'s Domains`))
+        .body(`§3#${res.selection + 1}. §9Dominio: \n §3» §9Dimension: §b${land.landDimension.split(":")[1]
+          }\n §3» §9Position: ${land.landCenter.x}, ${land.landCenter.z}\n §3» §9Members: §b${land.invites.join(", ") || "None."
           }\n §3» §9Created at: §f${land.creationDate || 0}`)
 
-        .button("§l§2Teleport")
+        .button("§l§3Teleport")
         .button("§l§4Delete")
-        .button("§l§c<== BACK")
+        .button("§l§9<== ATRAS")
 
       Untravel.ForceOpen(player, landPanel).then(res => {
         if (!res.canceled) {
@@ -354,8 +355,8 @@ const PlayerLand = (player, targetName) => {
             case 1:
               const deleteLand = Land.deleteLand(land.landId, targetName)
               if (deleteLand.error) {
-                if (deleteLand.error == "NotFound") return Untravel.sendMsgToPlayer(player,"§cLand ne encontrada!")
-              } else return Untravel.sendMsgToPlayer(player,"§3Land borrada correctamente!")
+                if (deleteLand.error == "NotFound") return Untravel.sendMsgToPlayer(player,"§cDominio no encontrado!")
+              } else return Untravel.sendMsgToPlayer(player,"§3Dominio borrado correctamente!")
             default:
               return PlayerLand(player, targetName)
           }
@@ -372,8 +373,8 @@ const PlayerLand = (player, targetName) => {
  */
 const InfoFunction = (player) => {
   const land = Land.testLand(player.location, player.dimension)
-  if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDebes estar dentro del land!")
-  Untravel.sendMsgToPlayer(player,`§3Land information:\n §3» §9Owner: §b${land.owner}\n §3» §9Members: §b${land.invites.join(", ") || "None."}`);
+  if (!land.isInside) return Untravel.sendMsgToPlayer(player,"§cDebes estar dentro de un Dominio!")
+  Untravel.sendMsgToPlayer(player,`§3Informacion del Dominio:\n §3» §9Owner: §b${land.owner}\n §3» §9Members: §b${land.invites.join(", ") || "None."}`);
   if (!CooldownMark.includes(player.name)) {
     const { start, end } = land.data.land
     CooldownMark.push(player.name)
@@ -404,7 +405,7 @@ const SettingsFunction = async (player) => {
   if (land.owner != player.name) return Untravel.sendMsgToPlayer(player,"§cNo tienes permisos!")
 
   const SettingUI = new ui.ModalFormData()
-    .title("Land Settings")
+    .title("Domain Settings")
   Object.keys(SettingList).forEach(settingName => {
     SettingUI.toggle(settingName, land.setting[SettingList[settingName]])
   })
@@ -421,12 +422,12 @@ const SettingsFunction = async (player) => {
       }
 
       await Land.setSetting(land.id, player.name, newSetting)
-      return Untravel.sendMsgToPlayer(player,"§3Ajustes Juadados!")
+      return Untravel.sendMsgToPlayer(player,"§3Ajustes Guadados!")
     }
   })
 }
 
-// Land System
+// Domain System
 const checkPermission = (player, location, data) => {
   if (data.cancel || player.isAdmin()) return
   const land = Land.testLand(location, player.dimension)
@@ -449,7 +450,7 @@ const checkPermission = (player, location, data) => {
   }
 }
 
-// Land Claim by Item
+// Domain Claim by Item
 const CooldownSet = {}
 world.beforeEvents.itemUseOn.subscribe(data => {
   if (data.cancel) return
@@ -523,16 +524,16 @@ system.runInterval(() => {
     if (!land.isInside && LandLog[player.name]) {
       land = LandLog[player.name]
       delete LandLog[player.name]
-      Notify(player, `§eYou have left ${land.owner}'s land.`)
+      Notify(player, `§9Saliste del Dominio de §3${land.owner}.`)
     } else if (land.isInside) {
       if (!LandLog[player.name]) {
         LandLog[player.name] = land
-        Notify(player, `§eYou are entering ${land.owner}'s land`)
+        Notify(player, `§9Entraste al Dominio de §3${land.owner}.`)
       } else {
         const landOld = LandLog[player.name]
         if (landOld.owner != land.owner && landOld.id != land.id) {
           LandLog[player.name] = land
-          Notify(player, `§eYou are entering ${land.owner}'s land`)
+          Notify(player, `§9Entraste al Dominio de §3${land.owner}.`)
         }
       }
     }

@@ -135,8 +135,8 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
   warp: {
     warp: true
   },
-  land: {
-    land: true
+  domain: {
+    domain: true
   },
   tpa: {
     //tpa: true,
