@@ -125,6 +125,9 @@ const setHome = async (player) => {
     if (res.formValues != undefined) {
       if (res.formValues[0].length > 12) {
         player.sendMessage(`${Config.serverStyler}§c Demaciado Largo, El maximo de caracteres es 12!`)
+      }
+      if (res.formValues[0].length < 3) {
+        player.sendMessage(`${Config.serverStyler}§c Demaciado Costo, El minimo de caracteres es 3!`)
       } else {
         let name = res.formValues[0]
         let playerHome = HomeDB.keys().find(key => key == `${player.name}-${name}`)
