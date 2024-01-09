@@ -170,10 +170,10 @@ const ClaimFunction = async (player, args) => {
       delete Position[player.name]
       return Untravel.sendMsgToPlayer(player,"§cCancelado!")
     }
-  console.log("1");
+  
   const landResult = await Land.createLand(player, { x: start.x, z: start.z }, { x: end.x, z: end.z })
   delete Position[player.name]
-  console.log("6",landResult.checkOverlap)
+
 
   if (!landResult.created)
     return Untravel.sendMsgToPlayer(player,`§cTu Dominio se esta sobreponiendo con Dominio de alguien más`);
