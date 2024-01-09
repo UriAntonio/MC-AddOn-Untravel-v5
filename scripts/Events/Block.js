@@ -12,7 +12,7 @@ world.beforeEvents.playerBreakBlock.subscribe(data => {
     if (land.isInside) {
       if (land.owner == player.name || land.invites.includes(player.name)) return
       data.cancel = true
-      NotifyText(player, `§cNo puedes hacer eso aqui! Land owner: §e${land.owner}.`)
+      NotifyText(player, `§cNo puedes hacer eso aqui! Propietario: §e${land.owner}.`)
       if (!CooldownMark.includes(player.name)) {
         const { start, end } = land.data.land
         CooldownMark.push(player.name)
@@ -33,7 +33,7 @@ world.beforeEvents.playerBreakBlock.subscribe(data => {
     if (land.isInside) {
       if (land.owner == player.name || land.invites.includes(player.name)) return
       data.cancel = true
-      NotifyText(player, `§cNo puedes hacer eso aqui! Land owner: §e${land.owner}.`)
+      NotifyText(player, `§cNo puedes hacer eso aqui! Propietario: §e${land.owner}.`)
       if (!CooldownMark.includes(player.name)) {
         const { start, end } = land.data.land
         CooldownMark.push(player.name)
@@ -54,7 +54,7 @@ world.beforeEvents.playerBreakBlock.subscribe(data => {
     if (land.isInside) {
       if (land.owner == player.name || land.invites.includes(player.name)) return
       data.cancel = true
-      NotifyText(player, `§cNo puedes hacer eso aqui! Land owner: §e${land.owner}.`)
+      NotifyText(player, `§cNo puedes hacer eso aqui! Propietario: §e${land.owner}.`)
       if (!CooldownMark.includes(player.name)) {
         const { start, end } = land.data.land
         CooldownMark.push(player.name)
@@ -75,7 +75,7 @@ world.beforeEvents.playerBreakBlock.subscribe(data => {
     if (land.isInside) {
       if (land.owner == player.name || land.invites.includes(player.name)) return
       data.cancel = true
-      NotifyText(player, `§cNo puedes hacer eso aqui! Land owner: §e${land.owner}.`)
+      NotifyText(player, `§cNo puedes hacer eso aqui! Propietario: §e${land.owner}.`)
       if (!CooldownMark.includes(player.name)) {
         const { start, end } = land.data.land
         CooldownMark.push(player.name)
