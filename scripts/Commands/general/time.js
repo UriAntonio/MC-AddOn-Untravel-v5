@@ -13,14 +13,13 @@ Untravel.cmd.add({
     category: "General",
     usage: "time",
 }, async (data, player, args) => {
-    let title ="§a■§1[§9TIEMPO ONLINE DE JUGADORES§1]§a■" 
+    let title ="§9tiempo online de jugadores" 
     let message = ""
     TimeDB.forEach((key, value) => {
       let plr = key
       const DateNow = new Date()
       let DateLogin = Untravel.PlayerOnline[plr]
       if (DateLogin == undefined) DateLogin = 0
-      Log(`${DateLogin}`)
       const TimePlayed = (DateNow - DateLogin)
       const SecondPlayed = Math.ceil((TimePlayed + value) / 1000);
       message += `\n§1 | §3${plr} §1| §bOnline Total§1 -`
