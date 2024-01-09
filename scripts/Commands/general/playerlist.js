@@ -10,7 +10,7 @@ Untravel.cmd.add({
   usage: "playerlist",
   category: "General"
 }, async (data, player, args) => {
-  let title = "§a■§1[§9LISTA DE JUGADORES§1]§a■"
+  let title = "§9LISTA DE JUGADORES"
   let message = ""
   Untravel.Minecraft.world.getAllPlayers().forEach(plr => {
     const DateNow = new Date()
