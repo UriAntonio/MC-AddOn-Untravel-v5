@@ -189,10 +189,10 @@ Config.ranks = {
   selecto: {}
 
 }
-Config.serverStyler = "§1---------------------------\n§a»"
+Config.serverStyler = "§1-------------------------\n§a»"
 Config.FormMessage = `${Config.serverStyler}§3Cierra el Chat para ver el Panel`
 Config.serverTitle = (title) => {
-let formated = `§a■§1§l[§9${title}§1]§r§a■`
+let formated = `§9${title}`
 return formated
 }
 // Dangerous Setting (Only change if you know)
