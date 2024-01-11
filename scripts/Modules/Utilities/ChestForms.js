@@ -66,7 +66,14 @@ export default class ChestFormData {
     button(slot, itemName, itemDesc, iconPath, stackSize = 1, enchanted = false) {
 		let del = "minecraft:"
 		let delmx = "mx:"
-		const ID = `textures/icons/items/${iconPath.includes("minecraft")? iconPath.slice(del.length): iconPath.includes("mx")? iconPath.slice(delmx.length) : iconPath}`//typeIdToID.get(iconPath.includes(':') ? iconPath : 'minecraft:' + iconPath)
+		let mx
+		if (iconPath.includes("mx")) {
+			mx =  iconPath.slice(delmx.length)
+		}
+		if (iconPath.includes("minecraft")) {
+			mx = iconPath.slice(del.length)
+		}
+		const ID = `textures/icons/items/${mx == undefined? iconPath : mx}`//typeIdToID.get(iconPath.includes(':') ? iconPath : 'minecraft:' + iconPath)
 		this.#buttonArray.splice(slot, 1, [`stack#${Math.min(Math.max(stackSize, 1) || 1, 99).toString().padStart(2, '0')}§r${itemName ?? ''}§r${itemDesc?.length ? `\n§r${itemDesc.join('\n§r')}` : ''}`,
 		 ID
 		]);
