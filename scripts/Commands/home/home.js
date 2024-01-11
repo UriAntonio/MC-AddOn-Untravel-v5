@@ -37,7 +37,7 @@ Untravel.cmd.add({
   form.button(`${whiteConfig} §l§fEditar`)
   homeArr.forEach(x => {
     let y = HomeDB.get(`${player.name}-${x}`)
-    form.button(`${myPoint} §l§f${x} §1| §b${Math.round(y.x)}, ${Math.round(y.y)}, ${Math.round(y.z)}\n§9${y.dimension}`)
+    form.button(`${myPoint} §f${x} §1| §b${Math.round(y.x)}, ${Math.round(y.y)}, ${Math.round(y.z)}\n§9${y.dimension}`)
   })
   player.sendMessage(`${Config.FormMessage}`)
   let res = await ForceOpen(player, form)
