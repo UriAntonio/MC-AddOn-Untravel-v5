@@ -9,6 +9,7 @@ const untravel = {
         Bronze: fromCodePoint(0xE307),
         trash: fromCodePoint(0xE308),
         myPoint: fromCodePoint(0xE30E),
+        exp: fromCodePoint(0xE32D),
         portal: fromCodePoint(0xE380),
         whiteConfig: fromCodePoint(0xE387),
         equis: fromCodePoint(0xE391),
