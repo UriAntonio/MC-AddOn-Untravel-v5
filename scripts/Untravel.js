@@ -14,6 +14,7 @@ import Fund from "./Modules/Finance/Funds";
 import Dynamic from "./Extensions/Database";
 import { DB } from "./Modules/DataBase/UntravelDB";
 import NewSetting from "./Modules/Land/Setting";
+import Faction from "./Modules/Faction/Faction";
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -54,8 +55,9 @@ class UntravelClass {
     this.PlayerStats = new DB("statsDB")
     this.ClaimBlocks = new DB("claimDB")
     this.Fund = Fund
-    this.Setting = new Setting()
+    this.Setting = NewSetting
     this.Money = Money
+    this.Faction = Faction
     this.TPS = getTPS
     this.world = mc.world
     this.Log = Log
@@ -264,7 +266,7 @@ setClaimBlock = (player, amount) => {
  * @returns {string}
  */
 formatMoney = async (amount, withPrefix = true) => {
-  let currencyPrefix = await this.GetSetting("currencyPrefix") ?? Config.currencyPrefix
+  let currencyPrefix = await this.GetSetting("xpPrefix") ?? Config.xpPrefix
   return `${withPrefix ? currencyPrefix : ""}${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
 }
 
