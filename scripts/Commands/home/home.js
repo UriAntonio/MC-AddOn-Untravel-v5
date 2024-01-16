@@ -98,7 +98,7 @@ Untravel.cmd.add({
 })
 
 const setHome = async (player) => {
-  let title = Config.serverTitle("Agrega Home")
+  let title = Config.serverTitle("Agregar")
   let homeArr = []
   let cost = Config.homeCost
   HomeDB.forEach((key, value) => {
