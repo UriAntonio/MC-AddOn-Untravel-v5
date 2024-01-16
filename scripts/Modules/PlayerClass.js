@@ -6,6 +6,7 @@ import Combat from "./Server/Combat";
 import Database from "../Extensions/Database";
 import { Log } from "./Log/Log";
 import untravel from "../Extensions/untravel";
+import Faction from "./Faction/Faction";
 
 const { standar } = untravel
 
@@ -275,9 +276,21 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
     let stat = Untravel.PlayerStats.get(this.name)
     stat["regen"] = value
     Untravel.PlayerStats.set(this.name, stat)
+  },
+/**
+ * return the faction ob a player
+ */
+  get faction() {
+    return Faction.player.get(this)
+  },
+
+  factionPermiss(faction) {
+    let fact = Faction.DB.get(faction)
+    if(!fact) return {status: false, error: "NotFaction"};
+    if(fact.factionOwner !== this.name) return { status: false, error: "PermissionError" };
+    return { status: true, error: null };
+
   }
-
-
 
 })
 
