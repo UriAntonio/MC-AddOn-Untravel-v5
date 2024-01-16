@@ -93,7 +93,7 @@ City.deleteCity = async (cityId, cityName) => {
 
 /**
  * Get factions's City's
- * @param {string} playerName
+ * @param {string} faction
  * @type {Array} cities
  * @returns {{cityId: string,cityOwner: string,cityDimension: string,creationDate: string,cityCenter: {x: number, z: number},city: { start: {x: number, z: number}, end: {x: number, z: number} },invites: string[]}[]}
  */
