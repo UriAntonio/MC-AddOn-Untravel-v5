@@ -1,19 +1,19 @@
-import { system, world } from "@minecraft/Untravel"
-import Utility from "../../Modules/Utility"
-import Untravel from "../../main"
-import { getCooldown, setCooldown } from "../../Modules/Cooldown"
-import Config from "../../Configuration"
+import { system, world } from "@minecraft/server"
+import Utility from "../../Modules/Utilities/Utility"
+import Untravel from "../../Untravel"
+import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
+import Config from "../../conf/Configuration"
 
 const TPRange = 1000
 const playerTeleport = {}
 
 Untravel.cmd.add({
-  name: "rtp",
-  description: "World Tick per Second",
-  usage: "tps",
+  name: "jump",
+  description: `Salto subespacial en un rango de ${TPRange} bloques`,
+  usage: "jump",
   category: "General"
 }, async (data, player, args) => {
-  if (player.isCombat()) return player.sendMessage("§cYou are in combat!")
+  if (player.isCombat()) return player.sendMessage(`${Config.serverStyler}§cEstas en Combate!`)
   if (getCooldown("rtp", player) > 0) return player.sendMessage(`§cYou just use rtp command! In cooldown for §e${getCooldown("rtp", player)}s.`)
   let rtpCD = Untravel.Setting.get("rtpCooldown") ?? Config.rtpCooldown
   setCooldown("rtp", player, rtpCD)
