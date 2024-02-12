@@ -18,7 +18,7 @@ const Config = {}
 //Config.tpaCooldown = 7  // TPA & TPAHere Cooldown
 Config.homeCooldown = 300  // Home Cooldown
 //Config.warpCooldown = 7  // Warp Cooldown
-// Config.rtpCooldown = 120  // RTP Cooldown
+Config.rtpCooldown = 0  // RTP Cooldown
 Config.commandCooldown = 7  // Command Cooldown
 Config.coliseoCooldown = 600  // Command Cooldown
 
@@ -45,9 +45,11 @@ Config.warpColiseo = 800
 Config.combatSystem = true // If true, player not able to teleport while in pvp and if they leave or die, they will lost their money
 
 // Money Configuration
+
 Config.maxMoney = 1000000000 // Max Money
 Config.starterMoney = 0.0 // Starter Money
 Config.currencyPrefix = "" // Currency / Money Prefix
+Config.xpPrefix = emoji.exp
 Config.earnMoneyfromMobs = true // Money drop from killing Mobs
 Config.moneyFromMobs = { // Money drop from killing Mobs
   "minecraft:pig": [1, 3],
@@ -117,7 +119,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     playerlist: true,
     tps: true,
     //message: true,
-    //rtp: true,
+    rtp: true,
     time: true,
     
   },
@@ -260,5 +262,16 @@ Config.protectLandfromExplosion = true
  */
 Config.allowPistonInLand = false
 
+//Settings
+Config.moneySystem = true
+Config.homeSystem = true
+Config.tpaSystem = true
+Config.backSystem = true
+Config.shopSystem = true
+Config.sellSystem = true
+Config.auctionSystem = true
+Config.messageSystem = true
+Config.combatSystem = true
+Config.combatSystem = true
 
 export default Config
