@@ -2,17 +2,17 @@
 	"format_version": 2,
 	"header": {
 		"name": "§b§5§lUntravel§eMx§b Server",
-		"description": "A utility to fight against malicious hackers on Bedrock Edition ~ v5.0.0",
+		"description": "A utility to fight against malicious hackers on Bedrock Edition ~ v5.0.3",
 		"uuid": "0bcd11bc-01ad-4fd0-bd65-c1ae019197fa",
 		"version": [
 			5,
 			0,
-			2
+			3
 		],
 		"min_engine_version": [
 			1,
-			19,
-			0
+			20,
+			60
 		]
 	},
 	"metadata": {
@@ -20,12 +20,8 @@
 			"KlarixMx, MrDiamond64, Visual1mpact, Smelly of Curry"
 		],
 		"license": "GPLv3",
-		"url": "https://github.com/Visual1mpact/Paradox_AntiCheat",
-		"generated_with": {
-			"bridge": [
-				"1.8.4"
-			]
-		}
+		"url": "https://github.com/Visual1mpact/Paradox_AntiCheat"
+		
 	},
 	"modules": [
 		{
@@ -41,7 +37,7 @@
 			"description": "Paradox & KlarixMx Features",
 			"language": "javascript",
 			"type": "script",
-			"uuid": "239c134f-67bf-4738-9bcc-8c69d31b1f72",
+			"uuid": "c022f157-4583-4c5e-ad08-a5828f8d0783",
 			"version": [
 				1,
 				0,
