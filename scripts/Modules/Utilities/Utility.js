@@ -68,7 +68,7 @@ Utility.capitalized = (string) => {
  * @returns {string}
  */
 Utility.formatMoney = (money, withPrefix = true) => {
-  const currencyPrefix = Untravel.Setting.get("currencyPrefix") ?? Config.currencyPrefix
+  const currencyPrefix = Untravel.Setting.get("xpPrefix") ?? Config.xpPrefix
   return `${withPrefix ? currencyPrefix : ""}${money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
 }
 
