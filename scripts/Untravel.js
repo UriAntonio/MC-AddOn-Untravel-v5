@@ -15,6 +15,7 @@ import Dynamic from "./Extensions/Database";
 import { DB } from "./Modules/DataBase/UntravelDB";
 import NewSetting from "./Modules/Land/Setting";
 import Faction from "./Modules/Faction/Faction";
+import Utility from "./Modules/Utilities/Utility";
 
 
 const Event = [
@@ -338,7 +339,9 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
   })
   Log(`§2Se agrego fechas`)
 
-  Dynamic.set(Config.AdminTag, Config.AdminKey)
+  const AdminKey = Utility.UUID.generate()
+  Log(`Id del Mundo: ${AdminKey}`)
+  Dynamic.set(Config.AdminTag, `${AdminKey}`)
   Dynamic.set("word", Config.ConfigPassword)
   Dynamic.set("coliseoManager", true) //si esta en false el CM estara apagado y no se podra usar
   Dynamic.set("coliseoCooldown", "")
