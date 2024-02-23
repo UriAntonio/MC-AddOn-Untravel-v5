@@ -15,6 +15,8 @@ import Dynamic from "./Extensions/Database";
 import { DB } from "./Modules/DataBase/UntravelDB";
 import NewSetting from "./Modules/Land/Setting";
 import Faction from "./Modules/Faction/Faction";
+
+
 const Event = [
   "chatSend",
   "playerSpawn",
@@ -25,7 +27,7 @@ const Event = [
   "combat",
   "playerInteract",
   "systemRun",
-  "Block",
+  "block",
 ]
 
 const Extensions = {
@@ -170,7 +172,7 @@ class UntravelClass {
       }
 
       let msg = message
-      console.log(msg)
+      //console.log(msg)
       target.sendMessage(`${Config.serverStyler}`+"§r" + msg);
       // target.runCommandAsync(
       //   `tellraw @s {"rawtext":[{"text":${JSON.stringify(
@@ -311,15 +313,18 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
       import(`./Commands/${category}/${cmd}`).catch(err => LogWarn(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
     })
   })
-  Event.forEach(event => {
-    import(`./Events/${event}`).catch(err => LogWarn(`§cFallo al importar el evento: ${event} | ${err}`))
-  })
-  Object.keys(Extensions).forEach(ExtName => {
-    import(`./Extensions/${ExtName}.js`).then(Ext => {
-      Extensions[ExtName] = true
-      Log(`La extencion §b${ExtName}§r fue Cargada`)
-    }).catch(err => LogWarn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
-  })
+  // Event.forEach(event => {
+  //   import(`./Events/${event}`).then(Ext => {
+  //     Log(`El Evento §b${event}§r fue Cargado`)
+  //   }).catch(err => LogWarn(`§cFallo al importar el evento: ${event} | ${err}`))
+  // })
+ 
+  // Object.keys(Extensions).forEach(ExtName => {
+  //   import(`./Extensions/${ExtName}.js`).then(Ext => {
+  //     Extensions[ExtName] = true
+  //     Log(`La extencion §b${ExtName}§r fue Cargada`)
+  //   }).catch(err => LogWarn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
+  // })
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Untravel.world.getAllPlayers()
     .filter(p => p.isAdmin())
@@ -342,9 +347,10 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
   //Untravel.usingLandClaim = land?.active ?? false
 })
 
-//mc.world.afterEvents.playerSpawn.subscribe(data => {
-//  if (data.initialSpawn) data.player.sendMessage(`Type "${Untravel.getPrefix()}help" for more information.`)
-//})
+// mc.world.afterEvents.playerSpawn.subscribe(data => {
+//   if (data.initialSpawn) data.player.sendMessage(`Type "${Untravel.getPrefix()}help" for more information.`),
+//   SystemLog(`§ctest1 Spawn Event`)
+// })
 
 mc.system.beforeEvents.watchdogTerminate.subscribe(data => {
   data.cancel = true
