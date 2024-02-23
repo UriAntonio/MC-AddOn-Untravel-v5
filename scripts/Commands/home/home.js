@@ -14,7 +14,7 @@ const { symbols: { myPoint, whiteConfig, less, plus, equis } } = untravel
 
 Untravel.cmd.add({
   name: "home",
-  description: `Comando MUY poderoso para\n teletransporte a el hogar seleccionado; \nImpuesto Magico en Overworld, Nether, End: §f${Config.homeTpCost}, ${Config.homeTpCostNether}, ${Config.homeTpCostEnd}§b, \nEnfriamiento: ${Config.homeCooldown} §b`,
+  description: `Comando MUY poderoso para\n teletransporte a el hogar seleccionado; \nImpuesto Magico en Overworld, Nether, End: §f${Config.homeTpCost}, ${Config.homeTpCostNether}, ${Config.homeTpCostEnd}§b, \nEnfriamiento: ${Config.homeCooldown}s §b`,
   usage: "home <home_name>",
   aliases: ["hm"],
   category: "Home"
