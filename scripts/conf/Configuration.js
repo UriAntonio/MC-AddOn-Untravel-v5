@@ -104,7 +104,6 @@ Config.Prefix = "-"  // Command Prefix
 Config.AdminKey = variables.get("adminPassword") ?? "2642key"
 //tag que sera usada solo por el admin
 Config.AdminTag = variables.get("adminTag") ?? "Admin"
-Config.TemporalKey = variables.get("temporalKey") ?? "7684temp"
 Config.Owners = ["2535410465040894", "2535428592704562"] ?? ["KlarixMx"]
 Config.gmc = variables.get("creative") ?? "creativo"
 Config.lockServer = false
