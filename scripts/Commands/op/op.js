@@ -5,7 +5,7 @@ import Config from "../../conf/Configuration";
 import untravel from "../../Extensions/untravel";
 
 const { symbols: { Chalenger } } = untravel
-const password = Config.TemporalKey
+const password = Database.get(Config.AdminTag)
 Untravel.cmd.add({
     name: "op",
     description: "?",
@@ -14,9 +14,11 @@ Untravel.cmd.add({
 
 }, (data, player, args) => {
 
-    if (!args[0]) return player.sendMessage(`§cCommando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
-    if ((args[0] == password)) {
-        if (!player.isOwner()) return player.sendMessage(`§cComanndo desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
+    if (!args[0]) return player.sendMessage(`1§cCommando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
+    if (player.isOwner()) {
+        
+
+        if (args[0] !== password) return player.sendMessage(`§cContraseña incorrecta, Revisa que la contraseña exista y que tengas permiso para usarlo.`)
         if (player.isAdmin()) return player.sendMessage("§a■No se ejecuto porque ya eres Admin")
         let key = Database.get(Config.AdminTag)
         Database.set(Config.AdminTag, key, player)
@@ -30,7 +32,7 @@ Untravel.cmd.add({
         }
 
     } else {
-        player.sendMessage(`§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
+        player.sendMessage(`2§cComando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
     }
 
 

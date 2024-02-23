@@ -29,6 +29,25 @@ Untravel.cmd.add({
         if (args[1] == "msg") {
             return player.sendMessage(`${args}`)
         }
+        if (args[1] == "owndb") {
+            let message = ""
+            Untravel.Owners.forEach((key, value) => {
+                if (key) {
+                    let password = value
+                    let owner = key
+                    message += `\n§1  |§f ${owner}§1  |§b ${password}`;
+                }
+            })
+            if (message != "") {
+                return player.sendMessage(`§1------------------------------\n§a■§3Owners List : ${message}`)
+            }
+            else {
+                return player.sendMessage("§a■§cNo hay Claves.")
+            }
+        }
+        else {
+            player.sendMessage("§a■§cIngresa el parametro correcto")
+        }
     } else {
         player.sendMessage(`§cComando desconocido: . Revisa que el comando exista y que tengas permiso para usarlo.`)
     }
