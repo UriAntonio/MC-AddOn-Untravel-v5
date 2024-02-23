@@ -4,18 +4,20 @@
  * 
  */
 export class DB {
+    #userkey
     /**
      * 
      * @param {string} name 
      */
     constructor(name) {
-        this.userkey = name;
+        
+        this.#userkey = name;
         if (!Database.has(name)) Database.set(name, "{}");
         this.data = JSON.parse(Database.get(name));
     }
 
     update() {
-        Database.set(this.userkey, JSON.stringify(this.data))
+        Database.set(this.#userkey, JSON.stringify(this.data))
         return true
     }
     /**
@@ -64,6 +66,10 @@ export class DB {
     entries() {
         return Object.entries(this.data);
     }
+    /**
+     * 
+     * @returns object
+     */
     getAll() {
         return this.data;
     }
