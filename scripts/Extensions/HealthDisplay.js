@@ -107,7 +107,7 @@ system.runInterval(() => {
             } else {
                 /**@type {EntityHealthComponent} */
                 const comp = entity.getComponent("health")
-                entity.nameTag = `§c${formName(entity.typeId)} ${(comp.currentValue).toFixed()}/${comp.defaultValue}${heart}§r`
+                entity.nameTag = `${formName(entity.typeId)} ${(comp.currentValue).toFixed()}/${comp.defaultValue}${heart}§r`
             }
 
 
