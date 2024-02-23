@@ -5,11 +5,14 @@ import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 import untravel from "../Extensions/untravel.js";
+import opSystem from "../Modules/Security/AuthOp.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
 const { symbols: { Chalenger } } = untravel
 const statsDB = Untravel.PlayerStats
+const Owners = Untravel.Owners
+
 
 const playerStats = {
   name: "",
@@ -111,6 +114,11 @@ function onJoinSpawn(player) {
     if (!player.isAdmin()) {
       gamemode = "survival"
     }
+    //Owners.reset
+    if (Owners.lenght == 0 ) {
+      opSystem(player)
+    }
+
     welcome(player, gamemode);
     Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista

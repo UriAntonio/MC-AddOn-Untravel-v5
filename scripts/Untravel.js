@@ -56,6 +56,7 @@ class UntravelClass {
     this.LastDB = new DB("lastJoinDB")
     this.PlayerStats = new DB("statsDB")
     this.ClaimBlocks = new DB("claimDB")
+    this.Owners = new DB("ServerOwners")
     this.Fund = Fund
     this.Setting = NewSetting
     this.Money = Money
@@ -341,6 +342,7 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
   Dynamic.set("word", Config.ConfigPassword)
   Dynamic.set("coliseoManager", true) //si esta en false el CM estara apagado y no se podra usar
   Dynamic.set("coliseoCooldown", "")
+  
   Log(`Se agrregaron llaves`)
 
   //let land = await Restful.request("land-isActive")

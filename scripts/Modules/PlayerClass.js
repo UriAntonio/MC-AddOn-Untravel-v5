@@ -21,10 +21,23 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
     return Database.get(Config.AdminTag) === Database.get(Config.AdminTag, this)
 
   },
+  /**
+   * Fromated Server Message
+   * @param {string | Array | Number} message 
+   */
+  sendMsgToPlayer( message) {
+    let msg
+    try {
+      if (Array.isArray(message)) {
+        msg = message.join("\n")
+        msg.replace(`"`, " ")
+      }
+      let msg = message
+      this.sendMessage(`${Config.serverStyler}`+"§r" + msg);
+    } catch { }
+  },
   isOwner() {
-    let Id = this.id
-    Log(`${Id}`)
-    if (Config.Owners.includes(Id)) return true
+    if (Untravel.Owners.has(this.name)) return true
     return false
   },
   /**
