@@ -98,10 +98,10 @@ world.beforeEvents.explosion.subscribe(data => {
   })
   data.setImpactedBlocks(impact)
 })
-world.beforeEvents.pistonActivate.subscribe(data => {
-  if (Setting.get("allowPistonInLand")) return
-  data.piston.getAttachedBlocks().forEach(location => {
-    const land = Land.testLand(location, data.dimension)
-    if (land.isInside) data.cancel = true
-  })
-})
+// world.beforeEvents.pistonActivate.subscribe(data => {
+//   if (Setting.get("allowPistonInLand")) return
+//   data.piston.getAttachedBlocks().forEach(location => {
+//     const land = Land.testLand(location, data.dimension)
+//     if (land.isInside) data.cancel = true
+//   })
+// })
