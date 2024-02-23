@@ -128,7 +128,7 @@ export function Coliseo(player) {
     Untravel.System.run(() => {
 
         let ui_Coliseo = new ActionFormData()
-            .title(`§b■§9§lColiseo Manager§r§b■`)
+            .title(`Coliseo Manager`)
             .body(`     §9Bienvenidos al Coliseo`
                 + `\n§bAqui donde la sangre de heroes fue derramada`
                 + `\nAqui podras encontrar:`
@@ -168,7 +168,7 @@ export function coliseoCost (player) {
     Untravel.System.run(() => {
         let cost = 1
         let ui_Coliseo = new ActionFormData()
-            .title(`§b■§9§lColiseo§r§b■`)
+            .title(`Coliseo`)
             .body(`     §9Bienvenidos al Coliseo`
                 + `\n§bAqui donde la sangre de heroes fue derramada`
                 + `\nAqui podras encontrar:`
