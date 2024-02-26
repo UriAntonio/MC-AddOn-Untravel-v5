@@ -58,6 +58,7 @@ class UntravelClass {
     this.PlayerStats = new DB("statsDB")
     this.ClaimBlocks = new DB("claimDB")
     this.Owners = new DB("ServerOwners")
+    this.Admins = new DB(`ServerAdmins`)
     this.Fund = Fund
     this.Setting = NewSetting
     this.Money = Money
@@ -341,8 +342,7 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
 
   const AdminKey = Utility.UUID.generate()
   Log(`Id del Mundo: ${AdminKey}`)
-  Dynamic.set(Config.AdminTag, `${AdminKey}`)
-  Dynamic.set("word", Config.ConfigPassword)
+  Dynamic.set("world", `${AdminKey}`)
   Dynamic.set("coliseoManager", true) //si esta en false el CM estara apagado y no se podra usar
   Dynamic.set("coliseoCooldown", "")
   
