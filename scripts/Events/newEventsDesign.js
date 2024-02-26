@@ -13,11 +13,8 @@ const addHealth = (entity, amount) => {
     }
 }
 
-world.afterEvents.playerInteractWithEntity.subscribe(e => {
+const TameEntity = (player, target) => {
     
-    const { player, target } = e;
-    const { itemStack } = e;
-    if (!itemStack || itemStack.typeId !== "minecraft:stick") return
     let component = (target.getComponent("minecraft:tameable") || target.getComponent("minecraft:tamemount"));
     if (!component) return player.sendMessage({ rawtext: [{ text: "§c" }, { translate: "tameEvent.error.componentNotFound" }] });
     addHealth(target, 1);
@@ -34,5 +31,16 @@ world.afterEvents.playerInteractWithEntity.subscribe(e => {
     } catch (error) {
         player.sendMessage({rawtext: [{text: "§e" }, {translate: "tameEvent.error.operation" }] });
     }
+}
+world.afterEvents.playerInteractWithEntity.subscribe(e => {
+    
+    const { player, target } = e;
+    const { itemStack } = e;
+    if (!!itemStack) {
+        if (itemStack.typeId == "minecraft:stick") {
+            TameEntity(player, target, itemStack )
+        }
+    }
+    
 })
 
