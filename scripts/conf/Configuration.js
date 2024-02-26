@@ -171,6 +171,7 @@ Config.Commands = {  // Commands Configuration (Don't change, unless you underst
     allmoney: true,
     lastjoin: true,
     landsetting: true,
+    copyitem: true,
   },
   op: {
     op: true,

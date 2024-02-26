@@ -16,6 +16,7 @@ import "./admin/setmoney"
 import "./admin/setwarp"
 //import "./admin/tempban"
 import "./admin/unban"
+import "./admin/copyitem"
 
 //**Domain
 import "./domain/domain"
