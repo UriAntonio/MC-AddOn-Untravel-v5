@@ -23,9 +23,9 @@ Untravel.cmd.add({
         LogWarn(`[Advertencia] ${player.name} ya NO es Admin`)
         if (player.hasTag(`Rank:§l§b${Chalenger}`)) {
             player.removeTag(`Rank:§l§b${Chalenger}`)
-          }
-          Database.set("Notify", false, player)
-          if (player.hasTag(Config.gmc)) {
+        }
+        Database.set("Notify", false, player)
+        if (player.hasTag(Config.gmc)) {
             player.removeTag(Config.gmc)
         }
     } else {
