@@ -2,7 +2,7 @@ import Untravel from "../../Untravel"
 import Utility from "../../Modules/Utilities/Utility"
 import { LogWarn } from "../../Modules/Log/Log"
 
-const BanDB = Untravel.BanDB
+
 
 Untravel.cmd.add({
   name: "ban",
@@ -11,6 +11,7 @@ Untravel.cmd.add({
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
+  const BanDB = Untravel.BanDB
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre de Jugador.")
   let extractData = await Utility.ExtractNameFromString(args.join(" "), 0)
   if (!extractData) return player.sendMessage("§a■§cIngresa un mombre de Jugador.")

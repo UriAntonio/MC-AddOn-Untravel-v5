@@ -1,7 +1,7 @@
 import Server from "../../main"
 import Utility from "../../Modules/Utility"
 
-const BanDB = Server.BanDB
+
 
 Server.cmd.add({
   name: "tempban",
@@ -10,6 +10,7 @@ Server.cmd.add({
   permission: "ban",
   category: "Admin"
 }, async (data, player, args) => {
+  const BanDB = Server.BanDB
   if (!args[0]) return player.sendMessage("§cInput a player name.")
   let extractData = await Utility.ExtractNameFromString(args.join(" "), 0)
   if (!extractData) return player.sendMessage("§cInput a player name.")

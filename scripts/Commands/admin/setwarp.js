@@ -2,7 +2,7 @@ import { Log } from "../../Modules/Log/Log"
 import Untravel from "../../Untravel"
 import Config from "../../conf/Configuration"
 
-const WarpDB = Untravel.WarpDB
+
 
 Untravel.cmd.add({
   name: "setwarp",
@@ -12,6 +12,7 @@ Untravel.cmd.add({
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
+  const WarpDB = Untravel.WarpDB
   if (!args[0]) return player.sendMessage("§a■§cIngresa un mombre para el Warp.")
   let name = args.slice(0).join(" ")
   let warp = WarpDB.get(name)

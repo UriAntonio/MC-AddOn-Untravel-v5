@@ -3,7 +3,7 @@ import { ModalFormData } from "@minecraft/server-ui"
 import Config from "../../conf/Configuration"
 import { ForceOpen } from "../../Modules/Server/Forms"
 
-const BanDB = Untravel.BanDB
+
 
 Untravel.cmd.add({
   name: "unban",
@@ -12,6 +12,7 @@ Untravel.cmd.add({
   admin: true,
   category: "Admin"
 }, async (data, player, args) => {
+  const BanDB = Untravel.BanDB
   const f = new ModalFormData
   const playersArr = BanDB.lenght > 0 ? BanDB.keys() : ["Sin Datos"] 
   f.title("§a■§9§lUNBAN§r§a■")

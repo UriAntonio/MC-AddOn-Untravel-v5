@@ -1,6 +1,6 @@
 import Untravel from "../../Untravel"
 
-const HomeDB = Untravel.HomeDB
+
 
 Untravel.cmd.add({
     name: "allhomes",
@@ -10,6 +10,7 @@ Untravel.cmd.add({
     admin: true,
     category: "Admin"
 }, async (data, player, args) => {
+  const HomeDB = Untravel.HomeDB
     let message = ""
     HomeDB.forEach((key, value) => {
         if (key) {

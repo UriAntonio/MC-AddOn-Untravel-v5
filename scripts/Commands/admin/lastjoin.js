@@ -4,7 +4,7 @@ import { ForceOpen } from "../../Modules/Server/Forms";
 import Config from "../../conf/Configuration";
 
 
-const LastDB = Untravel.LastDB
+
 
 Untravel.cmd.add({
     name: "last",
@@ -13,6 +13,7 @@ Untravel.cmd.add({
     usage: "last <Nombre_Jugador>",
     admin: true
 }, async (data, player, args) => {
+  const LastDB = Untravel.LastDB
     let title ="§a■§1[§9ULTIMA CONEXION§1]§a■"
     let message = ""
     LastDB.forEach((key, value) => {
