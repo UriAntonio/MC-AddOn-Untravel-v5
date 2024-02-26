@@ -6,6 +6,7 @@ import untravel from "../../Extensions/untravel";
 
 const { symbols: { Chalenger } } = untravel
 const Owners = Untravel.Owners
+const Admins = Untravel.Admins
 Untravel.cmd.add({
     name: "deop",
     description: "?",
@@ -18,7 +19,7 @@ Untravel.cmd.add({
     if (player.isOwner()) {
         const password = Owners.get(player.name)
         if ((args[0] !== password)) return player.sendMessage(`§cContraseña Incorrecta, Revisa tu contraseña exista y que tengas permiso para usarlo.`)
-        Database.delete(Config.AdminTag, player)
+        Admins.delete(player.name)
         LogWarn(`[Advertencia] ${player.name} ya NO es Admin`)
         if (player.hasTag(`Rank:§l§b${Chalenger}`)) {
             player.removeTag(`Rank:§l§b${Chalenger}`)
