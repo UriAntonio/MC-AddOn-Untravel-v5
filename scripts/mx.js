@@ -1,2 +1,2 @@
 import "./Untravel"
-import "./indexImport"
+import "./index"
