@@ -3,8 +3,8 @@ import Utility from "../../Modules/Utilities/Utility";
 import Database from "../../Extensions/Database";
 import Untravel from "../../Untravel";
 
-const prefix = Untravel.getPrefix()
-const password = Database.get("word")
+console.log("Comando config cargada")
+
 Untravel.cmd.add({
     name: "config",
     description: "?",
@@ -14,7 +14,7 @@ Untravel.cmd.add({
     category: "Op",
 
 }, (data, player, args) => {
-
+    const password = Database.get("word")
     if (!args[0]) return player.sendMessage(`§cComando desconocido: . Revisa que el comando exista y que tengas permiso para usarlo.`)
     if ((args[0] == password)) {
         //let args2 = args.slice(args[0].length).split(/ +/);
