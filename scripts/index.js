@@ -9,6 +9,7 @@ import "./Events/playerDie"
 import "./Events/playerInteract"
 import "./Events/playerLeave"
 import "./Events/systemRun"
+import "./Events/newEventsDesign"
 
 //Extensions
 import "./Extensions/Bow-ding"
