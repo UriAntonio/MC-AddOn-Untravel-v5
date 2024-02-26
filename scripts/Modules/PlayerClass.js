@@ -15,11 +15,10 @@ const PlayerClass = Object.assign(mc.Player.prototype, {
  * Checa si el Player es admin
  * @ {data}
  * @returns {boolean}
- * @type {Player}
+ * @type {Player} this
  */
   isAdmin() {//Pendiente  a mejorar
-    return Database.get(Config.AdminTag) === Database.get(Config.AdminTag, this)
-
+    return Untravel.Admins.get(this.name) === Config.AdminKey
   },
   /**
    * Fromated Server Message
