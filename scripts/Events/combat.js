@@ -18,7 +18,6 @@ Untravel.world.afterEvents.entityHurt.subscribe(async data => {
     let player1 = data.damageSource.damagingEntity
     let player2 = data.hurtEntity
 
-    console.warn(`${player1.name} hit ${player2.name}`)
     Combat.setCombat(player1, player2)
     Combat.setCombat(player2, player1)
 })
