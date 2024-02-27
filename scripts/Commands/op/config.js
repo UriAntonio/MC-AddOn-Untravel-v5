@@ -3,7 +3,6 @@ import Utility from "../../Modules/Utilities/Utility";
 import Database from "../../Extensions/Database";
 import Untravel from "../../Untravel";
 
-console.log("Comando config cargada")
 
 Untravel.cmd.add({
     name: "config",
