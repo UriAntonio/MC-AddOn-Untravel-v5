@@ -15,19 +15,13 @@ Untravel.System.runInterval(() => {
             player.gamemode = gms
             LogWarn(`${player.name} estaba en creativo!!!`)
         }
-        let statusNotify = Database.get("Notify", player)
-        if (statusNotify && !player.hasTag("Notify")) {
-            player.addTag("Notify")
-        }
-        if ((statusNotify == false) && player.hasTag("Notify")) {
-            player.removeTag("Notify")
-        }
+
     })
 }, 20)
 
-Untravel.System.runInterval(() => {
-    Database.set("coliseoManager", true)
-}, 3000)
+// Untravel.System.runInterval(() => {
+//     Database.set("coliseoManager", true)
+// }, 3000)
 
 /**
  * @param {import{@minecraft/server}.Player}
@@ -58,4 +52,15 @@ Untravel.System.runInterval(() => {
     })
 
 })
+
+
+Untravel.System.runInterval(() => {
+    if (!isCombatOn) return
+
+    Untravel.world.getAllPlayers().forEach(player => {        
+        if (Combat.stopCombat(player.name))
+            Untravel.System.run(() => player.sendMessage(`§a■§aYa no estas en combate`))
+    })
+
+}, 20)
 
