@@ -65,14 +65,3 @@ Untravel.world.afterEvents.entityDie.subscribe((data) => {
     }
 })
 
-
-Untravel.System.runInterval(() => {
-    if (!isCombatOn) return
-
-    Untravel.world.getAllPlayers().forEach(player => {        
-        if (Combat.stopCombat(player.name))
-            Untravel.System.run(() => player.sendMessage(`§a■§aYa no estas en combate`))
-    })
-
-}, 20)
-
