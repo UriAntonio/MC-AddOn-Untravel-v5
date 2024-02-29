@@ -6,6 +6,9 @@ import Combat from '../Modules/Server/Combat';
 import Action from '../Modules/Log/ActionLog';
 
 const { heart, mana } = untravel.symbols
+const isCombatOn = () => {
+    return Untravel.Setting.get("combatSystem") ?? Config.combatSystem
+}
 
 Untravel.System.runInterval(() => {
     Untravel.world.getAllPlayers().forEach(player => {
