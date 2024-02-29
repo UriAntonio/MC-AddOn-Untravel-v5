@@ -316,18 +316,7 @@ Untravel.world.afterEvents.worldInitialize.subscribe(async (data) => {
       import(`./Commands/${category}/${cmd}`).catch(err => LogWarn(`Fallo al importar el comando: ${cmd} | ${category} | ${err}`))
     })
   })
-  // Event.forEach(event => {
-  //   import(`./Events/${event}`).then(Ext => {
-  //     Log(`El Evento §b${event}§r fue Cargado`)
-  //   }).catch(err => LogWarn(`§cFallo al importar el evento: ${event} | ${err}`))
-  // })
- 
-  // Object.keys(Extensions).forEach(ExtName => {
-  //   import(`./Extensions/${ExtName}.js`).then(Ext => {
-  //     Extensions[ExtName] = true
-  //     Log(`La extencion §b${ExtName}§r fue Cargada`)
-  //   }).catch(err => LogWarn(`§cFallo al importar la extencion: ${ExtName} | ${err}`))
-  // })
+
   Log(`§dEl Sistema Untravel fue cargado correctamente en tiempo: §e${Date.now() - date}ms`)
   Untravel.world.getAllPlayers()
     .filter(p => p.isAdmin())
