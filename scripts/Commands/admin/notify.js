@@ -17,6 +17,9 @@ Untravel.cmd.add({
     if ((args[0] == "true")) {
         if (player.hasTag("Notify")) return player.sendMessage("§a■No se ejecuto porque ya esta activado")
         Database.set("Notify", true, player)
+        if (!player.hasTag("Notify")) {
+            player.addTag("Notify")
+        }
         Log(`${player.name} activo sus Notificaciones`)
         player.sendMessage(`§1------------------------------\n§a■§3Tus notificaciones fueron §bActivadas!`)
         return
@@ -24,6 +27,9 @@ Untravel.cmd.add({
     if ((args[0] == "false")) {
         if (!player.hasTag("Notify")) return player.sendMessage("§a■No se ejecuto porque ya esta desactivado")
         Database.set("Notify", false, player)
+        if (player.hasTag("Notify")) {
+            player.removeTag("Notify")
+        }
         Log(`${player.name} desactivo sus Notificaciones`)
         player.sendMessage(`§1------------------------------\n§a■§3Tus notificaciones fueron §bDesactivadas!`)
         return
@@ -31,8 +37,5 @@ Untravel.cmd.add({
      else {
         player.sendMessage(`§a■§cIngresa el parametro correcto`)
     }
-
-
-
 
 })
