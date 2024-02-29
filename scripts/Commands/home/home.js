@@ -1,5 +1,5 @@
 import Untravel from "../../Untravel"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
 import Money from "../../Modules/Finance/Money"
 import Fund from "../../Modules/Finance/Funds"

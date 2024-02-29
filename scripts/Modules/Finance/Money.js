@@ -1,5 +1,5 @@
 import { system, world } from "@minecraft/server";
-import Config from "../../conf/Configuration";
+import Config from "../../Commands/Configuration";
 import Untravel from "../../Untravel";
 import { DB } from "../DataBase/UntravelDB";
 

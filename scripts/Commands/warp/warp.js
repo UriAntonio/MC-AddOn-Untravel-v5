@@ -1,4 +1,4 @@
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 import Untravel from "../../Untravel"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
 import Action from "../../Modules/Log/ActionLog"

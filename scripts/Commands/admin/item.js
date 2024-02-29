@@ -2,7 +2,7 @@ import { ItemStack, system } from "@minecraft/server";
 import Untravel from "../../Untravel";
 import { ModalFormData } from "@minecraft/server-ui";
 import { ForceOpen } from "../../Modules/Server/Forms";
-import Config from "../../conf/Configuration";
+import Config from "../../Commands/Configuration.js";
 import { LogWarn } from "../../Modules/Log/Log";
 
 Untravel.cmd.add({

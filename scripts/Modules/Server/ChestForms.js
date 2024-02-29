@@ -1,7 +1,7 @@
 import { ActionFormData } from '@minecraft/server-ui';
 import { typeIdToID } from "../Data/typeId.js";
 import { BlockTypes, ItemStack, ItemTypes } from '@minecraft/server';
-import Config from '../../conf/Configuration.js';
+import Config from "../../Commands/Configuration.js";
 
 /**
  * Credit:

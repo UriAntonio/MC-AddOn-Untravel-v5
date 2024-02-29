@@ -1,5 +1,5 @@
 import Untravel from '../Untravel';
-import Config from '../conf/Configuration';
+import Config from '../Commands/Configuration';
 import { LogWarn } from '../Modules/Log/Log';
 import untravel from '../Extensions/untravel';
 import Combat from '../Modules/Server/Combat';

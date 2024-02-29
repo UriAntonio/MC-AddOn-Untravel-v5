@@ -1,5 +1,5 @@
 import * as mc from "@minecraft/server"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration"
 import Untravel from "../../Untravel"
 const Utility = {}
 

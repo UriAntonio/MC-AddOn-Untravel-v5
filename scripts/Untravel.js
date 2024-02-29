@@ -1,6 +1,6 @@
 import * as mc from "@minecraft/server";
 import * as ui from "@minecraft/server-ui"
-import Config from "./conf/Configuration";
+import Config from "./Commands/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, LogWarn, SystemLog } from "./Modules/Log/Log";
 import { Database } from "./Modules/DataBase/Database";

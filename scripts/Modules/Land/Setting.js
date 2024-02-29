@@ -1,5 +1,5 @@
 import { DB } from "../DataBase/UntravelDB";
-import Config from "./../../conf/Configuration";
+import Config from "../../Commands/Configuration";
 import EventEmitter from "./EventEmitter";
 
 const SettingDatabase = new DB("Land_settingDB")

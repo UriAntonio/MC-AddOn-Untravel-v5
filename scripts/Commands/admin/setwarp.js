@@ -1,6 +1,6 @@
 import { Log } from "../../Modules/Log/Log"
 import Untravel from "../../Untravel"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 
 
 

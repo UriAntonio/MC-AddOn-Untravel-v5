@@ -1,7 +1,7 @@
 import * as mc from "@minecraft/server"
 import Untravel from "../Untravel"
 import { getScore, setScore } from "./Server/Scoreboard";
-import Config from "../conf/Configuration";
+import Config from "../Commands/Configuration";
 import Combat from "./Server/Combat";
 import Database from "../Extensions/Database";
 import { Log } from "./Log/Log";

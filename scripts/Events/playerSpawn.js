@@ -1,6 +1,6 @@
 import { onJoinData } from "../Modules/Data/onJoinData.js";
 import { welcome } from "../util/newMemberMessage.js";
-import Config from "../conf/Configuration.js";
+import Config from "../Commands/Configuration.js";
 import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";

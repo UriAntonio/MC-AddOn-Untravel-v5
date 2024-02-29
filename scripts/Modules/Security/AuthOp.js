@@ -1,5 +1,5 @@
 import { ModalFormData } from "@minecraft/server-ui"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 import { ForceOpen } from "../Server/Forms"
 import Untravel from "../../Untravel"
 import PlayerClass from "../PlayerClass";

@@ -1,7 +1,7 @@
 import Action from "../Modules/Log/ActionLog"
 import Combat from "../Modules/Server/Combat"
 import Utility from "../Modules/Utilities/Utility"
-import Config from "../conf/Configuration"
+import Config from "../Commands/Configuration"
 import Untravel from "../Untravel"
 
 const isCombatOn = () => {

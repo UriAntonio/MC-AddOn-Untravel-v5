@@ -1,4 +1,4 @@
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 import Untravel from "../../Untravel"
 
 Untravel.cmd.add({

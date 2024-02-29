@@ -2,7 +2,7 @@ import { system, world } from "@minecraft/server"
 import Utility from "../../Modules/Utilities/Utility"
 import Untravel from "../../Untravel"
 import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 
 const TPRange = 1000
 const playerTeleport = {}

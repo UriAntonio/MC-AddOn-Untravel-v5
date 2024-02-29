@@ -1,7 +1,7 @@
 import { Player } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 import Untravel from "../Untravel";
-import Config from "../conf/Configuration";
+import Config from "../Commands/Configuration";
 //import { Log } from "../Modules/Log/Log";
 
 const versionList = [

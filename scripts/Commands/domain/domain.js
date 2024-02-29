@@ -8,7 +8,7 @@ import ParticleLand from "../../Modules/Land/Particle";
 import { Log } from "../../Modules/Log/Log";
 import { CooldownMark } from "../../Modules/Log/NotifyText";
 import Action from "../../Modules/Log/ActionLog"
-import Config from "../../conf/Configuration";
+import Config from "../../Commands/Configuration.js";
 
 const Position = {}
 

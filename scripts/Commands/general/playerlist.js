@@ -1,7 +1,7 @@
 import { ActionFormData } from "@minecraft/server-ui"
 import Untravel from "../../Untravel"
 import { ForceOpen } from "../../Modules/Server/Forms"
-import Config from "../../conf/Configuration"
+import Config from "../../Commands/Configuration.js"
 
 Untravel.cmd.add({
   name: "playerlist",
