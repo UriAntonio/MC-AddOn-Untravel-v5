@@ -3,9 +3,9 @@ import * as ui from "@minecraft/server-ui"
 import Config from "./Commands/Configuration";
 import CommandBuilder from "./Modules/Utilities/CommandBuilder";
 import { Log, LogWarn, SystemLog } from "./Modules/Log/Log";
-import { Database } from "./Modules/DataBase/Database";
+
 import getTPS from "./Modules/Utilities/TickPerSecond"
-import Setting from "./Modules/Server/Setting";
+
 import PlayerClass from "./Modules/PlayerClass";
 //
 import Money from "./Modules/Finance/Money";
