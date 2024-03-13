@@ -1,17 +1,20 @@
 import { onJoinData } from "../Modules/Data/onJoinData.js";
-import { welcome } from "../util/newMemberMessage.js";
+//import { welcome } from "../util/newMemberMessage.js";
+import { guia } from "../windows/welcome/w-page-1.js";
 import Config from "../Commands/Configuration.js";
 import Untravel from "../Untravel.js";
 import { Log, LogWarn } from "../Modules/Log/Log.js";
 import { Player } from "@minecraft/server";
 import untravel from "../Extensions/untravel.js";
 import opSystem from "../Modules/Security/AuthOp.js";
+import { firstJoin } from "../windows/firstJoin/systemJoin.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
 const { symbols: { Chalenger } } = untravel
 const statsDB = Untravel.PlayerStats
 const Owners = Untravel.Owners
+const JoinDB = Untravel.Join
 
 
 const playerStats = {
@@ -76,7 +79,7 @@ function onJoinSpawn(player) {
     }
 
     let stats = statsDB.get(player.id)
-    if(stats == undefined) stats = playerStats
+    if (stats == undefined) stats = playerStats
     statsDB.set(player.id, stats)
 
     statsDB.get(player.id)
@@ -86,7 +89,7 @@ function onJoinSpawn(player) {
     stats.manaM = player.getmaxMana()
     stats.regen = player.getRegen()
     statsDB.set(player.id, stats)
-    
+
 
 
 
@@ -115,11 +118,22 @@ function onJoinSpawn(player) {
       gamemode = "survival"
     }
     //Owners.reset
-    if (Owners.lenght == 0 ) {
+    if (Owners.lenght == 0) {
       opSystem(player)
+    }
+    if (!JoinDB.get(player.name)) {
+      firstJoin(player,gamemode)
+      Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
+      for (let i = 0; i < onJoinData.length; i++) {
+        try {
+          player.runCommandAsync(`${onJoinData[i]}`);
+        } catch (error) { }
+        return
+      }
     }
 
     welcome(player, gamemode);
+
     Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista
     for (let i = 0; i < onJoinData.length; i++) {
@@ -159,7 +173,7 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
     });
 
   } else {
-    player.setHealth(player.getmaxHealth()) 
+    player.setHealth(player.getmaxHealth())
     if ((Untravel.Setting.get("backSystem") ?? true) == false) return
     //player.sendMessage(`§eYou died. use §a!back§e to teleport to your death location.`)
   }
