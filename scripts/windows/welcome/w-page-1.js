@@ -31,6 +31,7 @@ export function guia(playerid, gamemode) {
         } else {
           
             playerid.playSound(`item.book.page_turn`)
+            playerid.runCommandAsync(`gamemode ${gamemode}`)
             //playerid.playSound(`random.anvil_use`)
             //guia2(playerid, gm)
         }
