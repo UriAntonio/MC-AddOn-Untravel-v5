@@ -1,8 +1,8 @@
 import { ModalFormData } from "@minecraft/server-ui"
 import Config from "../../Commands/Configuration.js"
-import { ForceOpen } from "../Server/Forms"
-import Untravel from "../../Untravel"
-import PlayerClass from "../PlayerClass";
+import { ForceOpen } from "../Server/Forms.js"
+import Untravel from "../../Untravel.js"
+import PlayerClass from "../PlayerClass.js";
 
 let key = ""
 const Owners = Untravel.Owners
