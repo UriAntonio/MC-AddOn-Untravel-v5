@@ -1,12 +1,12 @@
-import Config from "../../Commands/Configuration.js"
-import Untravel from "../../Untravel"
-import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
-import Action from "../../Modules/Log/ActionLog"
-import Fund from "../../Modules/Finance/Funds"
-import Money from "../../Modules/Finance/Money"
+import Config from "../Configuration.js"
+import Untravel from "../../Untravel.js"
+import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown.js"
+import Action from "../../Modules/Log/ActionLog.js"
+import Fund from "../../Modules/Finance/Funds.js"
+import Money from "../../Modules/Finance/Money.js"
 import { ActionFormData } from "@minecraft/server-ui"
-import untravel from "../../Extensions/untravel"
-import { ForceOpen } from "../../Modules/Server/Forms"
+import untravel from "../../Extensions/untravel.js"
+import { ForceOpen } from "../../Modules/Server/Forms.js"
 
 const WarpDB = Untravel.WarpDB
 const { symbols: { portal, coin } } = untravel

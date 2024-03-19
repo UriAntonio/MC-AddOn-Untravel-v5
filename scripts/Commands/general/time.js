@@ -1,8 +1,8 @@
 import { ActionFormData } from "@minecraft/server-ui";
-import Untravel from "../../Untravel";
-import { ForceOpen } from "../../Modules/Server/Forms";
-import Config from "../../Commands/Configuration.js";
-import { Log } from "../../Modules/Log/Log";
+import Untravel from "../../Untravel.js";
+import { ForceOpen } from "../../Modules/Server/Forms.js";
+import Config from "../Configuration.js";
+import { Log } from "../../Modules/Log/Log.js";
 
 
 const TimeDB = Untravel.TimeDB

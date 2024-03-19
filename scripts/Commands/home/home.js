@@ -1,13 +1,13 @@
-import Untravel from "../../Untravel"
-import Config from "../../Commands/Configuration.js"
-import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
-import Money from "../../Modules/Finance/Money"
-import Fund from "../../Modules/Finance/Funds"
-import Action from "../../Modules/Log/ActionLog"
+import Untravel from "../../Untravel.js"
+import Config from "../Configuration.js"
+import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown.js"
+import Money from "../../Modules/Finance/Money.js"
+import Fund from "../../Modules/Finance/Funds.js"
+import Action from "../../Modules/Log/ActionLog.js"
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui"
-import untravel from "../../Extensions/untravel"
-import { ForceOpen } from "../../Modules/Server/Forms"
-import { Log } from "../../Modules/Log/Log"
+import untravel from "../../Extensions/untravel.js"
+import { ForceOpen } from "../../Modules/Server/Forms.js"
+import { Log } from "../../Modules/Log/Log.js"
 
 const HomeDB = Untravel.HomeDB
 const { symbols: { myPoint, whiteConfig, less, plus, equis } } = untravel

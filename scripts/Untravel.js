@@ -59,6 +59,7 @@ class UntravelClass {
     this.ClaimBlocks = new DB("claimDB")
     this.Owners = new DB("ServerOwners")
     this.Admins = new DB(`ServerAdmins`)
+    this.Join = new DB(`joinDB`)
     this.Fund = Fund
     this.Setting = NewSetting
     this.Money = Money

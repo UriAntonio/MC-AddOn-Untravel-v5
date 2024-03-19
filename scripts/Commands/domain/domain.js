@@ -1,14 +1,14 @@
 import { system, world, Player, Vector, EntityHealthComponent } from "@minecraft/server";
-import Land from "../../Modules/Land/Land";
-import isMoving from "../../Modules/PlayerMove";
+import Land from "../../Modules/Land/Land.js";
+import isMoving from "../../Modules/PlayerMove.js";
 import * as ui from "@minecraft/server-ui"
-import Setting from "../../Modules/Land/Setting";
-import Untravel from "../../Untravel";
-import ParticleLand from "../../Modules/Land/Particle";
-import { Log } from "../../Modules/Log/Log";
-import { CooldownMark } from "../../Modules/Log/NotifyText";
-import Action from "../../Modules/Log/ActionLog"
-import Config from "../../Commands/Configuration.js";
+import Setting from "../../Modules/Land/Setting.js";
+import Untravel from "../../Untravel.js";
+import ParticleLand from "../../Modules/Land/Particle.js";
+import { Log } from "../../Modules/Log/Log.js";
+import { CooldownMark } from "../../Modules/Log/NotifyText.js";
+import Action from "../../Modules/Log/ActionLog.js"
+import Config from "../Configuration.js";
 
 const Position = {}
 
