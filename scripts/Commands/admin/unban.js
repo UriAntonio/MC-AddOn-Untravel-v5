@@ -1,7 +1,7 @@
-import Untravel from "../../Untravel"
+import Untravel from "../../Untravel.js"
 import { ModalFormData } from "@minecraft/server-ui"
-import Config from "../../Commands/Configuration.js"
-import { ForceOpen } from "../../Modules/Server/Forms"
+import Config from "../Configuration.js"
+import { ForceOpen } from "../../Modules/Server/Forms.js"
 
 
 

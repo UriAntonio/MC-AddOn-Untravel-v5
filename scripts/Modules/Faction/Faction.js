@@ -1,5 +1,5 @@
 import { Player } from "@minecraft/server";
-import FunctionQueue from "./../Land/FunctionQueue";
+import FunctionQueue from "../Land/FunctionQueue";
 import { DB } from "../DataBase/UntravelDB";
 
 

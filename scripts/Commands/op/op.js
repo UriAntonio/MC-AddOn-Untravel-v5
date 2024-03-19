@@ -1,8 +1,8 @@
-import { LogWarn } from "../../Modules/Log/Log";
-import Database from "../../Extensions/Database";
-import Untravel from "../../Untravel";
-import Config from "../../Commands/Configuration.js";
-import untravel from "../../Extensions/untravel";
+import { LogWarn } from "../../Modules/Log/Log.js";
+import Database from "../../Extensions/Database.js";
+import Untravel from "../../Untravel.js";
+import Config from "../Configuration.js";
+import untravel from "../../Extensions/untravel.js";
 
 const { symbols: { Chalenger } } = untravel
 

@@ -1,5 +1,5 @@
-import Config from "../../Commands/Configuration.js"
-import Untravel from "../../Untravel"
+import Config from "../Configuration.js"
+import Untravel from "../../Untravel.js"
 
 Untravel.cmd.add({
   name: "help",

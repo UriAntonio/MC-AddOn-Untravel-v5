@@ -1,7 +1,7 @@
 import Config from "../Commands/Configuration.js"
-import Untravel from "../Untravel"
-import Utility from "../Modules/Utilities/Utility"
-import Action from "../Modules/Log/ActionLog"
+import Untravel from "../Untravel.js"
+import Utility from "../Modules/Utilities/Utility.js"
+import Action from "../Modules/Log/ActionLog.js"
 
 Untravel.world.afterEvents.entityDie.subscribe( async data => {
     if (!(Untravel.Setting.get("earnMoneyfromMobs") ?? Config.earnMoneyfromMobs)) return

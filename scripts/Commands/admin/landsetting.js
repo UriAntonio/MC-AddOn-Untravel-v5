@@ -1,8 +1,8 @@
 import { system, world, Player, Vector } from "@minecraft/server";
 import * as ui from "@minecraft/server-ui"
-import Setting from "../../Modules/Land/Setting";
-import Untravel from "../../Untravel";
-import Config from "../../Commands/Configuration.js";
+import Setting from "../../Modules/Land/Setting.js";
+import Untravel from "../../Untravel.js";
+import Config from "../Configuration.js";
 
 const Position = {}
 

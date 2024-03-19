@@ -1,6 +1,6 @@
-import Config from "../../Commands/Configuration.js"
-import Untravel from "../../Untravel"
-import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown"
+import Config from "../Configuration.js"
+import Untravel from "../../Untravel.js"
+import { getCooldown, setCooldown } from "../../Modules/Tempo/Cooldown.js"
 const BackDB = Untravel.BackDB
 
 Untravel.cmd.add({

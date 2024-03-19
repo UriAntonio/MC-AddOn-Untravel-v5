@@ -1,9 +1,9 @@
 import { ModalFormData } from "@minecraft/server-ui";
-import { Log } from "../../Modules/Log/Log"
-import Utility from "../../Modules/Utilities/Utility"
-import Untravel from "../../Untravel"
-import Config from "../../Commands/Configuration.js";
-import { ForceOpen } from "../../Modules/Server/Forms";
+import { Log } from "../../Modules/Log/Log.js"
+import Utility from "../../Modules/Utilities/Utility.js"
+import Untravel from "../../Untravel.js"
+import Config from "../Configuration.js";
+import { ForceOpen } from "../../Modules/Server/Forms.js";
 
 Untravel.cmd.add({
   name: "setmoney",

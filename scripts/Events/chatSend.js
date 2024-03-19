@@ -1,9 +1,9 @@
 import Config from "../Commands/Configuration.js";
-import Untravel from "../Untravel";
-import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown";
-import { Log } from "../Modules/Log/Log";
-import { msgLog } from "../Modules/Log/msgLog";
-import untravel from "../Extensions/untravel";
+import Untravel from "../Untravel.js";
+import { getCooldown, setCooldown } from "../Modules/Tempo/Cooldown.js";
+import { Log } from "../Modules/Log/Log.js";
+import { msgLog } from "../Modules/Log/msgLog.js";
+import untravel from "../Extensions/untravel.js";
 
 const {symbols: {Bronze}} = untravel
 /**
