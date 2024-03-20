@@ -74,6 +74,7 @@ class UntravelClass {
     //this.usingLandClaim = false
   }
 
+  #timerMap = new Map();
   /**
      * Obtiene al Jugadorpor Nombre
      * @param {string} targetName 
@@ -292,6 +293,20 @@ ForceOpen = async (player, form, timeout = 1200) => {
   return undefined
 }
 
+setTimer(player, spawn = false) {
+  let timer = 0;
+  if (spawn === true) {
+      // Set a timer for 10 seconds
+      timer = Date.now() + 10000;
+  } else {
+      // Set a timer for 2 seconds
+      timer = Date.now() + 2000;
+  }
+
+  // Store the timer in the map
+  timerMap.set(player, timer);
+}
+
   async waitLoaded() {
     return new Promise((resolve) => {
       let systemId = mc.system.runInterval(() => {
@@ -305,6 +320,8 @@ ForceOpen = async (player, form, timeout = 1200) => {
     })
   }
 }
+
+
 
 const Untravel = new UntravelClass()
 
