@@ -91,6 +91,7 @@ Untravel.world.beforeEvents.playerLeave.subscribe( (data) => {
         if (item)
             items.push(item);
     }
+    Untravel.Punish.set(player.name, "pvp-logout")
     inventoryMap.set(player.name, items);
     system.run(() => {
         const playerData = inventoryMap.get(playerName);
@@ -107,5 +108,6 @@ Untravel.world.beforeEvents.playerLeave.subscribe( (data) => {
             world.getDimension(dimension).spawnItem(item, location);
         }
         inventoryMap.delete(playerName);
+        
     });
 })
