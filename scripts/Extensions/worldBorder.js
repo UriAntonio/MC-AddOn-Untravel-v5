@@ -1,7 +1,7 @@
 import { Player, system, world } from "@minecraft/server";
 import {Setting } from "../Modules/Land/Setting.js"
 import { Config } from  "../Commands/Configuration.js"
-import { MinecraftBlockTypes } from "../../node_modules/@minecraft/vanilla-data/lib/index.js";
+import { MinecraftBlockTypes } from "../../node_modules/@minecraft/vanilla-data/lib/index";
 
 
 /**
