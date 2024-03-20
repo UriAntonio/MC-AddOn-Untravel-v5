@@ -8,6 +8,7 @@ import { Player } from "@minecraft/server";
 import untravel from "../Extensions/untravel.js";
 import opSystem from "../Modules/Security/AuthOp.js";
 import { firstJoin } from "../windows/firstJoin/systemJoin.js";
+import { guia } from "../windows/welcome/w-page-1.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
@@ -141,7 +142,7 @@ function onJoinSpawn(player) {
         player.runCommandAsync(`${onJoinData[i]}`);
       } catch (error) { }
     }
-  } catch (error) { LogWarn(`§cError al unirse: ${player} | ${error}`) }
+  } catch (error) { LogWarn(`§cError al unirse: ${player.name} | ${error}`) }
 }
 
 Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
