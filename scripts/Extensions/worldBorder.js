@@ -1,7 +1,8 @@
-const { Player, system, world } = require("@minecraft/server");
-const { default: Setting } = require("../Modules/Land/Setting");
-const { default: Config } = require("../Commands/Configuration");
-const { MinecraftBlockTypes } = require("../../node_modules/@minecraft/vanilla-data/lib/index")
+import { Player, system, world } from "@minecraft/server";
+import {Setting } from "../Modules/Land/Setting.js"
+import { Config } from  "../Commands/Configuration.js"
+import { MinecraftBlockTypes } from "../../node_modules/@minecraft/vanilla-data/lib/index";
+
 
 /**
  * Asegurate de no hacerte TP en un bloque sólido
