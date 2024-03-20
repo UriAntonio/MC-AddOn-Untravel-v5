@@ -1,7 +1,8 @@
 import { Player, system, world } from "@minecraft/server";
-import {Setting } from "../Modules/Land/Setting.js"
-import { Config } from  "../Commands/Configuration.js"
-import { MinecraftBlockTypes } from "../../node_modules/@minecraft/vanilla-data/lib/index";
+import Setting from "../Modules/Land/Setting.js"
+import  Config  from  "../Commands/Configuration.js"
+import Untravel from "../Untravel.js";
+//import { MinecraftBlockTypes } from "../../node_modules/@minecraft/vanilla-data/lib/index.js";
 
 
 /**
@@ -58,9 +59,9 @@ const worldborder = (id) => {
         //Get unique Id
         //const uniqueId = dynamicPropertyRegistry.get(player?.id);
         // Skip if they have permission
-        if (player.isAdmin()) {
-            continue;
-        }
+        // if (player.isAdmin()) {
+        //     continue;
+        // }
         //if (uniqueId === player.name) {
         //    continue;
         //}
@@ -106,10 +107,10 @@ const worldborder = (id) => {
             const block = player.dimension.getBlock({ x: x, y: y, z: z })
             portalBlocks[`${x},${y},${z}`] = block?.typeId ?? "minecraft:air";
         }
-        if (portalBlocks[MinecraftBlockTypes.Portal] || portalBlocks[`${x},${y - 1},${z}`] === MinecraftBlockTypes.Air) {
-            setTimer(player.id);
-            continue;
-        }
+        //if (portalBlocks[MinecraftBlockTypes.Portal] || portalBlocks[`${x},${y - 1},${z}`] === MinecraftBlockTypes.Air) {
+        //    Untravel.setTimer(player.id);
+        //    continue;
+        //}
 
         //Overworld
         if (player.dimension.id === "minecraft:overworld") {
@@ -122,7 +123,7 @@ const worldborder = (id) => {
 
                 const teleportToBorder = (x, z) => {
                     const safe = safetyProtocol(player, x, y, z);
-                    setTimer(player.id);
+                    Untravel.setTimer(player.id);
                     player.teleport({ x: x, y: safe, z: z }, { dimension: player.dimension, rotation: { x: 0, y: 0 }, facingLocation: { x: 0, y: 0, z: 0 }, checkForBlocks: false, keepVelocity: false });
                 };
 
@@ -143,7 +144,7 @@ const worldborder = (id) => {
 
                 const teleportToBorder = (x, z) => {
                     const safe = safetyProtocol(player, x, y, z);
-                    setTimer(player.id);
+                    Untravel.setTimer(player.id);
                     player.teleport({ x: x, y: safe, z: z }, { dimension: player.dimension, rotation: { x: 0, y: 0 }, facingLocation: { x: 0, y: 0, z: 0 }, checkForBlocks: false, keepVelocity: false });
                 };
 
@@ -164,7 +165,7 @@ const worldborder = (id) => {
 
                 const teleportToBorder = (x, z) => {
                     const safe = safetyProtocol(player, x, y, z);
-                    setTimer(player.id);
+                    Untravel.setTimer(player.id);
                     player.teleport({ x: x, y: safe, z: z }, { dimension: player.dimension, rotation: { x: 0, y: 0 }, facingLocation: { x: 0, y: 0, z: 0 }, checkForBlocks: false, keepVelocity: false });
                 };
 
