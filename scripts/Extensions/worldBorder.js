@@ -41,13 +41,13 @@ const safetyProtocol = (player, x, y, z) => {
 
 const worldborder = (id) => {
 
-    const worldSettings = Setting.get("Border")
+    
     //Get Bolean Property
     const worldBorderBoolean = Setting.get("BorderOn")
 
-    const worldBorderOverworldNumber = worldSettings.overworld
-    const worldBorderNetherNumber = worldSettings.nether
-    const worldBorderEndNumber = worldSettings.end
+    const worldBorderOverworldNumber = Setting.get("overworld")
+    const worldBorderNetherNumber = Setting.get("nether")
+    const worldBorderEndNumber = Setting.get("end")
 
     // Unsubscribe if disabled in-game
     if (worldBorderBoolean === false) {
@@ -67,9 +67,9 @@ const worldborder = (id) => {
         //}
         // What is it currently set to
 
-        let overworldSize = (Number.isInteger(worldBorderOverworldNumber)) ? worldBorderOverworldNumber : Config.Border.overworld
-        let netherSize = (Number.isInteger(worldBorderNetherNumber)) ? worldBorderNetherNumber : Config.Border.nether
-        let endSize = (Number.isInteger(worldBorderEndNumber)) ? worldBorderEndNumber : Config.Border.end
+        let overworldSize = (Number.isInteger(worldBorderOverworldNumber)) ? worldBorderOverworldNumber : Config.overworld
+        let netherSize = (Number.isInteger(worldBorderNetherNumber)) ? worldBorderNetherNumber : Config.nether
+        let endSize = (Number.isInteger(worldBorderEndNumber)) ? worldBorderEndNumber : Config.end
 
         // Make sure it's not a negative
         if (overworldSize < 0) {
