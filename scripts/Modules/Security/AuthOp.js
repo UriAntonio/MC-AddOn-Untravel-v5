@@ -3,6 +3,7 @@ import Config from "../../Commands/Configuration.js"
 import { ForceOpen } from "../Server/Forms.js"
 import Untravel from "../../Untravel.js"
 import PlayerClass from "../PlayerClass.js";
+import { LogWarn } from "../Log/Log.js";
 
 let key = ""
 const Owners = Untravel.Owners
@@ -47,6 +48,7 @@ const keyvalidation = async (player,  text  = `§3Por favor confirma tu contrase
             } else {
                 Owners.set(player.name, key)
                 player.sendMsgToPlayer(`§b§lContraseña Guardada`)
+                LogWarn(`§dSe registró a ${player.name} como Owner`)
             }
     }
 }
