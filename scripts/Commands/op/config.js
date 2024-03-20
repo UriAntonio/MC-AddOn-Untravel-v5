@@ -70,7 +70,7 @@ Untravel.cmd.add({
     .toggle("§bBorde del Mundo", Setting.get("BorderOn"))
     .textField("§bLimite Overworld:", "Input number", "" + Setting.get("overworld"))
     .textField("Claim Block Objective:", "Input objective", Setting.get("claimBlockObjective"))
-    .textField("Money Cost per Block:", "Input number", "" + Setting.get("moneyCostperBlock"))
+    .textField("§blimite Nether:", "Input number", "" + Setting.get("nether"))
     .textField("Particle Claim:", "Input particle", Setting.get("particleClaim"))
     .textField("Notify Land:", "Input type", Setting.get("notifyLand"))
     .textField("Item Claim Land:", "Input id", Setting.get("itemClaimLand"))
@@ -85,7 +85,7 @@ Untravel.cmd.add({
         activateBorder,
         overworldLimit,
         claimBlockObjective,
-        moneyCostperBlock,
+        netherLimit,
         particleClaim,
         notifyLand,
         itemClaimLand,
@@ -104,8 +104,8 @@ Untravel.cmd.add({
       Setting.set("claimBlockObjective", claimBlockObjective)
 
       // Money Cost per Block
-      let Set_moneyCostperBlock = Number(moneyCostperBlock)
-      if (Number.isInteger(Set_moneyCostperBlock) && Number.isFinite(Set_moneyCostperBlock) && Set_moneyCostperBlock >= 0) Setting.set("moneyCostperBlock", Set_moneyCostperBlock)
+      let Set_netherLimit = Number(netherLimit)
+      if (Number.isInteger(Set_netherLimit) && Number.isFinite(Set_netherLimit) && Set_netherLimit >= 0) Setting.set("nether", Set_netherLimit)
 
       // Particle Claim
       Setting.set("particleClaim", particleClaim)
