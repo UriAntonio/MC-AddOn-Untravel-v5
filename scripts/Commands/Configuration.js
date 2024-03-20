@@ -274,10 +274,9 @@ Config.messageSystem = true
 Config.combatSystem = true
 Config.combatSystem = true
 
-Config.BorderOn = true
-Config.Border = {
-  overworld : 4000,
-  nether: 500,
-  end: 2000
-}
+Config.BorderOn = true,
+Config.overworld = 4000,
+Config.nether= 500,
+Config.end= 2000
+
 export default Config
