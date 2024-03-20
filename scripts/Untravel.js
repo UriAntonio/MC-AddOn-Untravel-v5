@@ -304,7 +304,7 @@ setTimer(player, spawn = false) {
   }
 
   // Store the timer in the map
-  timerMap.set(player, timer);
+  this.#timerMap.set(player, timer);
 }
 
   async waitLoaded() {
