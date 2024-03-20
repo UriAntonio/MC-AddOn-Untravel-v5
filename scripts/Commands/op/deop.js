@@ -5,8 +5,7 @@ import Config from "../Configuration.js";
 import untravel from "../../Extensions/untravel.js";
 
 const { symbols: { Chalenger } } = untravel
-const Owners = Untravel.Owners
-const Admins = Untravel.Admins
+
 Untravel.cmd.add({
     name: "deop",
     description: "?",
@@ -14,7 +13,8 @@ Untravel.cmd.add({
     category: "Op",
 
 }, (data, player, args) => {
-
+    const Owners = Untravel.Owners
+    const Admins = Untravel.Admins
     if (!args[0]) return player.sendMessage(`1§cComando desconocido: op. Revisa que el comando exista y que tengas permiso para usarlo.`)
     if (player.isOwner()) {
         const password = Owners.get(player.name)
