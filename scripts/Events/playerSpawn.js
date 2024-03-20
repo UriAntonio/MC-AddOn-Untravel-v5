@@ -8,7 +8,6 @@ import { Player } from "@minecraft/server";
 import untravel from "../Extensions/untravel.js";
 import opSystem from "../Modules/Security/AuthOp.js";
 import { firstJoin } from "../windows/firstJoin/systemJoin.js";
-import { guia } from "../windows/welcome/w-page-1.js";
 
 const BanDB = Untravel.BanDB
 const TimeDB = Untravel.TimeDB
@@ -133,7 +132,7 @@ function onJoinSpawn(player) {
       }
     }
 
-    welcome(player, gamemode);
+    guia(player, gamemode);
 
     Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista
