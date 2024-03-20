@@ -16,6 +16,7 @@ import { DB } from "./Modules/DataBase/UntravelDB";
 import NewSetting from "./Modules/Land/Setting";
 import Faction from "./Modules/Faction/Faction";
 import Utility from "./Modules/Utilities/Utility";
+import Combat from "./Modules/Server/Combat";
 
 
 const Event = [
@@ -60,6 +61,8 @@ class UntravelClass {
     this.Owners = new DB("ServerOwners")
     this.Admins = new DB(`ServerAdmins`)
     this.Join = new DB(`joinDB`)
+    this.inv = new DB("invMap")
+    this.Punish = new DB("punishDB")
     this.Fund = Fund
     this.Setting = NewSetting
     this.Money = Money
@@ -75,6 +78,7 @@ class UntravelClass {
   }
 
   #timerMap = new Map();
+  
   /**
      * Obtiene al Jugadorpor Nombre
      * @param {string} targetName 
@@ -305,6 +309,31 @@ setTimer(player, spawn = false) {
 
   // Store the timer in the map
   this.#timerMap.set(player, timer);
+}
+
+/**
+ * Save inventory data of a player
+ * @param {mc.Player} player 
+ */
+savePlayerData(player) {
+  const { name: playerName, location, dimension } = player;
+  const logged = Combat.isCombat(player.name)
+  const items = [];
+  const equipmentInventory = player.getComponent(`equippable`);
+  const equipmentSlots = [
+      mc.EquipmentSlot.Head,
+      mc.EquipmentSlot.Chest,
+      mc.EquipmentSlot.Legs,
+      mc.EquipmentSlot.Feet,
+      mc.EquipmentSlot.Offhand,
+  ];
+  for (const slot of equipmentSlots) {
+      const item = equipmentInventory.getEquipment(slot);
+      if (item)
+          items.push(item);
+  }
+  const obj = { playerName, location, dimension: dimension.id, logged, player, items };
+  this.inv.set(player.name, obj);
 }
 
   async waitLoaded() {
