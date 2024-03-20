@@ -4,6 +4,7 @@ import { LogWarn } from '../Modules/Log/Log';
 import untravel from '../Extensions/untravel';
 import Combat from '../Modules/Server/Combat';
 import Action from '../Modules/Log/ActionLog';
+import { WorldBorder } from '../Extensions/worldBorder';
 
 const { heart, mana } = untravel.symbols
 const isCombatOn = () => {
@@ -67,3 +68,5 @@ Untravel.System.runInterval(() => {
 
 }, 20)
 
+
+WorldBorder()
