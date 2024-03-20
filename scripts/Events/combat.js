@@ -3,8 +3,13 @@ import Combat from "../Modules/Server/Combat"
 import Utility from "../Modules/Utilities/Utility"
 import Config from "../Commands/Configuration"
 import Untravel from "../Untravel"
+import { system, world } from "@minecraft/server"
 
-const isCombatOn = () => {
+/**
+ * validate if combat system is On
+ * @returns boolean
+ */
+export const isCombatOn = () => {
     return Untravel.Setting.get("combatSystem") ?? Config.combatSystem
 }
 
@@ -22,9 +27,10 @@ Untravel.world.afterEvents.entityHurt.subscribe(async data => {
     Combat.setCombat(player2, player1)
 })
 
-Untravel.world.afterEvents.playerLeave.subscribe(({ playerName }) => {
+Untravel.world.afterEvents.playerLeave.subscribe(({ playerName}) => {
     if (!isCombatOn()) return
     if (!Combat.isCombat(playerName)) return
+  
     let enemyName = Combat.getCombat(playerName)
     let get = 0
 
@@ -65,3 +71,41 @@ Untravel.world.afterEvents.entityDie.subscribe((data) => {
     }
 })
 
+const inventoryMap = new Map();
+Untravel.world.beforeEvents.playerLeave.subscribe( (data) => {
+    const player = data.player
+    if (!isCombatOn()) return
+    if (!Combat.isCombat(player.name)) return
+    const playerName = player.name;
+    const inventory = player.getComponent(`inventory`).container;
+    const items = [];
+    const dimension = player.dimension.id;
+    const location = player.location;
+    const logged = Combat.isCombat(player.name);
+    const playerFind = Untravel.inv.get(player.name);
+    //if (+clSettings.get(`bantime`) !== 0) {
+    //    bannedplayers.set(`${player.id}`, `${Date.now() + +clSettings.get(`bantime`) * 1000}`);
+    //}
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item)
+            items.push(item);
+    }
+    inventoryMap.set(player.name, items);
+    system.run(() => {
+        const playerData = inventoryMap.get(playerName);
+        if (!playerData || logged === false)
+            return;
+        //try {
+        //    world.getDimension(dimension).spawnItem(new ItemStack(`lifesteal:heart`), location);
+        //}
+        //catch { }
+        for (const item of playerData) {
+            world.getDimension(dimension).spawnItem(item, location);
+        }
+        for (const item of playerFind.items) {
+            world.getDimension(dimension).spawnItem(item, location);
+        }
+        inventoryMap.delete(playerName);
+    });
+})
