@@ -70,3 +70,12 @@ Untravel.System.runInterval(() => {
 
 
 WorldBorder()
+
+Untravel.System.runInterval(() => {
+    for (const player of Untravel.world.getAllPlayers()) {
+        if (!Combat.isCombat(player.name)) return
+        const inventory = player.getComponent(`inventory`).container;
+        Untravel.savePlayerData(player);
+
+    }
+}, 10);
