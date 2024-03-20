@@ -14,6 +14,7 @@ Untravel.cmd.add({
     category: "Op",
 
 }, (data, player, args) => {
+    //we need the world key
     const password = Database.get("world")
     const Admins = Untravel.Admins
     if (!args[0]) return player.sendMessage(`1§cCommando desconocido: op, Revisa que el comando exista y que tengas permiso para usarlo.`)
