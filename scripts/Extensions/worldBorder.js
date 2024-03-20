@@ -32,8 +32,9 @@ const safetyProtocol = (player, x, y, z) => {
     }
 
     if (consecutiveAir === testPosition.length) {
-        console.log(testPosition.length) //
         safe = testPosition[0].y;
+    } else {
+        safe = y;
     }
 
     return safe;
@@ -122,6 +123,7 @@ const worldborder = (id) => {
                 player.sendMsgToPlayer(`§bEstas en el limite del Mundo.`);
 
                 const teleportToBorder = (x, z) => {
+                    //const {y} = player.location;
                     const safe = safetyProtocol(player, x, y, z);
                     Untravel.setTimer(player.id);
                     player.teleport({ x: x, y: safe, z: z }, { dimension: player.dimension, rotation: { x: 0, y: 0 }, facingLocation: { x: 0, y: 0, z: 0 }, checkForBlocks: false, keepVelocity: false });
