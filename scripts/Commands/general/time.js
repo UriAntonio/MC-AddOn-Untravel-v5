@@ -23,7 +23,7 @@ Untravel.cmd.add({
       let DateLogin = Untravel.PlayerOnline[plr]
       if (DateLogin == undefined) DateLogin = DateNow
       const TimePlayed = (DateNow - DateLogin)
-      Log(TimePlayed)
+      
       const SecondPlayed = Math.ceil((TimePlayed + value) / 1000);
       message += `\n§9 | §3${plr} §1| §bOnline Total§1 -`
       if (SecondPlayed >= 86400) {
