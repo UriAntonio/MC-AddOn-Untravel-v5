@@ -5,7 +5,7 @@ import Config from "../Configuration.js";
 import { Log } from "../../Modules/Log/Log.js";
 
 
-const TimeDB = Untravel.TimeDB
+
 
 Untravel.cmd.add({
     name: "time",
@@ -13,16 +13,19 @@ Untravel.cmd.add({
     category: "General",
     usage: "time",
 }, async (data, player, args) => {
-    let title ="§9tiempo online de jugadores" 
+  const TimeDB = Untravel.TimeDB
+    let title ="§9online players time" 
     let message = ""
+    //TimeDB.reset()
     TimeDB.forEach((key, value) => {
       let plr = key
       const DateNow = new Date()
       let DateLogin = Untravel.PlayerOnline[plr]
-      if (DateLogin == undefined) DateLogin = 0
+      if (DateLogin == undefined) DateLogin = DateNow
       const TimePlayed = (DateNow - DateLogin)
+      Log(TimePlayed)
       const SecondPlayed = Math.ceil((TimePlayed + value) / 1000);
-      message += `\n§1 | §3${plr} §1| §bOnline Total§1 -`
+      message += `\n§9 | §3${plr} §1| §bOnline Total§1 -`
       if (SecondPlayed >= 86400) {
         let day = Math.floor(SecondPlayed / 86400)
         message += ` §f${day} §bdias,`
@@ -36,14 +39,12 @@ Untravel.cmd.add({
         message += ` §f${minute % 60} §bminutos,`
       }
       let second = SecondPlayed
-      message += ` §f${second % 60} §bsegundos`
+      message += ` §f${second % 60} §bsegundos\n§9--------------------`
     })
-    const form = new ActionFormData().title(`${title}`).body(`${message}`).button("§9Ok")
+    const form = new ActionFormData().title(`${title}`).body(`${message}`).button("§l§b<<*>>")
     player.sendMessage(`${Config.FormMessage}`)
     let res = await ForceOpen(player, form)
     if (!res.canceled){
         player.playSound("random.levelup")
     }
-
-    //player.sendMessage(message)
 })
