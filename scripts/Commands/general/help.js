@@ -11,12 +11,19 @@ Untravel.cmd.add({
   category: "General"
 }, async (data, player, args) => {
 
-  const cmd = async (command, category, commandList) => {
+  const cmd = async (command, category, btn = true, commandList, ) => {
     let title = `${command.name}`
-    let message = `§9Nombre :\n §3${Untravel.getPrefix()}${command.name} \n§9Uso :\n§1|§b ${Untravel.getPrefix()}${command.usage}\n§9Descripcion :\n§b(${command.description})`
+    let added = ""
+    if (command.aliases) {
+    added = `\n§9 Alias: \n§b${JSON.stringify(command.aliases)}`
+    }
+    let message = `§9Nombre :\n §3${Untravel.getPrefix()}${command.name} \n§9Uso :\n§1|§b ${Untravel.getPrefix()}${command.usage || command.name}\n§9Descripcion :\n§b(${command.description}) ${added}`
     const form = new ActionFormData().title(`${title}`).body(`${message}`)
-      .button("§l§b<<*>>")
-      .button("§l§d<<")
+      form.button("§l§b<<*>>")
+      if (btn) {
+        form.button("§l§d<<")
+        player.sendMessage(`${Config.FormMessage}`)
+      }
     let res = await Untravel.ForceOpen(player, form)
     if (!res.canceled) {
       if (res.selection == 1) {
@@ -37,21 +44,24 @@ Untravel.cmd.add({
     commands.forEach(x => {
       if ((Untravel.Setting.get(`${x.settingname}System`) ?? Config.Commands[x.category.toLowerCase()][x.settingname]) == false) return;
       form.button(`§b§l${x.name}`)
+      
+      
     })
     let res = await Untravel.ForceOpen(player, form)
     if (!res.canceled) {
       if (res.selection == 0) {
-        categoria(player)
+        return categoria(player, false)
       }
       let result = res.selection
       let selected = commands[result - 1]
-      cmd(selected, category, commandList)
+      cmd(selected, category, true, commandList)
     }
   }
 
-  const categoria = async (player) => {
+  const categoria = async (player, msg = true) => {
     const commandList = Untravel.cmd.getAllRegistation()
     let commandCategory = []
+    let newList = []
     for (const command of commandList) {
       if (!commandCategory.includes(command.category)) commandCategory.push(command.category)
     }
@@ -65,14 +75,17 @@ Untravel.cmd.add({
       if (x == "Op" && !player.isOwner()) return;
       if ((Untravel.Setting.get(`${x.toLowerCase()}System`) ?? true) == false) return;
       form.button(`§9Comandos §b§l${x}`)
+      newList.push(x)
     })
-    player.sendMessage(`${Config.FormMessage}`)
+    if (msg) {
+      player.sendMessage(`${Config.FormMessage}`)
+    }
+    
     let res = await Untravel.ForceOpen(player, form)
     if (!res.canceled) {
       let result = res.selection
-      let selected = commandCategory[result]
-      //    Log(commandList)
-      //    Log(selected)
+      let selected = newList[result]
+
       comandos(selected, commandList)
 
     }
@@ -96,13 +109,7 @@ Untravel.cmd.add({
     if (command.admin && !player.isAdmin())
       return player.sendMessage(`§cComando desconocido: ${commandName}. Revisa que el comando exista y que tengas permiso para usarlo.`)
 
-    let helpMessage = `§1------------------------------\n§a■§9 Comando : ${command.name[0].toUpperCase() + command.name.substring(1)}
-§3 Uso : §b${Untravel.getPrefix()}${command.usage || command.name}
-§3 Descripcion : §b${command.description}`
-    if (command.aliases) {
-      helpMessage += `\n§3 Alias: §b${JSON.stringify(command.aliases)}`
-    }
-    player.sendMessage(helpMessage)
+    cmd(command,command.category,false)
   }
 
 
