@@ -112,7 +112,7 @@ export class DB {
      * Dangerous, Reset all the data (Eliminar)
      * 
      */
-    get reset() {
+    reset() {
         this.data = {};
     }
 }
