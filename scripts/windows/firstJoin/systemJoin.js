@@ -8,12 +8,13 @@ const JoinDB = Untravel.Join
  * 
  * @param {Player} player 
  * @param {GameMode} gamemode 
+ * @param {import("@minecraft/server").Vector3} l
  */
-export const firstJoin = (player, gamemode) => {
+export const firstJoin = (player, gamemode, l) => {
     let build = {}
     build.first = true
     build.date = Date.now()
     JoinDB.set(`${player.name}`, `${build}`)
 
-    guia(player, gamemode)
+    guia(player, gamemode, l)
 }

@@ -121,8 +121,9 @@ function onJoinSpawn(player) {
     if (Owners.lenght == 0) {
       opSystem(player)
     }
+    const l = player.location
     if (!JoinDB.get(player.name)) {
-      firstJoin(player,gamemode)
+      firstJoin(player, gamemode, l)
       Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
       for (let i = 0; i < onJoinData.length; i++) {
         try {
@@ -132,7 +133,7 @@ function onJoinSpawn(player) {
       }
     }
 
-    guia(player, gamemode);
+    guia(player, gamemode, l);
 
     Log(`[ 000 ]§b${player.name}§7 se unió al servidor ${Date()} | gm:  ${gamemode}`)
     // Ejecutanos cada comando en la lista
@@ -160,6 +161,31 @@ Untravel.world.afterEvents.playerSpawn.subscribe((loaded) => {
         return player.kick(`\n§l§cFUISTE BANNEADO!\n§bRazon:§r ${banData.reason} \n§r\n§eBanned Por:§r${banData.by} \n§cDuration : §e${Utility.formatTextFutureDate(banData.duration)}`)
       }
     }
+    if (Untravel.Punish.has(player.name)) {
+      let punish = Untravel.Punish.get(player.name)
+      if (punish == "pvp-logout") {
+        // There are 30 slots ranging from 0 to 29
+        // Let's clear out that ender chest
+        //for (let slot = 0; slot < 30; slot++) {
+        //  player.runCommand(`replaceitem entity @s slot.enderchest ${slot} air`);
+        //}
+  
+        // Get requested player's inventory so we can wipe it out
+        const inventoryContainer = player.getComponent("minecraft:inventory");
+        const inventory = inventoryContainer.container;
+  
+        for (let i = 0; i < inventory.size; i++) {
+          const inventory_item = inventory.getItem(i);
+          if (!inventory_item) {
+            continue;
+          }
+          try {
+            inventory.setItem(i, undefined);
+          } catch { }
+        }
+      }
+    }
+    
     Untravel.PlayerOnline[player.name] = Date.now()
     if (TimeDB.has(player.name) == false) {
       TimeDB.set(player.name, 0)
