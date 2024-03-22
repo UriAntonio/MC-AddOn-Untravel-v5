@@ -92,7 +92,7 @@ system.runInterval(() => {
             const name = entity.name
             const formatedHealth = entity.getformatedHealth()
             const maxHealth = entity.getmaxHealth()
-            entity.nameTag = `§c${name} ${formatedHealth}/${maxHealth}${heart}§r`
+            entity.nameTag = `${name}\n§c${formatedHealth}/${maxHealth}${heart}§r`
         } else {
             if (world.getDynamicProperty("Types").split(",").includes(entity.typeId)) {
                 const comp = entity.getComponent("health")
