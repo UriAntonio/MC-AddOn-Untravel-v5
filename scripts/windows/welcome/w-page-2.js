@@ -53,7 +53,7 @@ export function links(playerid, gamemode, l) {
         + `\n§fUnete nuestro discord en:`
         + `\n§dhttps://discord.gg/yNZBAgAC\n`
       )
-      .button(`§d§l>>`)
+      .button(`§l§b<<*>>`)
 
 
     wel.show(playerid).then((result) => {
@@ -91,7 +91,7 @@ export function reglas(playerid, gamemode, l) {
         + `\n§bAceptar las medidas o decisiones que el staff tome al tratar determinadas circunstancias\n§9----------`
         + `\n§bEresconciente de la libertad que tienes para apelar ciertas deciciones disiplinarias que respecten solo a ti mediante los canales disponibles para ello\n§9----------`
       )
-      .button(`§l§b<<*>>`)
+      .button(`§l§d>>`)
 
 
     wel.show(playerid).then((result) => {
